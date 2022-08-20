@@ -1,0 +1,31 @@
+
+  @media screen and (max-width: 800px) {
+    .Container {
+      flex-direction: column-reverse;
+    }
+  
+    .Fields {
+      justify-content: flex-start;
+    }
+  
+    .Image {
+      height: 100px;
+      flex: none;
+      box-shadow: none;
+      object-fit: cover;
+    }
+  
+    
+  }
+  
+  @media screen and (max-width: 375px) {
+    .Fields {
+      padding: 10rem 10rem;
+    }
+  
+    .Inputi {
+      width: 95%;
+    }
+  
+  }
+  
