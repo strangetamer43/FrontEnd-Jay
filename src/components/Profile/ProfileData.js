@@ -53,13 +53,13 @@ const ProfileData = ({currentId, setCurrentId}) => {
          
          <div className={classes.title}>
          <div className={classes.details2}>
-         <typography variant="h5" className={classes.h6} gutterBottom >
+         <typography variant="h5" className={classes.email}  >
           {user.result.email || user.result.emailId}
          </typography>
          </div>
-         <Marginer  margin="40px" />
+         
          <div className={classes.details2}>
-         <typography variant="h5" className={classes.h6} gutterBottom >
+         <typography variant="h5" className={classes.number}  >
           {user.result.phoneNumber || profiles?.number}
          </typography>
          </div>

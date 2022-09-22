@@ -30,7 +30,7 @@ function PointsForHeader() {
   
   return (
     <div style={{ marginRight: '15px'}}>
-      <typography variant="h4" style={{ color: '#03dac6', fontSize: '3.8vh' }}>KP: {dataNew2}</typography>
+      <typography variant="h4" style={{ color: '#25b8ef', fontSize: '3.8vh' }}>KP: {dataNew2}</typography>
     </div>
   )
 }

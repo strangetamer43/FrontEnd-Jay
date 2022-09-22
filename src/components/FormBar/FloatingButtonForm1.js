@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import { Button, Modal } from '@material-ui/core';
-import FormC from '../Form/FormC';
+import Form from '../Form/Form';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+
 import useStyles from './styles';
 
 
-function Formbar() {
+function Formbar1() {
     const [formbar, setFormbar] = useState(false);
     const showFormbar = () => setFormbar(!formbar);
     const [open, setOpen] = useState(false);
@@ -18,13 +19,13 @@ function Formbar() {
     const handleClose = () => setOpen(false);
     return (
         <>
-            <div className="formbar">
-                <Fab  onClick={handleOpen} variant= 'extended' className={classes.fabButton3} >
-                    <AddIcon />  Post a Contest 
+            <div >
+                <Fab  onClick={handleOpen} variant= 'extended' className={classes.fabButton2} >
+                    <AddIcon style={{ marginLeft: '-15px'}} />&nbsp;  Post Something 
                 </Fab>
                 <Modal open={open} onClose={handleClose}>
                 
-                <FormC/>
+                <Form/>
                 </Modal>
 
 
@@ -37,4 +38,4 @@ function Formbar() {
     );
 }
 
-export default Formbar;
+export default Formbar1;

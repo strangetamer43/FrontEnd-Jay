@@ -49,12 +49,12 @@ const ContestFeed = () => {
     
     
         <Grow in>
-          <Container maxWidth='lg' >
-          <Marginer direction="vertical" margin="15px" />
-          <Paper className={classes.appBarSearch} postition='absolute' color='inherit'>
-                  <TextField name='search' variant='outlined' onKeyPress={handleKeyPress}  label='Search Contests' value={search} onChange={(e) => setSearch(e.target.value)}/>
-                  <ChipInput style={{ margin: '10px 0' }} value={tags} onAdd={handleAdd} onDelete={handleDelete} label="Search Using Skills required" variant="outlined"/>
-                  <Button onClick={searchContest} style={{ Width: '150px' }} className={classes.searchButton} color='primary' variant='contained'> Search</Button>
+          <Container maxWidth='xl' >
+          
+          <Paper className={classes.appBarSearch}>
+                  <TextField name='search'  onKeyPress={handleKeyPress} className={classes.searchBar} InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {color: 'rgba(37, 184, 239, 1)', marginLeft: '1vh', marginRight: '1vh'}}} label='Search Contests' value={search} onChange={(e) => setSearch(e.target.value)}/>
+                  <ChipInput style={{ margin: '10px 0' }}  className={classes.searchBar} value={tags} onAdd={handleAdd} onDelete={handleDelete} InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {color: 'rgba(37, 184, 239, 1)', marginLeft: '1vh', marginRight: '1vh'}}} label="Search Using Skills required" />
+                  <Button onClick={searchContest} className={classes.searchButton}> Search</Button>
                 </Paper>
             <Grid contianer position= "absolute" justify="space-between" alignItems="stretch" Spacing={3} className={classes.gridContainer}>
               <Grid item xs={12} sm={6} md={9} >

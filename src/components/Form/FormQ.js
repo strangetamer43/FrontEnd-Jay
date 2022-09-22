@@ -74,8 +74,8 @@ const FormQ = ({ currentId, setCurrentId }) => {
 
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant="h6">{currentId ? 'Edit' : 'Create' } a Question</Typography>
-               <Button>X</Button>
-                <TextField name="title" variant="outlined" label="Title" fullWidth onChange={(e) => setTitle(e.target.value )} />     
+               
+                <TextField name="title"  label="Title" fullWidth onChange={(e) => setTitle(e.target.value )} />     
                 <TextField name="message" variant="outlined" label="Question Body" fullWidth rows={5} multiline onChange={(e) => setMessage(e.target.value )} />     
                 <TextField name="tags" variant="outlined" label="Skills" fullWidth onChange={(e) => setTags(e.target.value.split(',') )} />    
                 <div className={classes.fileInput}>

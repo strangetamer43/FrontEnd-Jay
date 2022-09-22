@@ -18,18 +18,29 @@ export default makeStyles({
   card: {
     marginTop: '30px',
     marginLeft: '50px',
+    padding: '1.5vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     borderRadius: '30px',
     height: '110%',
     width: '92.5%',
-    
+    boxShadow: '3px 3px 10px 3px rgba(5, 5, 10, 0.75), -3px -3px 10px 3px rgba(255, 255, 255, 0.25)',
     backgroundColor: '#1a1a1a',
   },
   statsHeading: {
-    fontSize: '2vh',
-    color: '#25b8ef'
+    fontSize: '3vh',
+    color: '#25b8ef',
+    marginLeft: '2vh'
+  },
+  statsCard: {
+    marginLeft: '4vw',
+    marginTop: '3vh',
+    background: '#1a1a1a',
+    padding: '3vh',
+    
+    borderRadius: '30px',
+    boxShadow: '5px 5px 12px rgba(5, 5, 10, 0.8), -5px -5px 10px rgba(255, 255, 255, 0.20)',
   },
   overlay: {
     position: 'absolute',
@@ -87,6 +98,7 @@ export default makeStyles({
     marginLeft: '10px',
     marginRight: '10px',
     borderRadius: '100px',
+    boxShadow: '3px 3px 10px 3px rgba(5, 5, 10, 0.75), -3px -3px 10px 3px rgba(255, 255, 255, 0.25)',
     
   },
   details2: {
@@ -115,9 +127,10 @@ export default makeStyles({
     },
   },
   h5: {
-    color: '#03dac6',
+    color: '#25b8ef',
     fontSize: '5vh',
       fontWeight: '600',
+      
     "@media (max-width: 1000px)" : {
       
       fontSize: '5vh',
@@ -169,19 +182,19 @@ export default makeStyles({
   
   },
   button: {
-    borderRadius: '13px',
-    background: '#22262b',
-    border: '3px solid #03dac6',
-    color: '#03dac6',
+    borderRadius: '15px',
+    background: '#1a1a1a',
+    border: '3px solid #25b8ef',
+    color: '#25b8ef',
     
-    fontWeight: '550',
-    fontSize: '15px',
-    paddingTop: '0.6rem',
-    paddingRight: '1rem', 
+    fontWeight: '600',
+    fontSize: '1.8vh',
+    fontFamily: 'Montserrat, sans-serif',
+    padding: '1.2vh', 
     outline: 'none',
     cursor: 'pointer',
     transition: '0.3s ease',
-  
+    boxShadow: '2.5px 2.5px 6.5px rgba(5, 5, 10, 0.75), -2.5px -2.5px 6.5px rgba(255, 255, 255, 0.25)',
     "@media (max-width: 550px)" : {
       fontSize: '6px',
       paddingTop: '0.2rem',
@@ -230,30 +243,60 @@ ButtonP :{
   marginTop: '15px',
   paddingRight: '20px',
   background: '#25b8ef',
-  color: '#121212',
+  color: '#1a1a1a',
   borderRadius: '15px',
   transition: '0.3s ease',
-  
-  
+  boxShadow: '2px 2px 5px rgba(5, 5, 10, 0.75), -2px -2px 5px rgba(255, 255, 255, 0.25)',
+  '&:hover': {
+    boxShadow: '2px 2px 5px rgba(250, 250, 255, 0.25), -2px -2px 5px rgba(5, 5, 10, 0.75)',
+    background: '#25b8ef',
+    marginTop: '15px',
+    paddingRight: '20px',
+    color: '#1a1a1a',
+    borderRadius: '15px',
+   
+    outline: 'none',
+  },
 },
 ButtonQ: {
   background: '#0c7ca6',
   marginTop: '15px',
   paddingRight: '20px',
-  color: '#fff',
+  color: '#e2e2de',
   borderRadius: '15px',
+  boxShadow: '2px 2px 5px rgba(5, 5, 10, 0.75), -2px -2px 5px rgba(255, 255, 255, 0.25)',
+  '&:hover': {
+    boxShadow: '2px 2px 5px rgba(250, 250, 255, 0.25), -2px -2px 5px rgba(5, 5, 10, 0.75)',
+    background: '#0c7ca6',
+    marginTop: '15px',
+    paddingRight: '20px',
+    color: '#e2e2de',
+    borderRadius: '15px',
+   
+    outline: 'none',
+  },
 },
 ButtonS :{
   background: '#07455d',
   marginTop: '15px',
   paddingRight: '20px',
-  color: '#fff',
-  borderRadius: 14,
+  color: '#e2e2de',
+  borderRadius: '15px',
    
   outline: 'none',
-    cursor: 'pointer',
-    transition: '0.3s ease', 
-  
+  cursor: 'pointer',
+  transition: '0.3s ease', 
+  boxShadow: '2px 2px 5px rgba(5, 5, 10, 0.75), -2px -2px 5px rgba(255, 255, 255, 0.25)',
+  '&:hover': {
+    boxShadow: '2px 2px 5px rgba(250, 250, 255, 0.25), -2px -2px 5px rgba(5, 5, 10, 0.75)',
+    background: '#07455d',
+    marginTop: '15px',
+    paddingRight: '20px',
+    color: '#e2e2de',
+    borderRadius: '15px',
+   
+    outline: 'none',
+  },
 },
 
 Modal: {
@@ -262,6 +305,8 @@ Modal: {
   marginTop: '270px',
   marginRight: '700px',
   padding: '6vh',
+  borderRadius: '30px',
+
   
 },
 statFunc: {
@@ -288,6 +333,7 @@ IntroPaper: {
   padding: '2vh',
   width: '92.5%',
   backgroundColor: '#1a1a1a',
+  boxShadow: '5px 5px 12px rgba(5, 5, 10, 0.8), -5px -5px 10px rgba(255, 255, 255, 0.20)',
 },
 Details: {
   display: 'flex',
@@ -307,4 +353,23 @@ IntroHead1: {
   color: '#25b8ef',
   fontSize: '3vh',
 },
+email: {
+  marginLeft: '1vw',
+  color: '#25b8ef',
+  marginBottom: '2vh',
+  fontSize: '3vh',
+  marginTop: '1.5vh'
+}, 
+number: {
+  marginRight: '3vw',
+  marginBottom: '2vh',
+  color: '#25b8ef',
+  fontSize: '3vh',
+  marginTop: '1.5vh'
+},
+frequencyDet: {
+  color: '#25b8ef',
+  marginBottom: '1vh',
+  fontSize: '2vh',
+}
 });

@@ -7,7 +7,7 @@ const Bar = styled.div`
  }
 
  progress[value] {
-    width: 175px;
+    width: 185px;
     -webkit-appearance: none;
     appearance: none;
  }
@@ -16,12 +16,14 @@ const Bar = styled.div`
     height: 18px;
     border-radius: 6px;
     background-color: #616161;
+    box-shadow:  1.5px 1.5px 2px 1.5px rgba(5, 5, 10, 0.8),  -1.5px -1.5px 2px 1.5px rgba(255, 255, 255, 0.20);
  }
  progress[value]::-webkit-progress-value {
     height: 18px;
-    border-radius: 6px;
-    background: linear-gradient(90deg, rgba(2,38,88,1) 20%, rgba(3,218,198,1) 100%);
-    border-bottom: 1px solid #530000;
+    border-radius: 7.5px;
+    background: linear-gradient(90deg, rgba(145,2,238,1) 0%, rgba(37,184,239,1) 100%);
+    
+    box-shadow:  inset 1.5px 1.5px 2px 1.5px rgba(5, 5, 10, 0.35), inset -1.5px -1.5px 2px 1.5px rgba(5, 5, 10, 0.35);
  }
 
 `;

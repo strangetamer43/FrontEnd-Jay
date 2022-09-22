@@ -60,11 +60,11 @@ const ContentFeed = () => {
         <Grow in>
           <Container maxWidth='xl' >
           
-          <div style={{ display: 'flex', flexDirection: 'column'}}>
+          <div style={{ display: 'flex', flexDirection: 'row'}}>
           <Paper className={classes.appBarSearch}  color='inherit'>
             <div style={{ display: 'flex', flexDirection: 'column'}}>
-                  <Input className={classes.searchBar}  name='search'  onKeyPress={handleKeyPress} placeholderProps={{style: {color: '#fff'}}} placeholder='Search Posts' value={search} onChange={(e) => setSearch(e.target.value)}/>
-                  <ChipInput className={classes.searchBar1} value={tags} onAdd={handleAdd} InputLabelProps={{style: {color: '#fff'}}} onDelete={handleDelete} label="Search Using Skills(press enter)" variant="outlined"/>
+                  <TextField className={classes.searchBar}  name='search'  onKeyPress={handleKeyPress} InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {color: 'rgba(37, 184, 239, 1)', marginLeft: '1vh', marginRight: '1vh'}}} label='Search Posts' value={search} onChange={(e) => setSearch(e.target.value)}/>
+                  <ChipInput className={classes.searchBar1} InputProps={{ disableUnderline: true, style: {color: 'rgba(37, 184, 239, 1)', marginLeft: '1vh', marginRight: '1vh'}}} value={tags} onAdd={handleAdd} InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh'}}} onDelete={handleDelete} label="Search Using Skills(press enter)"/>
                  </div>
                   <Button onClick={searchPost}  className={classes.button} variant='contained'> Search</Button>
                   

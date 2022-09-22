@@ -15,13 +15,16 @@ export default makeStyles((theme) => ({
         marginLeft: '50px',   
         
       },
-      "@media (max-width: 450px"  : {
+      "@media (max-width: 450px)"  : {
         marginLeft: '30px',
       },
-      "@media (max-width: 375px" : {
+      "@media (max-width: 375px)" : {
         marginLeft: '80px',
       }
       
+  },
+  container1: {
+    marginLeft: '7vw',
   },
   formbar: {
     marginLeft: '500px'
@@ -41,4 +44,7 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
+  gridContainer1 :{
+    marginLeft: '1vw'
+  }
 }));

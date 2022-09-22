@@ -10,7 +10,7 @@ const Helper = () => {
     const classes = useStyles();
   return (
     <div>
-      <Button position="fixed" style={{color: '#22262b', backgroundColor: '#e65100'}} className={classes.button} onClick={handleOpen}><BsIcons.BsQuestionCircle style={{ marginLeft: '-15px', fontWeight: '650'}}size={50}/></Button>
+      <Button position="fixed" style={{color: '#1a1a1a', background: 'linear-gradient(315deg, rgba(246,0,241,1) 5%, rgba(37,184,239,1) 100%)', boxShadow: '2.5px 2.5px 6px rgba(5, 5, 10, 0.8), -2px -2px 5px rgba(255, 255, 255, 0.40)'}} className={classes.button} onClick={handleOpen}><BsIcons.BsQuestionCircle style={{ marginLeft: '-15px', fontWeight: '650'}}size={50}/></Button>
       <Modal open={open} onClose={handleClose}>
         <Paper className={classes.paper}>
             <div className={classes.placeButtons}>

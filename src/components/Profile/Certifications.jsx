@@ -40,7 +40,7 @@ function Certifications({currentId, setCurrentId}) {
          
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <typography variant="h6" className={classes.IntroHead1} gutterBottom >
-           Certifications URL's
+           Certification URL's
           </typography>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           {profiles?.certificationURL?.map((certificationURL) => <a href={{ pathname: `https://${certificationURL}`}} target="_blank" > {certificationURL}</a>)}

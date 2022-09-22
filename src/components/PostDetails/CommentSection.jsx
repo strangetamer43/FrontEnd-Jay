@@ -25,7 +25,7 @@ const CommentSection = ({ post }) => {
         <div>
             <div className={classes.commentsOuterContainer}>
                 <div className={classes.commentsInnerContainer}>
-                    <Typography className={classes.comments} gutterBottom varaint="h6">Comments</Typography>
+                    <Typography className={classes.comments} gutterBottom varaint="h6">Comments...</Typography>
                     {comments?.map((c, i) => (
                         <Typography className={classes.comments} key={i} gutterBottom varaint="subtitle1">
                             <typography className={classes.nameComments} >{c.split(': ')[0]}</typography>:{c.split(':')[1]}
@@ -46,6 +46,7 @@ const CommentSection = ({ post }) => {
                             onChange={(e) => setComment(e.target.value)}
                             className={classes.commentField}
                             InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh', marginTop: '0.5vh'}}}
+                            InputProps={{ style: {color: 'rgba(37, 184, 239, 1)', margin: '0vh 1vh 0vh 1vh'}}}
                         />
                         <Button style={{ marginTop: '2vh'}} className={classes.commentButton} fullWidth  disabled={!comment} variant="contained" onClick={handleClick}>
                             Comment

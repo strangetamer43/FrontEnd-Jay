@@ -19,7 +19,7 @@ export default makeStyles((theme) => ({
         
       },
     appBarSearch: {
-        borderRadius: 4,
+        borderRadius: '30px',
         marginTop: '2rem',
         
         
@@ -27,7 +27,8 @@ export default makeStyles((theme) => ({
         flexDirection: 'column',
         justify: "space-between",
         padding: '10px',
-        backgroundColor: '#fdf4dc',
+        backgroundColor: '#1a1a1a',
+        boxShadow: '-5px -5px 10px 5px rgba(255, 255, 255, 0.3), 5px 5px 10px 5px rgba(5, 5, 10, 0.7)',
     },
     gridConatainer: {
         
@@ -35,4 +36,26 @@ export default makeStyles((theme) => ({
             flexDirection: 'column-reverse',
         },
     },
+    searchBar: {
+      borderRadius: '15px',
+      border: '2px solid #25b8ef',
+
+    },
+    searchButton: {
+      width: '10vw',
+        background: '#25b8ef',
+        borderRadius: '15px',
+        marginTop: '2vh',
+        marginBottom: '1vh',
+        fontSize: '2vh',
+        width: '30vh',
+        boxShadow: '-2.5px -2.5px 5px rgba(255, 255, 255, 0.30), 2.5px 2.5px 5px rgba(5, 5, 10, 0.7)',
+        '&:hover':{
+            borderRadius: '15px',
+            marginBottom: '1vh',
+            fontSize: '2vh',
+            background: '#25b8ef',
+            boxShadow: '2.5px 2.5px 6px rgba(255, 255, 255, 0.30), -2.5px -2.5px 6px rgba(5, 5, 10, 0.7)',
+        }
+    }
 }));

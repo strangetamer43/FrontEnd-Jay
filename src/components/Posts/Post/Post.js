@@ -110,7 +110,7 @@ const Post = ({ post, setCurrentId, handleImage }) => {
              
             
                 <div className={classes.details}>
-                    <typography className={classes.tags} style={{color: 'white'}} >{post.tags.map((tag) => `#${tag} `)}</typography>
+                    <typography className={classes.tags} style={{color: '#c935ff'}} >{post.tags.map((tag) => `#${tag} `)}</typography>
 
                 </div>
                 <typography className={classes.title} variant="h5" gutterBottom>{post.title}</typography>
@@ -130,9 +130,11 @@ const Post = ({ post, setCurrentId, handleImage }) => {
             <Modal open={open}>
                 
                 <Paper className={classes.removeDialog} >
-                    <typography style={{fontWeight: '600', fontSize: '20px'}}>&nbsp;Are you sure you want to remove this post?</typography>
-                    <Button style={{ marginLeft: '30px', marginTop:'10px', borderRadius: '15px', background: '#022658', border: '3px solid #1167bf', color: '#fff', fontWeight: '500', fontSize: '17px', paddingRight: '0.5rem', paddingLeft: '0px', outline: 'none', cursor: 'pointer'}} onClick={() => dispatch(deletePost(post._id))}><BsIcons.BsCheckLg style={{color: 'green'}}/>&nbsp;&nbsp;Yes</Button>
-                    <Button style={{ marginLeft: '60px', marginTop:'10px', borderRadius: '15px', background: '#022658', border: '3px solid #1167bf', color: '#fff', fontWeight: '500', fontSize: '17px', paddingRight: '0.5rem', paddingLeft: '0px', outline: 'none', cursor: 'pointer'}} onClick={handleClose}><MdIcons.MdClose style={{color: 'red'}} size={26}/>&nbsp;No</Button>
+                    <typography style={{fontWeight: '600', fontSize: '2.5vh', color: '#eeddee'}}>&nbsp;Are you sure you want to remove this post?</typography>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginTop: '3vh' }}>
+                    <Button className={classes.yesbutton} onClick={() => dispatch(deletePost(post._id))}><BsIcons.BsCheckLg style={{color: 'green', marginLeft: '-0.75vw'}}/>&nbsp;&nbsp;Yes</Button>
+                    <Button className={classes.nobutton} onClick={handleClose}><MdIcons.MdClose style={{color: '#a80202', marginLeft: '-1vw' }} size={26}/>&nbsp;No</Button>
+                    </div>
                 </Paper>
                 
             </Modal>

@@ -25,27 +25,30 @@ const CommentSection = ({ question }) => {
         <div>
             <div className={classes.commentsOuterContainer}>
                 <div className={classes.commentsInnerContainer}>
-                    <Typography gutterBottom varaint="h6">Comments</Typography>
+                    <typography className={classes.comments}>Comments...</typography>
                     {comments.map((c, i) => (
-                        <Typography key={i} gutterBottom varaint="subtitle1">
+                        <Typography  className={classes.comments} key={i} gutterBottom varaint="subtitle1">
                             <strong>{c.split(': ')[0]}</strong>:{c.split(':')[1]}
                         </Typography>
                     ))}
                     <div ref={commentsRef} />
                 </div>
                 {user?.result?.name && (
-                    <div style={{ width:'70%'}}>
-                        <Typography gutterBottom varaint="h6">Write a comment</Typography>
+                    <div style={{ width:'50%'}}>
+                        <typography className={classes.comments}>Write a comment</typography>
                         <TextField
                             fullWidth
                             rows={3}
-                            variant="outlined"
+                            
                             label='Comment'
                             multiline
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}
+                            className={classes.commentField}
+                            InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh', marginTop: '0.5vh'}}}
+                            InputProps={{ style: {color: 'rgba(37, 184, 239, 1)', margin: '0vh 1vh 0vh 1vh'}}}
                         />
-                        <Button style={{ marginTop: '10px'}} fullWidth  disabled={!comment} variant="contained" color="primary" onClick={handleClick}>
+                        <Button style={{ marginTop: '2vh'}} className={classes.commentButton} fullWidth  disabled={!comment} variant="contained" onClick={handleClick}>
                             Comment
                         </Button>
                     </div>

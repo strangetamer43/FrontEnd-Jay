@@ -55,3 +55,6 @@ export const createFollowers = (newFollowers) => API.post('/followers', newFollo
 export const deleteFollowers = (id) => API.delete(`/followers/${id}`);
 export const signIn = (form) => API.post('/user/signin', form);
 export const signUp = (form) => API.post('/user/signup', form);
+export const createTask = (newTask) => API.post('/tasks', newTask);
+export const fetchTasks = () => API.get('/tasks');
+export const fetchTask = (id) => API.get(`/tasks/${id}`);

@@ -90,8 +90,8 @@ const Question = ({ question, setCurrentId }) => {
                 <div className={classes.overlay}>
                 <div className={classes.nameDet}>
    
-                <Avatar className={classes.purple} alt={question.name} src={question.avatarUrl} style={{ width: '30px', height: '30px' }}></Avatar>
-                    <typography variant="h6" style={{marginLeft: '10px'}}>{question.name} </typography>
+                <Avatar className={classes.purple} alt={question.name} src={question.avatarUrl} ></Avatar>
+                    <typography variant="h6" style={{marginLeft: '10px'}} className={classes.name}>{question.name} </typography>
                     </div> 
                  <typography variant="body2">{moment(question.createdAt).fromNow()}</typography>
 
@@ -99,28 +99,28 @@ const Question = ({ question, setCurrentId }) => {
             
                 <div className={classes.overlay2}>
                 
-                
-                    <typography style={{color: 'white'}} variant="h6">
-                    <DifferenceLikes/>
+                <div className={classes.KPnumber}>
+                    <typography style={{color: 'white'}} className={classes.KPcount} >
+                    KP: <DifferenceLikes/>
                     </typography>
-                
+                </div>
                 
             
                 </div>
              
             
                 <div className={classes.details}>
-                    <typography variant="body2" color="textSecondary">{question.tags.map((tag) => `#${tag} `)}</typography>
+                    <typography className={classes.tags}>{question.tags.map((tag) => `#${tag} `)}</typography>
 
                 </div>
-                <typography className={classes.title} variant="h5" gutterBottom>{question.title}</typography>
+                <typography className={classes.title1}>{question.title}</typography>
              <CardContent>
-                    <typography variant="body1" gutterBottom>{question.message}</typography>
+                    <typography className={classes.message} gutterBottom>{question.message}</typography>
                 </CardContent>
             </ButtonBase>
             <CardActions className={classes.cardActions}>
-                <Button size="small" color="primary" disabled={!user?.result} style={{color: 'green'}} onClick ={handleLike}><Likes /></Button>
-                <Button size="small" color="primary" disabled={!user?.result}  style={{color: 'red'}} onClick ={handleDisLike}><Dislikes /></Button>
+                <Button disabled={!user?.result} style={{color: '#80e27e'}} onClick ={handleLike}><Likes /></Button>
+                <Button  disabled={!user?.result}  style={{color: '#F44336'}} onClick ={handleDisLike}><Dislikes /></Button>
                 {(user?.result?.googleId === question?.creator || user?.result?._id === question?.creator) && (
                     <Button size="small" color="primary" style={{color: 'indigo'}} onClick ={handleOpen}><ImIcons.ImCross fontSize="small" />&nbsp; Remove</Button>
                 )}    

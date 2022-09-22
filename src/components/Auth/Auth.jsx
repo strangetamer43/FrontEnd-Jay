@@ -51,7 +51,7 @@ const Fields = styled.div`
   justify-content: center;
   
   padding: 0rem;
-  background: #121212;
+  background: #1a1a1a;
   border-radius: 30px;
 `;
 
@@ -64,7 +64,8 @@ const Content = styled.div`
   box-shadow: 0px 1px 5px #000;
   border-radius: 30px;
   transition: 0.8s ease;
-  background: #121212;
+  box-shadow: -4px -4px 15px 4px rgba(255, 255, 255, 0.20), 4px 4px 15px 4px rgba(0, 0, 0, 0.65);
+  background: #1a1a1a;
   @media only screen and (max-width: 1100px) {
     padding: 1.5rem;
   }
@@ -88,7 +89,7 @@ const Input = styled.div`
     flex-direction: column;
     
   
-      
+    
     padding: 1.5rem;
     @media only screen and (max-width: 1100px) {
         padding: 1.25rem;
@@ -116,14 +117,14 @@ const Label = styled.label`
 const Inputi = styled.input`
     padding: 0.55rem 0.4rem;
     border: 2px solid rgb(37, 184, 239);
-    border-radius: 4px;
+    border-radius: 15px;
     font-size: 14px;
     color: rgb(37, 184, 239);
-    
+    box-shadow: -1.5px -1.5px 6px 1.5px rgba(255, 255, 255, 0.20),  2px 2px 8px 2px rgba(0, 0, 0, 0.75);
     outline: none;
     transition: all 150ms ease-in-out 0.3s;
     width: 100%;
-    background: #121212;
+    background: #1a1a1a;
 `;
 const Account = styled.div`
     display: flex;
@@ -156,16 +157,31 @@ const SignIn = styled.button`
     border-radius: 15px;
     background: #22262b;
     margin-left: 30px;
-    border: 2px solid #25b8ef;
+    border: 0px solid #25b8ef;
     margin-right: 100px;
     color: #25b8ef;
-    
+    box-shadow: -2px -2px 6px 2px rgba(255, 255, 255, 0.25), 2px 2px 6px 2px rgba(0, 0, 0, 0.75);
     font-weight: 500;
     font-size: 17px;
     padding: 0.35rem 0.6rem;
     outline: none;
     cursor: pointer;
     transition: 0.3s ease;
+    :hover{
+      border-radius: 15px;
+    background: #22262b;
+    margin-left: 30px;
+    border: 0px solid #25b8ef;
+    margin-right: 100px;
+    color: #25b8ef;
+    box-shadow: 2px 2px 6px 2px rgba(255, 255, 255, 0.25), -2px -2px 6px 2px rgba(0, 0, 0, 0.75);
+    font-weight: 500;
+    font-size: 17px;
+    padding: 0.35rem 0.6rem;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+    }
     @media only screen and (max-width: 1100px) {
         padding: 0.5rem 1.25rem;
         font-size: 14px;
@@ -188,7 +204,9 @@ const SignIn = styled.button`
 const SignIng = styled.button`
     border-radius: 15px;
     background: #22262b;
-    border: 2px solid #c935ff;
+    border: 0px solid #c935ff;
+    box-shadow: -2px -2px 6px 2px rgba(255, 255, 255, 0.20), 2px 2px 6px 2px rgba(0, 0, 0, 0.55);
+    
     color: #c935ff;
     
     font-weight: 500;
@@ -198,6 +216,22 @@ const SignIng = styled.button`
     outline: none;
     cursor: pointer;
     transition: 0.3s ease;
+    :hover {
+      border-radius: 15px;
+    background: #22262b;
+    border: 0px solid #c935ff;
+    box-shadow: 2px 2px 6px 2px rgba(255, 255, 255, 0.20), -2px -2px 6px 2px rgba(0, 0, 0, 0.55);
+    
+    color: #c935ff;
+    
+    font-weight: 500;
+    font-size: 17px;
+    font-color: #000000;
+    padding: 0.5rem 1.2rem;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+    }
     @media only screen and (max-width: 1100px) {
         padding: 0.5rem 1.25rem;
         font-size: 14px;

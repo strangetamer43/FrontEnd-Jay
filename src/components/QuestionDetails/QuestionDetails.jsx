@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { Paper, Typography, CircularProgress, Divider, Button} from '@material-ui/core';
+import { Paper, Typography, CircularProgress, Divider, Button, Avatar} from '@material-ui/core';
 import {useDispatch, useSelector} from 'react-redux';
 import moment from 'moment';
 import { useParams, useNavigate, Link } from 'react-router-dom';
@@ -45,26 +45,33 @@ const QuestionDetails = () => {
     }
   }
   return (
-    <Paper style={{ padding: '20px', borderRadius: '15px', margin: '75px', backgroundColor: '#fdf4dc' }} elevation={6}>
-      <div className={classes.paper}>
+    <Paper className={classes.paper} style={{ padding: '20px', borderRadius: '30px', margin: '75px', backgroundColor: '#1a1a1a' }} elevation={6}>
+      <div >
+           <SwitchMedia />
+          </div>
+      <div >
           <div className={classes.section}>
-            <Typography variant="h3" component="h2">{question.title}</Typography>
-            <Typography gutterBottom variant="h6" color="textSecondary" component="h2">{question.tags?.map((tag) => `#${tag}`)}</Typography>
-           <Typography gutterBottom variant="body1" component="p">{question.message}</Typography>
-           <div style={{ display: 'flex', flexDirection: 'row' }}>
-           <Typography variant="h6">Created by: {question.name}</Typography>
-           <Button component={Link} to='/userprofile' state={{ creator: question.creator }} style={{ marginLeft: '10px', backgroundColor: '#022658', color: 'white'}}>View Profile</Button>
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+           <Button component={Link} to='/userprofile' state={{ creator: question.creator }} className={classes.button}>
+            <div style={{display: 'flex', direction: 'row', justifyContent: 'flex-start'}}>
+           <Avatar className={classes.purple} alt={question.name} src={question?.avatarUrl}></Avatar>
+           <typography className={classes.name}>{question.name}</typography>
            </div>
-           <Typography variant="body1">{moment(question.createdAt).fromNow()}</Typography>
+           </Button>
+           
+           </div>
+            <typography className={classes.title}>{question.title}</typography>
+            <typography className={classes.tags}>{question.tags?.map((tag) => `#${tag}`)}</typography>
+           <pre className={classes.pre}>{question.message}</pre>
+           
+           <typography  className={classes.time}>{moment(question.createdAt).fromNow()}</typography>
            
            
            <Divider style={{ margin: '20px 0' }} />
            <CommentSection question={question}/>
            <Divider style={{ margin: '20px 0' }} />
           </div>
-          <div className={classes.imageSection}>
-           <SwitchMedia />
-          </div>
+          
          
         </div>
         {recomendedQuestions.length && (

@@ -47,7 +47,7 @@ const Header = () => {
         
         <div className={classes.header}>
             <Sidebar />
-            <img style={{ marginLeft: '10vw', width: '2.5vw', height: '2.5vw' }}
+            <img style={{ marginLeft: '10vw', width: '2.5vw', height: '2.75vw', }}
                 class_name={classes.headerLogo}
                 src={ usurpLogo }
                 alt="usurp-logo"
@@ -56,7 +56,7 @@ const Header = () => {
                 {user ? (
                     <div className={classes.profile}>
                         <PointsForHeader/>
-                        <Typography className={classes.userName} style={{color:"#e2e2de"}}  variant='body1'>{user?.result?.name || user.user.name}</Typography>
+                        <typography className={classes.userName} style={{color:"#e2e2de"}} >{user?.result?.name || user.user.name}</typography>
                         <Button component={Link} to='/profile'>
                         <Avatar className={classes.purple} alt={user?.result?.name || user.user.name} src={user?.result?.imageUrl || user.user.imageUrl}></Avatar>
                         </Button>

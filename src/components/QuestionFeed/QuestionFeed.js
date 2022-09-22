@@ -53,9 +53,9 @@ const QuestionFeed = () => {
           <Container maxWidth='lg' >
           <Marginer direction="vertical" margin="15px" />
           <Paper className={classes.appBarSearch} postition='static' color='inherit'>
-                  <TextField name='search' variant='outlined' onKeyPress={handleKeyPress} label='Search Questions' value={search} onChange={(e) => setSearch(e.target.value)}/>
-                  <ChipInput style={{ margin: '10px 0' }} value={tags} onAdd={handleAdd} onDelete={handleDelete} label="Search Using Skills" variant="outlined"/>
-                  <Button onClick={searchQuestion} className={classes.searchButton} color='primary' variant='contained'> Search</Button>
+                  <TextField className={classes.searchBar} onKeyPress={handleKeyPress} label='Search Questions' InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {color: 'rgba(37, 184, 239, 1)', marginLeft: '1vh', marginRight: '1vh'}}}  value={search} onChange={(e) => setSearch(e.target.value)}/>
+                  <ChipInput className={classes.searchBar} InputProps={{ disableUnderline: true, style: {color: 'rgba(37, 184, 239, 1)', marginLeft: '1vh'}}} style={{ margin: '10px 0' }} InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh', marginRight: '1vh'}}} value={tags} onAdd={handleAdd} onDelete={handleDelete} label="Search Using Skills" />
+                  <Button onClick={searchQuestion} className={classes.searchButton} > Search</Button>
           </Paper>
             <Grid contianer position= "absolute" justify="space-between" alignItems="stretch" Spacing={3} className={classes.gridContainer}>
               <Grid item xs={12} sm={6} md={9} >

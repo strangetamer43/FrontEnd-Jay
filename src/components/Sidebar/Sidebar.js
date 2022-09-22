@@ -12,20 +12,35 @@ import { IconContext } from "react-icons";
 import usurpLogo from "./usurp-logo.png";
 
 const Button = styled.button`
-    border-radius: 13px;
-    margin-top: 15px;
-    margin-left: 20px;
-    background: linear-gradient(330deg, rgba(88,2,2,1) 7%, rgba(255,0,0,1) 100%);
+    border-radius: 15px;
+    margin-top: 2vh;
+    margin-left: 2vw;
+    background: #ac23e5;
     border: 0px solid #6f006f;
-    border-bottom: 2px solid #1c0000;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: -2px -2px 6px 2px rgba(255, 255, 255, 0.25), 2px 2px 6px 2px rgba(5, 5, 10, 0.75);
+    color: #eeddee;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 18px;
     padding: 0.7rem 1.2rem;
     outline: none;
     cursor: pointer;
     transition: 0.3s ease;
+    :hover {
+        border-radius: 15px;
+    margin-top: 2vh;
+    margin-left: 2vw;
+    background: #c935ff;
+    border: 0px solid #6f006f;
+    box-shadow: 2px 2px 6px 2px rgba(255, 255, 255, 0.25), -2px -2px 6px 2px rgba(5, 5, 10, 0.75);
+    color: #eeddee;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    padding: 0.7rem 1.2rem;
+    outline: none;
+    cursor: pointer;
+    }
 `;
 
 
@@ -42,7 +57,7 @@ function Sidebar() {
   const showSidebar = () => setSidebar(!sidebar);
   return (
     <>
-    <IconContext.Provider value={{color:"#03dac6"}}>
+    <IconContext.Provider value={{color:"#25b8ef"}}>
         <div className='navbar' style={{borderRadius: "30px"}}>
             <Link to="#" className='menu-bars'>
                 <FaIcons.FaBars onClick={showSidebar} />
@@ -68,7 +83,7 @@ function Sidebar() {
                         </li>
                     );
                 })}
-                <Button value={{color:"#ffffff"}} onClick={logout} ><BiIcons.BiPowerOff style={{color: 'white'}} size={20}/>&nbsp;&nbsp;LOGOUT</Button>
+                <Button value={{color:"#ffffff"}} onClick={logout} ><BiIcons.BiPowerOff style={{color: 'white'}} size={20}/>&nbsp;&nbsp;LOG OUT</Button>
             </ul>
 
         </nav>

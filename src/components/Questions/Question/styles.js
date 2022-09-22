@@ -18,10 +18,40 @@ export default makeStyles({
     flexDirection: 'column',
     justifyContent: 'space-between',
     borderRadius: '15px',
-    background:'#fdf4dc',
+    background:'#1a1a1a',
     height: '100%',
     width: '100%',
     position: 'relative',
+    boxShadow: '-2.5px -2.5px 6px 2.5px rgba(255, 255, 255, 0.25), 2.5px 2.5px 6px 2.5px rgba(5, 5, 10, 0.75)',
+  },
+  name: {
+    fontSize: '2vh',
+  },
+  KPcount: {
+    fontSize: '1.5vh',
+    padding: '0.5vh'
+
+  },
+  purple:{
+    width: '2vh',
+    height: '2vh'
+  },
+  KPnumber: {
+    border: '0.12vw solid rgba(255, 255, 255, 0.6)',
+    borderRadius: '1.5vh',
+    boxShadow: '1px 1px 2px rgba(5, 5, 10, 0.8), -1px -1px 2px rgba(255, 255, 255, 0.20), inset 1px 1px 2px rgba(5, 5, 10, 0.8), inset -1px -1px 2px rgba(255, 255, 255, 0.20)',
+  },
+  tags: {
+    fontSize: '2vh',
+    color: '#c935ff'
+  },
+  message:{
+    color: '#e2e2de'
+  },
+  title1: {
+    padding: '0 16px',
+    color: '#e2e2de',
+    fontSize: '2vh'
   },
   overlay: {
     position: 'absolute',

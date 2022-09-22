@@ -21,7 +21,9 @@ export default makeStyles({
     background:'#1a1a1a',
     height: '100%',
     width: '100%',
-    
+    marginBottom: '4vh',
+    boxShadow: '-5px -5px 15px 5px rgba(255, 255, 255, 0.25), 5px 5px 15px 5px rgba(5, 5, 10, 0.75)',
+  
   },
   overlay: {
     position: 'absolute',
@@ -84,11 +86,13 @@ export default makeStyles({
     marginRight: '5px',
   },
   removeDialog: {
-    margin: '425px',
-    marginLeft: '750px',
-    height: '110px', 
-    width: '420px', 
-    background:'#fdf4dc',
+    margin: '40vh',
+    marginLeft: '40vw',
+    height: '20vh', 
+    width: '21vw', 
+    background:'#1a1a1a',
+    borderRadius: '15px',
+    padding: '2vh',
     "@media (max-width: 1325px)" : {
       margin: '375px',
       marginLeft: '450px'
@@ -134,7 +138,8 @@ export default makeStyles({
   },
   KPnumber: {
     border: '0.25vw solid rgba(255, 255, 255, 0.6)',
-    borderRadius: '3vh'
+    borderRadius: '3vh',
+    boxShadow: '1.5px 1.5px 2.5px rgba(5, 5, 10, 0.8), -1.5px -1.5px 2.5px rgba(255, 255, 255, 0.20), inset 1.5px 1.5px 2.5px rgba(5, 5, 10, 0.8), inset -1.5px -1.5px 2.5px rgba(255, 255, 255, 0.20)',
   },
   tags: {
     fontSize: '2vh'
@@ -143,5 +148,28 @@ export default makeStyles({
     width: '15vw',
     height: '4vh',
     fontSize: '2vh'
+  },
+  yesbutton: {
+    background: '#25b8ef',
+    borderRadius: '15px',
+    color: '#000000',
+    boxShadow: '-1.5px -1.5px 3px 1.5px rgba(255, 255, 255, 0.25), 1.5px 1.5px 3px 1.5px rgba(5, 5, 10, 0.75)',
+    '&:hover':{
+      background: '#25b8ef',
+    borderRadius: '15px',
+    color: '#000000',
+    boxShadow: '1.5px 1.5px 3px 1.5px rgba(255, 255, 255, 0.25), -1.5px -1.5px 3px 1.5px rgba(5, 5, 10, 0.75)',
+    }
+  },
+  nobutton: {
+    background: '#ac23e5',
+    borderRadius: '15px',
+    boxShadow: '-1.5px -1.5px 3px 1.5px rgba(255, 255, 255, 0.25), 1.5px 1.5px 3px 1.5px rgba(5, 5, 10, 0.75)',
+    '&:hover':{
+      background: '#ac23e5',
+    borderRadius: '15px',
+    color: '#000000',
+    boxShadow: '1.5px 1.5px 3px 1.5px rgba(255, 255, 255, 0.25), -1.5px -1.5px 3px 1.5px rgba(5, 5, 10, 0.75)',
+    }
   }
 });

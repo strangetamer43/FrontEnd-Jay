@@ -3,6 +3,10 @@ import { Container, AppBar, Typography, Grow, Grid, Card, Button, ListItemAvatar
 import useStyles from "./styles";
 import { Doughnut, Radar} from "react-chartjs-2";
 import * as ImIcons from 'react-icons/im';
+import {TbWaveSawTool} from 'react-icons/tb';
+import {GiSkills} from 'react-icons/gi';
+import {ImStatsDots} from 'react-icons/im';
+import {FaPercentage} from 'react-icons/fa';
 import { ArcElement } from "chart.js";
 import axios from 'axios';
 import styled from 'styled-components';
@@ -140,14 +144,14 @@ function StatsOfUser1() {
    
   return (
     <div className={classes.statFunc}>
-    <Paper className={classes.card} elevation={7}>
+    <Paper className={classes.statsCard} elevation={7}>
       
       
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', margin: '30px' }} className={classes.statsB}>
-      <typography className={classes.statsHeading}>{user?.result?.name}'s Stats</typography>
-        <Button className={classes.ButtonP} onClick={getData}>Profile Percentile</Button>
-        <Button className={classes.ButtonQ} onClick={getDataTags}>Top 5 Skills </Button>
-        <Button className={classes.ButtonS} onClick={getDataPostsFreq}>Post Frequency </Button>
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}} className={classes.statsB}>
+      <ImStatsDots size={40} style={{ marginLeft: '2vw', color: '#25b8ef'}}/>
+        <Button className={classes.ButtonP} onClick={getData}><FaPercentage  size={30}/></Button>
+        <Button className={classes.ButtonQ} onClick={getDataTags}><GiSkills size={30}/> </Button>
+        <Button className={classes.ButtonS} onClick={getDataPostsFreq}><TbWaveSawTool style={{color: '#e2e2de'}} size={30}/> </Button>
         </div>
         <Modal open={open} >
         <Paper className={classes.Modal}>
@@ -260,9 +264,9 @@ function StatsOfUser1() {
         </Modal>
         
         <Modal open={openH} onClose={handleCloseH} >
-          <Paper>
+          <Paper className={classes.Modal}>
             <div style={{ display: 'flex', flexDirection: 'column' , justifyContent: 'space-between'}}>
-            <typography>Daily Frequency: {postfreqdata?.Rate_Daily}</typography>
+            <typography className={classes.frequencyDet}>Daily Frequency: {postfreqdata?.Rate_Daily}</typography>
             <typography>Weekly Frequency: {postfreqdata?.Rate_Weekly}</typography>
             <typography>Monthly Frequency: {postfreqdata?.Rate_Monthly}</typography>
             <typography>Total Posts: {postfreqdata?.Total_Posts}</typography>

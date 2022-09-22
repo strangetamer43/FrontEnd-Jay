@@ -20,7 +20,7 @@ function Formbar() {
     return (
         <>
             <div className="formbar">
-                <Fab  onClick={handleOpen} variant= 'extended' className={classes.fabButton} color='secondary'>
+                <Fab  onClick={handleOpen} variant= 'extended' className={classes.fabButton4} >
                     <AddIcon />  Post a Question 
                 </Fab>
                 <Modal open={open} onClose={handleClose}>

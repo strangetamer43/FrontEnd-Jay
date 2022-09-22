@@ -73,29 +73,29 @@ const ProfilePoints = () => {
     }
     const LevelText = () => {
       if(0 <= total && total <= 10){
-        return <typography variant="body1">Become a Usurper</typography>
+        return <typography style={{marginTop: '1.2vh'}} variant="body1">Become a Usurper</typography>
       }
       else if(10 < total && total <= 50){
-        return <typography variant="body1">Become a Pro</typography>
+        return <typography style={{marginTop: '1.2vh'}} variant="body1">Become a Pro</typography>
       }
       else if(50 < total && total <= 100){
-        return <typography variant="body1">Become a Master</typography>
+        return <typography style={{marginTop: '1.2vh'}} variant="body1">Become a Master</typography>
       }
       else if(100 < total &&  total <= 250){
-        return <typography variant="body1">Become a Legend</typography>
+        return <typography style={{marginTop: '1.2vh'}} variant="body1">Become a Legend</typography>
       }
       else if(250 < total && total <= 500){
-        return <typography variant="body1">Become an Ultra Legend</typography>
+        return <typography style={{marginTop: '1.2vh'}} variant="body1">Become an Ultra Legend</typography>
       }
       
       else if(500 < total && total <= 750){
-        return <typography variant="body1">Become Godlike</typography>
+        return <typography style={{marginTop: '1.2vh'}} variant="body1">Become Godlike</typography>
       }
       else if(750 < total && total <= 1000){
-        return <typography variant="body1">Time to rule</typography>
+        return <typography style={{marginTop: '1.2vh'}} variant="body1">Time to rule</typography>
       }
       else if(total > 1000){
-        return <typography variant="body1">Rule Well</typography>
+        return <typography style={{marginTop: '1.2vh'}} variant="body1">Rule Well</typography>
       }
     }
     const Badges = () => {
@@ -145,11 +145,11 @@ const ProfilePoints = () => {
     isLoading ? <CircularProgress /> : (
       
         <div className={classes.details2}>
-          <div style={{ border: '3px solid #03dac6', borderRadius: '10px', width: '190px'}}>
+          <div style={{ border: '3px solid #25b8ef', borderRadius: '15px', width: '10.5vw', boxShadow: '3px 3px 7.5px rgba(5, 5, 10, 1), -3px -3px 7.5px rgba(255, 255, 255, 0.3), inset 3px 3px 7.5px rgba(5, 5, 10, 1), inset -3px -3px 7.5px rgba(255,255,255,0.3) '}}>
     
-          <typography  style={{ color: '#03dac6', fontSize: '4vh' }}>KP: {totalR}</typography>
+          <typography  style={{ color: '#25b8ef', fontSize: '4vh' }}>KP: {totalR}</typography>
           </div>
-          <LevelText/>
+          <LevelText />
           <Level/>
           <div style={{ marginTop: '20px', marginLeft: '30px'}}>
           <Badges/>

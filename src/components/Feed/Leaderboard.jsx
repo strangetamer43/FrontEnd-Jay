@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {Paper, Modal, Button} from '@material-ui/core';
+import {BsFileEarmarkPostFill} from 'react-icons/bs';
+import {GiSkills} from 'react-icons/gi';
+import LeaderboardIm from '../../Assets/winner.png';
+import {FaUsers} from 'react-icons/fa';
 import axios from 'axios';
 import useStyles from './styles'; 
 const Leaderboard = () => {
@@ -78,16 +82,16 @@ const Leaderboard = () => {
   return (
     <div>
       <Paper className={classes.leaderboardButtons}>
-        <typography className={classes.title}>Leaderboard</typography>
+        <img src={LeaderboardIm} className={classes.LeaderboardIcon}/>
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <Button className={classes.buttonsL} onClick={getUsersData}>
-        Top 5 Users
+        <FaUsers size={30} style={{marginLeft: '-0.75vw'}}/>
         </Button>
         <Button className={classes.buttonsP} onClick={getPostsData}>
-        Top 5 Posts
+        <BsFileEarmarkPostFill size={30} style={{marginLeft: '-0.75vw'}}/>
         </Button>
         <Button className={classes.buttonsQ} onClick={getTagsData}>
-        Top 5 Skills
+        <GiSkills size={30} style={{marginLeft: '-0.75vw'}}/>
         </Button>
         </div>
         </Paper>

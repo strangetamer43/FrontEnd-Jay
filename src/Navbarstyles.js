@@ -38,11 +38,12 @@ export default makeStyles((theme) => ({
   header:{
   display:'flex',
     alignItems: 'center',
-    backgroundColor: '#22262b',
+    backgroundColor: '#1a1a1a',
     background: '#00ffff',
     justifyContent: 'space-between',
     borderBottomLeftRadius: '30px',
     borderBottomRightRadius: '30px',
+    boxShadow: '2.5px 2.5px 6px rgba(5, 5, 10, 0.8), -2.5px -2.5px 6px rgba(255, 255, 255, 0.20)',
     zIndex: '-1',
     marginTop: '0',
     "@media (max-width: 650px)" : {
@@ -102,5 +103,6 @@ export default makeStyles((theme) => ({
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
+    boxShadow: '1.5px 1.5px 2.5px rgba(5, 5, 10, 0.8), -1.5px -1.5px 2.5px rgba(255, 255, 255, 0.20)'
   },
 }));

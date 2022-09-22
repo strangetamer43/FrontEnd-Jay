@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import Formbar from '../FormBar/FloatingButtonForm';
 import { getUserPosts } from '../../actions/posts';
 import { Marginer } from "../Auth/Marginer";
-import Posts from '../Posts/Posts';
+import Posts1 from '../Posts/Posts1';
 
 import "../../App.css";
 import useStyles from './styles'; 
@@ -52,9 +52,9 @@ const PostsOfUser = () => {
         <Grow in>
           <Container maxWidth='xl' >
           
-            <Grid contianer position= "absolute" justify="space-between" alignItems="stretch" Spacing={3} className={classes.gridContainer}>
+            <Grid contianer justify="space-between" alignItems="stretch" Spacing={3} className={classes.gridContainer1} >
               <Grid item xs={12} sm={12} md={12} >
-                <Posts setCurrentId={setCurrentId}/>
+                <Posts1 setCurrentId={setCurrentId}/>
               </Grid>
             </Grid>
           </Container>

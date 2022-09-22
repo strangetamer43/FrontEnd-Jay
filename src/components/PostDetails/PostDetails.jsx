@@ -75,8 +75,8 @@ const PostDetails = () => {
   
   return (
     <form>
-    <Paper style={{ padding: '20px', borderRadius: '30px', margin: '75px', backgroundColor: '#1a1a1a' }} elevation={6}>
-      <div className={classes.paper}>
+    <Paper className={classes.paper} style={{ padding: '20px', borderRadius: '30px', margin: '75px', backgroundColor: '#1a1a1a' }} elevation={6}>
+      <div >
       <div>
            <SwitchMedia/>
           </div>
@@ -113,7 +113,7 @@ const PostDetails = () => {
             <Grid  key={post._id} item xs={3} sm={3} md={3} spacing={3}>
               {recomendedPosts.map(( post) => (
                 
-                <div style={{ margin: '2vh' , cursor: 'pointer', backgroundColor: '#303030', borderRadius: '15px', display: 'flex', flexDirection: 'column' }} onClick={() => openPost(post._id)} key={post._id}>
+                <div style={{ margin: '2vh' , marginBottom: '4vh', cursor: 'pointer', backgroundColor: '#303030', borderRadius: '15px', display: 'flex', flexDirection: 'column', boxShadow: '-3px -3px 8px 3px rgba(255,255,255,0.3), -3px -3px 8px 3px rgba(5,5,10,0.9)' }} onClick={() => openPost(post._id)} key={post._id}>
                   
                   
                   <typography variant="h5"  className={classes.recommendedTitle} >{post.title}</typography>

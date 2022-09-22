@@ -26,7 +26,8 @@ import CheckProfile from "./components/Profile/CheckProfile";
 import GettingStarted from "./components/Helper/GettingStarted";
 import WithoutHeader from "./WithoutHeader";
 import WithHeader from "./WithHeader";
-
+import ViewTasks from './components/Tasks/ViewTasks';
+import CreateTask from './components/Tasks/CreateTask';
 const user = JSON.parse(localStorage.getItem('profile'));
 const App = () => { 
   
@@ -66,7 +67,8 @@ const App = () => {
             <Route path='/chat' exact element={<ChatFunction/>} />
             <Route path='/userprofile' exact element={<CheckProfile/>} />
             <Route path='/gettingstarted' exact element={<GettingStarted/>} />
-            
+            <Route path='/tasks' exact element={<ViewTasks/>} />
+            <Route path='/createtask' exact element={<CreateTask/>} />
         </Route>
       </Routes>
           

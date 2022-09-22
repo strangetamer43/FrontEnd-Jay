@@ -20,7 +20,7 @@ function Formbar() {
     return (
         <>
             <div >
-                <Fab  onClick={handleOpen} variant= 'extended' className={classes.fabButton} color='secondary'>
+                <Fab  onClick={handleOpen} variant= 'extended' className={classes.fabButton} >
                     <AddIcon style={{ marginLeft: '-15px'}} />&nbsp;  Post Something 
                 </Fab>
                 <Modal open={open} onClose={handleClose}>

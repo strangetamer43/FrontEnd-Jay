@@ -39,9 +39,10 @@ export default makeStyles((theme) => ({
   paper: {
     display: 'flex',
    
-    width: '100%',
+    width: '92%',
     background: '#1a1a1a',
     flexDirection: 'column',
+    boxShadow: '5px 5px 15px 5px rgba(5, 5, 10, 0.7), -5px -5px 15px 5px rgba(255, 255, 255, 0.3)',
     [theme.breakpoints.down('sm')]: {
       flexWrap: 'wrap',
       flexDirection: 'column',
@@ -52,7 +53,8 @@ export default makeStyles((theme) => ({
     
     margin: '10px',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    
   },
   name: {
      fontSize: '3vh',
@@ -76,7 +78,9 @@ export default makeStyles((theme) => ({
     },
   },
   loadingPaper: {
-    display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px', borderRadius: '15px', height: '39vh',
+    display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px', borderRadius: '30px', height: '39vh',
+    marginTop: '25vh',
+    background: '#1a1a1a'
   },
   commentsOuterContainer: {
     display: 'flex', justifyContent: 'space-between',
@@ -88,7 +92,8 @@ export default makeStyles((theme) => ({
   commentField:{
     borderRadius: '15px',
     border: '2px solid rgb(37, 184, 239)',
-    outline: '0px'
+    outline: '0px',
+    boxShadow: '-1px -1px 2.5px 1px rgba(255, 255, 255, 0.3), 1px 1px 2.5px 1px rgba(5, 5, 10, 0.9)',
 
   },
   nameDet: {
@@ -112,6 +117,7 @@ export default makeStyles((theme) => ({
     color: '1a1a1a',
     fontSize: '2vh',
     fontFamily: 'Montserrat, sans-serif',
+    boxShadow: '-2px -2px 5px 2px rgba(255, 255, 255, 0.3), 2px 2px 5px 2px rgba(5, 5, 10, 0.7)'
   },
   comments: {
     fontFamily: 'Montserrat, sans-serif',

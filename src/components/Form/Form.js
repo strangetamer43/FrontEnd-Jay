@@ -80,12 +80,12 @@ const Form = ({ currentId, setCurrentId }) => {
         <Container maxWidth='lg'>
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                <typography className={classes.formTitle} style={{ color: '#25b8ef'}}>{currentId ? 'Edit' : 'Create' } Post</typography>
+                <typography className={classes.formTitle} >{currentId ? 'Edit' : 'Create' } Post</typography>
                
-                <TextField className={classes.Field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} label="Title" fullWidth  onChange={(e) => setTitle(e.target.value )} />    
-                <TextField className={classes.Field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} label="Post Body" fullWidth rows={5} multiline onChange={(e) => setMessage(  e.target.value )} />     
-                <TextField className={classes.Field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} label="Skills (Use commas without spaces)" fullWidth  onChange={(e) => setTags(e.target.value.split(','))} />
-                <typography style={{ fontSize: '1.8vh', color: '#c935ff'}}>Upload an Image or a Video (max size: image(5MB) video(100MB))</typography>
+                <TextField className={classes.Field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef'}}} style={{marginBottom: '1vh'}} label="Title" fullWidth  onChange={(e) => setTitle(e.target.value )} />    
+                <TextField className={classes.Field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef'}}} style={{marginBottom: '1vh'}}  label="Post Body" fullWidth rows={5} multiline onChange={(e) => setMessage(  e.target.value )} />     
+                <TextField className={classes.Field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef'}}} style={{marginBottom: '1vh'}}  label="Skills (Use commas without spaces)" fullWidth  onChange={(e) => setTags(e.target.value.split(','))} />
+                <typography style={{ fontSize: '1.8vh', color: '#c935ff',marginTop: '1vh'}}>Upload an Image or a Video (max size: image(5MB) video(100MB))</typography>
                 <div className={classes.fileInput}>
                     
                     <label htmlFor="image">
