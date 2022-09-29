@@ -30,15 +30,15 @@ function CreateTask({ currentId, setCurrentId }) {
     }
   return (
     <div>
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} style={{width: '50%', marginTop: '35px',height: '40em',marginRight: '424px'}}>
         <typography className={classes.heading}>Create Task</typography>
-      <form>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <TextField  className={classes.field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef'}}} style={{marginBottom: '1vh'}} label="Title of the task" fullWidth  onChange={(e) => setTitle(e.target.value )}/>
-        <TextField className={classes.field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef'}}} style={{marginBottom: '1vh'}}  label="Task Description" fullWidth rows={5} multiline onChange={(e) => setDescription(  e.target.value )} />
-        <TextField className={classes.field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef'}}} style={{marginBottom: '1vh'}}  label="No.of Poeple" fullWidth  onChange={(e) => setPeopleCount(  e.target.value )} />
-        <TextField className={classes.field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef'}}} style={{marginBottom: '1vh'}}  label="Field (e.g. Web Development)"  fullWidth  onChange={(e) => setField(  e.target.value )} />
-        <TextField className={classes.field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef'}}} style={{marginBottom: '1vh'}}  label="Skills (Use Commas for multiple skills)"  fullWidth  onChange={(e) => setTags(  e.target.value )} />
+      <form >
+        <div className={classes.Container} style={{ display: 'flex', flexDirection: 'column',width: '80%', height: '70vh', }}>
+        <TextField  className={classes.field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-1.1em', marginLeft: '3vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '3vh',height:'2em', color: '#25b8ef'}}} style={{marginBottom: '3vh',}} label="Title of the task" fullWidth  onChange={(e) => setTitle(e.target.value )}/>
+        <TextField className={classes.field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-1.1em', marginLeft: '3vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '3vh', height:'5em', marginRight: '3vh', color: '#25b8ef'}}} style={{marginBottom: '3vh'}}  label="Task Description"  fullWidth rows={5} multiline onChange={(e) => setDescription(  e.target.value )} />
+        <TextField className={classes.field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-1.1em', marginLeft: '3vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '3vh', marginRight: '3vh', color: '#25b8ef'}}} style={{marginBottom: '3vh'}}  label="No.of Poeple" fullWidth  onChange={(e) => setPeopleCount(  e.target.value )} />
+        <TextField className={classes.field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.9em', marginLeft: '3vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '3vh', marginRight: '3vh', color: '#25b8ef'}}} style={{marginBottom: '3vh'}}  label="Field (e.g. Web Development)"  fullWidth  onChange={(e) => setField(  e.target.value )} />
+        <TextField className={classes.field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.9em', marginLeft: '3vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '3vh', marginRight: '3vh', color: '#25b8ef'}}} style={{marginBottom: '3vh'}}  label="Skills (Use Commas for multiple skills)"  fullWidth  onChange={(e) => setTags(  e.target.value )} />
           
         <button className={classes.button} onClick={handleClick}>Submit</button>
         </div>

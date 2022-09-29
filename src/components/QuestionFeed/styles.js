@@ -39,10 +39,11 @@ export default makeStyles((theme) => ({
     searchBar: {
       borderRadius: '15px',
       border: '2px solid #25b8ef',
+      width: '45vw',
 
     },
     searchButton: {
-      width: '10vw',
+      width: '5vw',
         background: '#25b8ef',
         borderRadius: '15px',
         marginTop: '2vh',

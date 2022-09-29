@@ -1,19 +1,40 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-
-export default makeStyles({
-    paper: {
+export default makeStyles(theme =>({
+    paper:{
         marginTop: '250px',
-        marginLeft: '740px',
+        marginLeft: '740px',    
         padding: '20px',
         width: '40vh',
         position: 'absolute',
-        backgroundColor: '#1a1a1a',
-        "@media (max-width: 1024px)" : {
-            marginLeft: '250px',
-    }
-    },
-    placeButtons: {
+        backgroundColor: '#1a1a1a', 
+        [theme.breakpoints.down("xs")] : {
+            marginTop: '150px',
+            marginLeft: '40px',
+            padding: '10px',
+            width: '20vh',
+            position: 'absolute',
+            backgroundColor: 'red',
+            
+        },
+        [theme.breakpoints.between("sm","md")] : {
+            marginTop: '50px',
+            marginLeft: '40px',
+            padding: '10px',
+            width: '20vh',
+            position: 'absolute',
+        },
+        "@media(min-width: 1280px)": {
+            marginTop: '280px',
+            marginLeft: '7480px',
+            padding: '30px',
+            width: '50vh',
+            position: 'absolute',
+            backgroundColor: '#1a1a1a', 
+
+        },
+
+    }, placeButtons: {
         display: 'flex',
         flexDirection: 'column',
         flexWrap: 'wrap',
@@ -23,6 +44,8 @@ export default makeStyles({
         backgroundColor: '#22262b',
         marginTop: '150px',
     },
+
+    
     button: {
         marginLeft: '90vw',
         marginTop: '29vh',
@@ -47,12 +70,67 @@ export default makeStyles({
         color: '#fff',
         marginBottom: '30px',
         marginLeft: '20px',
+        fontFamily: "Times New Roman, Times, serif",
+        [theme.breakpoints.between("sm","md")] : {
+            marginTop: '25px',
+
+        },
+        
+       
     },
     typographyBig: {
         color: '#25b8ef',
         fontSize: '35px',
-        marginBottom: '50px',
-        marginLeft: '350px',
+        marginBottom: '30px',
+        textAlign: 'center',
+        [theme.breakpoints.down("xs")] : {
+            fontSize: '30px',
+            marginBottom: '105px',
+            marginTop: '-75px',
+            textAlign: 'center',
+
+            
+            
+        },
+        [theme.breakpoints.between("sm","md")] : {
+            fontSize: '30px',
+            marginBottom: '100px',
+            textAlign: 'center',
+            
+        },
+        
+ 
+    },
+    imgst:{
+        width: '50%',
+        height: '70%',
+        justify: "center",
+        marginLeft: "25%",
+        [theme.breakpoints.down("xs")] : {
+            width: '100%',
+            height: '100%',
+            marginLeft: '-1px',
+            
+            
+        },
+        [theme.breakpoints.between("sm","md")] : {
+            
+            width: '80%',
+            height: '100%',
+            marginLeft: '65px',
+
+            
+        },
+        "@media(min-width: 1440px)": {
+            width: '70%',
+            height: '100%',
+            marginLeft: '15%',
+
+        },
+
     }
 
-});
+}));
+   
+    
+
