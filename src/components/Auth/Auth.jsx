@@ -11,15 +11,15 @@ import usurp_logo from "../../Assets/Usurp-new-logo.png";
 import * as BsIcons from "react-icons/bs";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {signin, signup} from '../../actions/auth';
+import { signin, signup } from '../../actions/auth';
 
-
-const Container =  styled.div`
+import "./Style.scss"
+const Container = styled.div`
   
   display: flex;
   
- 
-  margin-left: 36vw;
+ justify-content:center;
+  ${'' /* margin-left: 36vw; */}
   
   
   @media only screen and (max-width: 1200px) {
@@ -43,7 +43,7 @@ const Container =  styled.div`
   padding: 5px;
   }
 `;
-    
+
 const Fields = styled.div`
   
   display: flex;
@@ -137,6 +137,7 @@ const Span = styled.span` {
     color: #25b8ef;
     cursor: pointer;
     font-weight: 550;
+    }
 `;
 const Image = styled.img` {
     
@@ -151,6 +152,7 @@ const Image = styled.img` {
     @media only screen and (max-width: 650px) {
       display: column-reverse;
     }
+}
     
 `;
 const SignIn = styled.button`
@@ -253,224 +255,224 @@ const SignIng = styled.button`
 `;
 
 const initialState = {
-    fullName: '',
-    username: '',
-    phoneNumber: '',
-    emailId: '',
-    password: '',
-    confirmPassword: '',
-    image: null,
+  fullName: '',
+  username: '',
+  phoneNumber: '',
+  emailId: '',
+  password: '',
+  confirmPassword: '',
+  image: null,
 }
 
-    
+
 const Auth = () => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailId, setEmailId] = useState("");
-  const [password, setPassword] = useState("");  
+  const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [image, setImage] = useState(null);
-  const [isSignup, setIsSignup] = useState(false);  
+  const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-  
-  
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      const form = new FormData();
-      form.append("name", name);
-      form.append("username", username);
-      form.append("phoneNumber", phoneNumber);
-      form.append("emailId", emailId);
-      form.append("password", password);
-      form.append("confirmPassword", confirmPassword);
-      form.append("image", image);
 
-      if(isSignup) {
-          dispatch(signup(form, navigate))
-      } else {
-        dispatch(signin(form, navigate))
-      }
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append("name", name);
+    form.append("username", username);
+    form.append("phoneNumber", phoneNumber);
+    form.append("emailId", emailId);
+    form.append("password", password);
+    form.append("confirmPassword", confirmPassword);
+    form.append("image", image);
+
+    if (isSignup) {
+      dispatch(signup(form, navigate))
+    } else {
+      dispatch(signin(form, navigate))
+    }
   }
   const switchMode = () => {
-      setIsSignup((prevIsSignup) => !prevIsSignup)
+    setIsSignup((prevIsSignup) => !prevIsSignup)
   }
-  const googleSuccess = async (res) => {  
-      const result = res?.profileObj;
-      const token = res?.tokenId;
-      try {
-          dispatch({ type: 'AUTH', data: { result, token } });
-          navigate('/feed');
-          
-      } catch (error) {
-          console.log(error);
-      }
+  const googleSuccess = async (res) => {
+    const result = res?.profileObj;
+    const token = res?.tokenId;
+    try {
+      dispatch({ type: 'AUTH', data: { result, token } });
+      navigate('/feed');
+
+    } catch (error) {
+      console.log(error);
+    }
 
   };
   const googleFailure = (error) => {
-      console.log(error);
-      console.log("Google Sign In was unsuccessful");
+    console.log(error);
+    console.log("Google Sign In was unsuccessful");
   }
   return (
-    
-    
-    
-    <Container >
-      <div style={{ display: 'flex' , flexDirection: 'column'}}>
-      <Image
-        src={usurp_logo}>
+
+
+
+    <Container className="main-container">
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <Image
+          src={usurp_logo}>
 
         </Image>
         <Fields >
-            <Content>
-                <Para>{isSignup ? 'Sign Up' : 'Sign In'}</Para>
-                
-                <form onSubmit={handleSubmit}>
-                    {isSignup && (
-                        <Input>
-                            <Label htmlFor="name" >Full Name </Label>
-                            <Inputi
-                                name="name" 
-                                type="text"
-                                placeholder='Full Name'
-                                inputColor = 'white'
-                                onChange={(e) => setName(e.target.value )}
-                                required
-                            />
-                            
-                        </Input>
-                    )}
-                    
-                    
-                    <Input>
-                            <Label htmlFor="username">Username </Label>
-                            <Inputi
-                                name="username" 
-                                type="text"
-                                placeholder='Username'
-                                onChange={(e) => setUsername(e.target.value )}
-                                required
-                            />
-                    </Input>
-                        
-                    {isSignup && (
-                        <Input>
-                            <Label htmlFor="phoneNumber">Phone Number (10 digits) </Label>
-                            
-                            <Inputi
-                                name="phoneNumber" 
-                                type="text"
-                                placeholder='Phone Number'
-                                onChange={(e) => setPhoneNumber(e.target.value )}
-                                required
-                            />
-                        </Input>
-                        
-                    )}
-                    
-                    {isSignup && (
-                        <Input>
-                            <Label htmlFor="emailId">Email Id </Label>
-                            <Inputi
-                                name="emailId" 
-                                type="text"
-                                placeholder='Email Id'
-                                onChange={(e) => setEmailId(e.target.value )}
-                                required
-                            />
-                        </Input>
-                    )}
-                    
-                    <Input>
-                            <Label htmlFor="password">Password </Label>
-                            <Inputi
-                                name="password" 
-                                type="password"
-                                placeholder='Password'
-                                onChange={(e) => setPassword(e.target.value )}
-                                required
-                            />
-                        </Input>
-                        
-                    {isSignup && (    
-                        <Input>
-                            <Label htmlFor="confirmPassword">Confirm Password </Label>
-                            <Inputi
-                                name="confirmPassword" 
-                                type="password"
-                                placeholder='Confirm Password'
-                                onChange={(e) => setConfirmPassword(e.target.value )}
-                                required
-                            />
-                        </Input>
-                    )}
-                    
-                    
-                    {isSignup && (
-                    
-                    <div style={{marginLeft: '25px'}}>
-                      <Label>Upload Profile Picture</Label>  
-                    
-                    <div>  
-                      <label htmlFor="image">
-                      <BsIcons.BsFillCameraFill style={{color: '#25b8ef', cursor: 'pointer', marginLeft: '0px', marginTop: '10px'}} size={30}/>
-                      <input type='file' onChange={(e) => setImage(e.target.files[0])} name="file" accept="image/*"  id="image" hidden />
+          <Content>
+            <Para>{isSignup ? 'Sign Up' : 'Sign In'}</Para>
+
+            <form onSubmit={handleSubmit}>
+              {isSignup && (
+                <Input>
+                  <Label htmlFor="name" >Full Name </Label>
+                  <Inputi
+                    name="name"
+                    type="text"
+                    placeholder='Full Name'
+                    inputColor='white'
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                  />
+
+                </Input>
+              )}
+
+
+              <Input>
+                <Label htmlFor="username">Username </Label>
+                <Inputi
+                  name="username"
+                  type="text"
+                  placeholder='Username'
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
+              </Input>
+
+              {isSignup && (
+                <Input>
+                  <Label htmlFor="phoneNumber">Phone Number (10 digits) </Label>
+
+                  <Inputi
+                    name="phoneNumber"
+                    type="text"
+                    placeholder='Phone Number'
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    required
+                  />
+                </Input>
+
+              )}
+
+              {isSignup && (
+                <Input>
+                  <Label htmlFor="emailId">Email Id </Label>
+                  <Inputi
+                    name="emailId"
+                    type="text"
+                    placeholder='Email Id'
+                    onChange={(e) => setEmailId(e.target.value)}
+                    required
+                  />
+                </Input>
+              )}
+
+              <Input>
+                <Label htmlFor="password">Password </Label>
+                <Inputi
+                  name="password"
+                  type="password"
+                  placeholder='Password'
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </Input>
+
+              {isSignup && (
+                <Input>
+                  <Label htmlFor="confirmPassword">Confirm Password </Label>
+                  <Inputi
+                    name="confirmPassword"
+                    type="password"
+                    placeholder='Confirm Password'
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                  />
+                </Input>
+              )}
+
+
+              {isSignup && (
+
+                <div style={{ marginLeft: '25px' }}>
+                  <Label>Upload Profile Picture</Label>
+
+                  <div>
+                    <label htmlFor="image">
+                      <BsIcons.BsFillCameraFill style={{ color: '#25b8ef', cursor: 'pointer', marginLeft: '0px', marginTop: '10px' }} size={30} />
+                      <input type='file' onChange={(e) => setImage(e.target.files[0])} name="file" accept="image/*" id="image" hidden />
                       <Typography>{image?.name}</Typography>
-                      </label>
-                      </div>  
-                    </div>
-                    )}
+                    </label>
+                  </div>
+                </div>
+              )}
 
-                    <Marginer direction="vertical" margin="15px" />
-                    <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    <SignIn>{isSignup ? "Sign Up" : "Sign In"}</SignIn>
-                    
-                    <GoogleLogin 
-                    clientId="22206794554-165ahregurdak2b5p4oqgirg4no38ip7.apps.googleusercontent.com"
-                    render={(renderProps) => (
-                        <SignIng 
-                        onClick={renderProps.onClick} 
-                        disabled={renderProps.disabled} 
-                        
-                        variant="contained" 
-                        >
-                        <FcIcons.FcGoogle fontSize="large" />
-                        &nbsp;
-                        {isSignup ? "Google Sign Up" : "Google Sign In"}
-                        </SignIng>
-                    )}
-                    onSuccess={googleSuccess}
-                    onFailure={googleFailure}
-                    cookiePolicy="single_host_origin"
-                    
-                    
-                    />
-                    </div>
-                </form>
-                <Marginer direction="vertical" margin="30px" />
-                <Account>
-                    <p style={{ color: '#eeedee'}}>
-                        {isSignup
-                        ? "Already have an account?" 
-                        : "Don't have an account?"
-                        }
-                        <Span onClick={switchMode}>
-                        {isSignup ? 'Sign In' : 'Sign Up'}
-                        </Span>
-                    </p>
+              <Marginer direction="vertical" margin="15px" />
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <SignIn>{isSignup ? "Sign Up" : "Sign In"}</SignIn>
 
-                </Account>
-               
-            </Content>
+                <GoogleLogin
+                  clientId="22206794554-165ahregurdak2b5p4oqgirg4no38ip7.apps.googleusercontent.com"
+                  render={(renderProps) => (
+                    <SignIng
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+
+                      variant="contained"
+                    >
+                      <FcIcons.FcGoogle fontSize="large" />
+                      &nbsp;
+                      {isSignup ? "Google Sign Up" : "Google Sign In"}
+                    </SignIng>
+                  )}
+                  onSuccess={googleSuccess}
+                  onFailure={googleFailure}
+                  cookiePolicy="single_host_origin"
+
+
+                />
+              </div>
+            </form>
+            <Marginer direction="vertical" margin="30px" />
+            <Account>
+              <p style={{ color: '#eeedee' }}>
+                {isSignup
+                  ? "Already have an account?"
+                  : "Don't have an account?"
+                }
+                <Span onClick={switchMode}>
+                  {isSignup ? 'Sign In' : 'Sign Up'}
+                </Span>
+              </p>
+
+            </Account>
+
+          </Content>
 
         </Fields>
-        
-        
-        </div>
+
+
+      </div>
     </Container>
-    
+
   )
 }
 

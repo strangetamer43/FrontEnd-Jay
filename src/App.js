@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import PostDetails from './components/PostDetails/PostDetails';
 import Auth from "./components/Auth/Auth";
 import Cookies from "universal-cookie";
-import './components/Auth/Style.scss' 
+import './components/Auth/Style.scss'
 import ProfilePage from "./components/Profile/ProfilePage";
 
 
@@ -29,71 +29,71 @@ import WithHeader from "./WithHeader";
 import ViewTasks from './components/Tasks/ViewTasks';
 import CreateTask from './components/Tasks/CreateTask';
 const user = JSON.parse(localStorage.getItem('profile'));
-const App = () => { 
-  
-    
-    
-    return(
-      
-      <>
-         
-        <BrowserRouter>
-          
-        
-        
-        
-         
-          <Routes>
-          
-        <Route element={<WithoutHeader />}>
-          <Route path="/" element={<Auth />} />
-          <Route path='/entrypage' exact element={<EntryPage1/>} />
-        </Route>
-        <Route element={<WithHeader />}>
-            <Route path='/feed' exact element={<ContentFeed/>} />
-            <Route path='/feed/search'  element={<ContentFeed/>} />
-            <Route path='/feed/:id'  element={<PostDetails/>} />
-            <Route path='/questions' exact element={<QuestionFeed/>} />
-            <Route path='/contests' exact element={<ContestFeed/>} />
-            <Route path='/contests/:id'  element={<ContestDetails/>} />
-            <Route path='/contests/search'  element={<ContestFeed/>} />
-            <Route path='/questions/search'  element={<QuestionFeed/>} />
-            <Route path='/questions/:id'  element={<QuestionDetails/>} />
-            
-            <Route path='/profile' exact element={<ProfilePage/>} />
-            <Route path='/questionspage' exact element={<QuestionsPage/>} />
-            <Route path='/profile/:id' exact element={<UserProfile/>} />
-            <Route path='/about' exact element={<AboutUsurp/>} />
-            <Route path='/chat' exact element={<ChatFunction/>} />
-            <Route path='/userprofile' exact element={<CheckProfile/>} />
-            <Route path='/gettingstarted' exact element={<GettingStarted/>} />
-            <Route path='/tasks' exact element={<ViewTasks/>} />
-            <Route path='/createtask' exact element={<CreateTask/>} />
-        </Route>
-      </Routes>
-          
-          
-            
-            
-          
-          
-          
-        </BrowserRouter>
-        
-      
-          
-          
-          
-          
-        
-      
-      </>
-    );
-  }
+const App = () => {
 
-  
 
-  
+
+  return (
+
+    <>
+
+      <BrowserRouter>
+
+
+
+
+
+        <Routes>
+
+          <Route element={<WithoutHeader />}>
+            <Route path="/" element={<Auth />} /> /*Responsive*/
+            <Route path='/entrypage' exact element={<EntryPage1 />} /> /*Responsive*/
+          </Route>
+          <Route element={<WithHeader />}>
+            <Route path='/feed' exact element={<ContentFeed />} />
+            <Route path='/feed/search' element={<ContentFeed />} />
+            <Route path='/feed/:id' element={<PostDetails />} />
+            <Route path='/questions' exact element={<QuestionFeed />} />
+            <Route path='/contests' exact element={<ContestFeed />} />
+            <Route path='/contests/:id' element={<ContestDetails />} />
+            <Route path='/contests/search' element={<ContestFeed />} />
+            <Route path='/questions/search' element={<QuestionFeed />} />
+            <Route path='/questions/:id' element={<QuestionDetails />} />
+
+            <Route path='/profile' exact element={<ProfilePage />} />
+            <Route path='/questionspage' exact element={<QuestionsPage />} />
+            <Route path='/profile/:id' exact element={<UserProfile />} />
+            <Route path='/about' exact element={<AboutUsurp />} /> /*Responsive*/
+            <Route path='/chat' exact element={<ChatFunction />} /> /*Responsive*/
+            <Route path='/userprofile' exact element={<CheckProfile />} />
+            <Route path='/gettingstarted' exact element={<GettingStarted />} /> /*Responsive*/
+            <Route path='/tasks' exact element={<ViewTasks />} /> /*Responsive*/
+            <Route path='/createtask' exact element={<CreateTask />} /> /*Responsive*/
+          </Route>
+        </Routes>
+
+
+
+
+
+
+
+      </BrowserRouter>
+
+
+
+
+
+
+
+
+    </>
+  );
+}
+
+
+
+
 
 
 export default App;

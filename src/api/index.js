@@ -1,9 +1,9 @@
 import axios from "axios";
 
 
-const API = axios.create({ baseURL: 'https://usurp-mern.herokuapp.com/' });
+const API = axios.create({ baseURL: 'http://localhost:5000/' });
 API.interceptors.request.use((req) => {
-    if(localStorage.getItem('profile')) {
+    if (localStorage.getItem('profile')) {
         req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
     }
 
@@ -13,7 +13,7 @@ API.interceptors.request.use((req) => {
 
 export const fetchPosts = () => API.get('/posts');
 export const fetchPost = (id) => API.get(`/posts/${id}`);
-export const fetchPostsBySearch = (searchQuery) => API.get(`posts/search?searchQuery=${searchQuery.search || 'none' }&tags=${searchQuery.tags}`);
+export const fetchPostsBySearch = (searchQuery) => API.get(`posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
 
 export const fetchUserPosts = (userPosts) => API.patch('/posts', userPosts);
 export const fetchSpecificUserPosts = (specificUserPosts) => API.patch('/posts/userspecific', specificUserPosts);
@@ -27,7 +27,7 @@ export const disLikeQuestion = (id) => API.patch(`/questions/${id}/disLikeQuesti
 export const fetchQuestions = () => API.get('/questions');
 export const fetchQuestion = (id) => API.get(`/questions/${id}`);
 export const fetchUserQuestions = (userQuestions) => API.patch('/questions', userQuestions);
-export const fetchQuestionsBySearch = (searchQuery) => API.get(`questions/search?searchQuery=${searchQuery.search || 'none' }&tags=${searchQuery.tags}`);
+export const fetchQuestionsBySearch = (searchQuery) => API.get(`questions/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
 export const fetchSpecificUserQuestions = (specificUserQuestions) => API.patch('/questions/userspecific', specificUserQuestions);
 export const createQuestion = (newQuestion) => API.post('/questions', newQuestion);
 export const updateQuestion = (id, updatedQuestion) => API.patch(`/questions/${id}`, updatedQuestion);
@@ -36,7 +36,7 @@ export const likeQuestion = (id) => API.patch(`/questions/${id}/likeQuestion`);
 export const commentQ = (value, id) => API.post(`/questions/${id}/commentQuestion`, { value });
 export const fetchContests = () => API.get('/contests');
 export const fetchContest = (id) => API.get(`/contests/${id}`);
-export const fetchContestsBySearch = (searchQuery) => API.get(`contests/search?searchQuery=${searchQuery.search || 'none' }&tags=${searchQuery.tags}`);
+export const fetchContestsBySearch = (searchQuery) => API.get(`contests/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
 export const createContest = (newContest) => API.post('/contests', newContest);
 export const updateContest = (id, updatedContest) => API.patch(`/contests/${id}`, updatedContest);
 export const deleteContest = (id) => API.delete(`/contests/${id}`);

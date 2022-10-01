@@ -1,31 +1,39 @@
+@media screen and (max-width: 800px) {
+  .Container {
+    flex-direction: column-reverse;
+  }
 
-  @media screen and (max-width: 800px) {
-    .Container {
-      flex-direction: column-reverse;
-    }
-  
-    .Fields {
-      justify-content: flex-start;
-    }
-  
-    .Image {
-      height: 100px;
-      flex: none;
-      box-shadow: none;
-      object-fit: cover;
-    }
-  
-    
+  .Fields {
+    justify-content: flex-start;
   }
-  
-  @media screen and (max-width: 375px) {
-    .Fields {
-      padding: 10rem 10rem;
-    }
-  
-    .Inputi {
-      width: 95%;
-    }
-  
+
+  .Image {
+    height: 100px;
+    flex: none;
+    box-shadow: none;
+    object-fit: cover;
   }
-  
+}
+
+@media screen and (max-width: 375px) {
+  .Fields {
+    padding: 10rem 10rem;
+  }
+
+  .Inputi {
+    width: 95%;
+  }
+}
+
+.main-conatiner {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+  margin: 4rem 2rem 2rem;
+  background-color: white;
+  img: {
+    text-align: center;
+  }
+}

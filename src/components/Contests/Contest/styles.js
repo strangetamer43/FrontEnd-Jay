@@ -14,14 +14,36 @@ export default makeStyles({
     height: '100%',
   },
   card: {
+    margin: '0 auto',
+    float: 'none',
     display: 'flex',
+    textAlign: 'center',
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    background:'#fdf4dc',
+    justifyContent: 'center',
+    background: '#fdf4dc',
     borderRadius: '15px',
     height: '100%',
     width: '100%',
     position: 'relative',
+    flex: 'center',
+    "@media (min-width:1024)": {
+      background: 'red',
+    },
+    // Laptop media Query
+    "@media (max-width: 1023px)": {
+      background: 'green',
+    },
+
+    // tablet media query
+    "@media (min-width:768px)": {
+      background: 'yellow',
+    },
+    // Mobile Media Query
+    "@media (max-width: 767px)": {
+      width: '80%',
+      background: 'blue',
+
+    }
   },
   overlay: {
     position: 'absolute',
