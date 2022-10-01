@@ -51,7 +51,7 @@ const QuestionFeed = () => {
     
         <Grow in>
           <Container maxWidth='lg' >
-          <Marginer direction="vertical" margin="15px" />
+          <Marginer direction="vertical" margin="45px" />
           <Paper className={classes.appBarSearch} postition='static' color='inherit'>
                   <TextField className={classes.searchBar} onKeyPress={handleKeyPress} label='Search Questions' InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {color: 'rgba(37, 184, 239, 1)', marginLeft: '1vh', marginRight: '1vh'}}}  value={search} onChange={(e) => setSearch(e.target.value)}/>
                   <ChipInput className={classes.searchBar} InputProps={{ disableUnderline: true, style: {color: 'rgba(37, 184, 239, 1)', marginLeft: '1vh'}}} style={{ margin: '10px 0' }} InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh', marginRight: '1vh'}}} value={tags} onAdd={handleAdd} onDelete={handleDelete} label="Search Using Skills" />
