@@ -1,11 +1,7 @@
 import axios from "axios";
 
 
-<<<<<<< HEAD
 const API = axios.create({ baseURL: 'http://localhost:5000/' });
-=======
-const API = axios.create({ baseURL: 'https://localhost:3000' });
->>>>>>> c933852ababd73f1556f325b8ed25f84a4b408f1
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
         req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;

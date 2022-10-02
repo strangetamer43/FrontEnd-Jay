@@ -322,6 +322,7 @@ const Auth = () => {
     <Container className="main-container">
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <Image
+          className='logo-image'
           src={usurp_logo}>
 
         </Image>
