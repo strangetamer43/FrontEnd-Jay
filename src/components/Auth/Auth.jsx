@@ -148,7 +148,6 @@ const Image = styled.img` {
     width: 17.85vh;
     height: 25.26vh;
     margin-top: 0px;
-    margin-left: 9vw;
     @media only screen and (max-width: 650px) {
       display: column-reverse;
     }

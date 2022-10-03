@@ -59,7 +59,6 @@ const App = () => {
             <Route path='/contests/search' element={<ContestFeed />} />
             <Route path='/questions/search' element={<QuestionFeed />} />
             <Route path='/questions/:id' element={<QuestionDetails />} />
-
             <Route path='/profile' exact element={<ProfilePage />} />
             <Route path='/questionspage' exact element={<QuestionsPage />} />
             <Route path='/profile/:id' exact element={<UserProfile />} />
