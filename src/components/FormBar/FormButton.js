@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { Button, Modal } from '@material-ui/core';
 import FormQ from '../Form/FormQ';
@@ -14,26 +14,26 @@ function Formbar() {
     const [open, setOpen] = useState(false);
     const classes = useStyles();
     const handleOpen = () => setOpen(true);
-    
+
 
     const handleClose = () => setOpen(false);
     return (
         <>
-            <div className="formbar">
-                <Fab  onClick={handleOpen} variant= 'extended' className={classes.fabButton4} >
-                    <AddIcon />  Post a Question 
+            <div className={classes.post_button}>
+                <Fab onClick={handleOpen} variant='extended' className={classes.fabButton4} >
+                    <AddIcon />  Post a Question
                 </Fab>
                 <Modal open={open} onClose={handleClose}>
-                
-                <FormQ/>
+
+                    <FormQ />
                 </Modal>
 
 
             </div>
-            
-            
 
-            
+
+
+
         </>
     );
 }

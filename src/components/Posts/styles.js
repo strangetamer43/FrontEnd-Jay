@@ -2,37 +2,40 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   container: {
-    marginLeft: '11vw',
-    "@media (max-width: 1100px)" : {
-        marginLeft: '110px',   
-        
-      },
-      "@media (max-width: 900px)" : {
-        marginLeft: '50px',   
-        
-      },
-      "@media (max-width: 600px)" : {
-        marginLeft: '50px',   
-        
-      },
-      "@media (max-width: 450px)"  : {
-        marginLeft: '30px',
-      },
-      "@media (max-width: 375px)" : {
-        marginLeft: '80px',
-      }
-      
-  },
-  container1: {
-    marginLeft: '7vw',
-  },
-  formbar: {
-    marginLeft: '500px'
-  },
-  paper: {
-    marginTop: '75px',
-    marginLeft: '150px',
-    
+    textAlign: 'center',
+    margin: 'auto',
+
+    "@media (min-width:1400)": {
+      marginLeft: '130px',
+      textAlign: 'center',
+      margin: 'auto'
+    },
+    // Laptop media Query
+    "@media (max-width: 1400px)": {
+      marginLeft: '130px',
+      textAlign: 'center',
+      margin: 'auto'
+    },
+
+    // tablet media query
+    "@media (max-width: 1000px)": {
+      marginLeft: '150px',
+      width: '500px',
+      marginRight: '50px',
+      textAlign: 'center',
+      margin: 'auto'
+    },
+    // Mobile Media Query
+    "@media (max-width: 768px)": {
+      width: '450px',
+      marginRight: '100px',
+      textAlign: 'center',
+      margin: 'auto'
+
+
+
+    }
+
   },
   mainContainer: {
     display: 'flex',
@@ -44,7 +47,4 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
-  gridContainer1 :{
-    marginLeft: '1vw'
-  }
 }));

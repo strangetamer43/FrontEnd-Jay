@@ -50,21 +50,21 @@ const App = () => {
             <Route path='/entrypage' exact element={<EntryPage1 />} /> /*Responsive*/
           </Route>
           <Route element={<WithHeader />}>
-            <Route path='/feed' exact element={<ContentFeed />} />
-            <Route path='/feed/search' element={<ContentFeed />} />
-            <Route path='/feed/:id' element={<PostDetails />} />
-            <Route path='/questions' exact element={<QuestionFeed />} />
-            <Route path='/contests' exact element={<ContestFeed />} />
-            <Route path='/contests/:id' element={<ContestDetails />} />
-            <Route path='/contests/search' element={<ContestFeed />} />
-            <Route path='/questions/search' element={<QuestionFeed />} />
-            <Route path='/questions/:id' element={<QuestionDetails />} />
-            <Route path='/profile' exact element={<ProfilePage />} />
-            <Route path='/questionspage' exact element={<QuestionsPage />} />
-            <Route path='/profile/:id' exact element={<UserProfile />} />
+            <Route path='/feed' exact element={<ContentFeed />} /> /*Responsive*/
+            <Route path='/feed/search' element={<ContentFeed />} /> /*Responsive*/
+            <Route path='/feed/:id' element={<PostDetails />} />/*Responsive*/
+            <Route path='/questions' exact element={<QuestionFeed />} /> /*Responsive*/
+            <Route path='/contests' exact element={<ContestFeed />} /> /*Responsive*/
+            <Route path='/contests/:id' element={<ContestDetails />} /> /*Responsive*/
+            <Route path='/contests/search' element={<ContestFeed />} />/*Responsive*/
+            <Route path='/questions/search' element={<QuestionFeed />} /> /*Responsive*/
+            <Route path='/questions/:id' element={<QuestionDetails />} />/*Responsive*/
+            <Route path='/profile' exact element={<ProfilePage />} />  /*Responsive*/
+            <Route path='/questionspage' exact element={<QuestionsPage />} /> /*Responsive*/
+            <Route path='/profile/:id' exact element={<UserProfile />} />/*Responsive*/
             <Route path='/about' exact element={<AboutUsurp />} /> /*Responsive*/
             <Route path='/chat' exact element={<ChatFunction />} /> /*Responsive*/
-            <Route path='/userprofile' exact element={<CheckProfile />} />
+            <Route path='/userprofile' exact element={<CheckProfile />} />  /*Not Opening*/
             <Route path='/gettingstarted' exact element={<GettingStarted />} /> /*Responsive*/
             <Route path='/tasks' exact element={<ViewTasks />} /> /*Responsive*/
             <Route path='/createtask' exact element={<CreateTask />} /> /*Responsive*/

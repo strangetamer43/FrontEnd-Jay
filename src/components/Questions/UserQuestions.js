@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, AppBar, Typography, Grow, Grid, Paper, TextField, Button} from '@material-ui/core';
+import { Container, AppBar, Typography, Grow, Grid, Paper, TextField, Button } from '@material-ui/core';
 import { useNavigate, useLocation } from "react-router-dom";
 import ChipInput from 'material-ui-chip-input';
 import { useDispatch } from "react-redux";
@@ -10,7 +10,7 @@ import { Marginer } from "../Auth/Marginer";
 import Questions from '../Questions/Questions';
 
 import "../../App.css";
-import useStyles from './styles'; 
+import useStyles from './styles';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -18,7 +18,7 @@ function useQuery() {
 
 const QuestionsOfUser = () => {
   const [currentId, setCurrentId] = useState(null);
-  const {question, questions, isLoading} = useSelector((state) => state.questions);
+  const { question, questions, isLoading } = useSelector((state) => state.questions);
   const query = useQuery();
   const navigate = useNavigate();
   const classes = useStyles();
@@ -27,40 +27,40 @@ const QuestionsOfUser = () => {
   useEffect(() => {
     dispatch(getUserQuestions());
   }, [currentId, dispatch]);
-  
-  if(questions.length === 0 && !isLoading) { 
+
+  if (questions.length === 0 && !isLoading) {
     return (
-        <div style={{ marginLeft: "135px" }}>
-        <Formbar/>
+      <div style={{ marginLeft: "135px" }}>
+        <Formbar />
         <Paper className={classes.paper}>
-            <Typography variant='h5' align='center'>
-                Please use the Button above to create your first Question!!
-            </Typography>
+          <Typography variant='h5' align='center'>
+            Please use the Button above to create your first Question!!
+          </Typography>
         </Paper>
-        </div>
+      </div>
     );
 
-    
-}
-  
-  
+
+  }
+
+
   return (
     <>
-    
-        
-        <Grow in>
-          <Container maxWidth='xl' >
-          
-            <Grid contianer position= "absolute" justify="space-between" alignItems="stretch" Spacing={3} className={classes.gridContainer}>
-              <Grid item xs={12} sm={6} md={12} >
-                <Questions setCurrentId={setCurrentId}/>
-              </Grid>
-            </Grid>
-          </Container>
 
-        </Grow>
-        
-        
+
+      <Grow in>
+        <Container maxWidth='lg' >
+
+          <Grid contianer justify="space-between" alignItems="stretch" Spacing={3} >
+            <Grid item xs={12} sm={12} md={12} >
+              <Questions setCurrentId={setCurrentId} />
+            </Grid>
+          </Grid>
+        </Container>
+
+      </Grow>
+
+
     </>
   );
 };

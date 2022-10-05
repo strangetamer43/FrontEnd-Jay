@@ -5,7 +5,7 @@ export default makeStyles((theme) => ({
     appBarSearch: {
         borderRadius: '30px',
         marginTop: '6vh',
-        
+
         width: '84vw',
         display: 'flex',
         flexDirection: 'column',
@@ -14,36 +14,20 @@ export default makeStyles((theme) => ({
         padding: '1vw',
         backgroundColor: '#1a1a1a',
         boxShadow: '-3.5px -3.5px 10.5px 3.5px rgba(255, 255, 255, 0.25), 3.5px 3.5px 10.5px 3.5px rgba(5, 5, 10, 0.75)',
-        "@media (max-width: 768px)":{
-            marginRight: '8rem',
-            marginLeft : '5rem',
-        }
-        ,
-        
-        "@media (max-width: 640px)":{
-            marginRight: '3rem',
-        },
-        "@media (max-width: 500px)":{
-            marginRight: '-4rem',
-            marginLeft : '5rem',
-        },
-        "@media (max-width: 400px)":{
-            marginRight: '-7rem',
-            marginLeft : '5rem',
-        }
+
     },
     appBarSearch1: {
         borderRadius: '30px',
         marginTop: '30vh',
         marginLeft: '30vw',
         marginRight: '30vw',
-        
+
         display: 'flex',
         flexDirection: 'column',
         margin: '1vw',
         padding: '1vw',
         backgroundColor: '#1a1a1a',
-        
+
     },
     searchBar: {
         border: '2px solid rgb(37, 184, 239)',
@@ -51,7 +35,7 @@ export default makeStyles((theme) => ({
         marginBotom: '1vh',
         color: '#25b8ef',
         fontColor: 'primary',
-        
+
     },
     searchBar1: {
         border: '2px solid rgb(37, 184, 239)',
@@ -62,7 +46,7 @@ export default makeStyles((theme) => ({
         fontColor: 'primary'
     },
     gridConatainer: {
-        
+
         [theme.breakpoints.down('xs')]: {
             flexDirection: 'column-reverse',
         },
@@ -76,7 +60,7 @@ export default makeStyles((theme) => ({
         marginBottom: '1vh',
         borderRadius: '15px',
         boxShadow: '-2.5px -2.5px 5px rgba(255, 255, 255, 0.30), 2.5px 2.5px 5px rgba(5, 5, 10, 0.7)',
-        '&:hover':{
+        '&:hover': {
             borderRadius: '15px',
             marginBottom: '1vh',
             background: '#25b8ef',
@@ -113,7 +97,7 @@ export default makeStyles((theme) => ({
         background: '#ac23e5',
         marginTop: '2vh',
         boxShadow: '2px 2px 6px 2px rgba(5, 5, 10, 0.75), -2px -2px 6px 2px rgba(255, 255, 255, 0.25)',
-        '&:hover':{
+        '&:hover': {
             borderRadius: '15px',
             marginBottom: '1.5vh',
             background: '#ac23e5',
@@ -125,7 +109,7 @@ export default makeStyles((theme) => ({
         marginBottom: '1.5vh',
         background: '#8c1fcc',
         boxShadow: '2px 2px 6px 2px rgba(5, 5, 10, 0.75), -2px -2px 6px 2px rgba(255, 255, 255, 0.25)',
-        '&:hover':{
+        '&:hover': {
             borderRadius: '15px',
             marginBottom: '1.5vh',
             background: '#8c1fcc',
@@ -137,7 +121,7 @@ export default makeStyles((theme) => ({
         marginBottom: '1vh',
         background: '#7929cf',
         boxShadow: '2px 2px 6px 2px rgba(5, 5, 10, 0.75), -2px -2px 6px 2px rgba(255, 255, 255, 0.25)',
-        '&:hover':{
+        '&:hover': {
             borderRadius: '15px',
             marginBottom: '1vh',
             background: '#7929cf',
@@ -147,11 +131,11 @@ export default makeStyles((theme) => ({
     title: {
         color: '#25b8ef',
         fontSize: '2.8vh',
-        
+
     },
     LeaderboardIcon: {
         width: '40%',
-        height:'50%',
+        height: '50%',
         marginLeft: '1.75vw'
     }
 }));

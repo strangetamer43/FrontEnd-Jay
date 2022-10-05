@@ -6,19 +6,32 @@ export default makeStyles((theme) => ({
       margin: theme.spacing(0),
     },
   },
-  
+
   paper: {
-    
     padding: '3vh',
-    marginTop: '20vh',
-    marginLeft: '15vh',
-    position: 'absolute',
     backgroundColor: '#1a1a1a',
     borderRadius: '30px',
-    
     width: '50vw',
-    position: 'absolute',
-    
+    textAlign: 'center',
+    margin: 'auto',
+    justifyContent: 'center',
+    "@media (min-width:1400)": {
+
+    },
+    // Laptop media Query
+    "@media (max-width: 1400px)": {
+
+    },
+
+    // tablet media query
+    "@media (max-width: 1000px)": {
+
+    },
+    // Mobile Media Query
+    "@media (max-width: 768px)": {
+      width: '80vw'
+    }
+
   },
   Field: {
     border: '1px solid #25b8ef',
@@ -37,8 +50,8 @@ export default makeStyles((theme) => ({
     marginTop: '1vh',
     marginBottom: '1vh',
     display: 'flex',
-    
-    
+
+
   },
   buttonSubmit: {
     marginTop: '2vh',
@@ -63,6 +76,7 @@ export default makeStyles((theme) => ({
     cursor: 'pointer',
     border: '0px',
     padding: '1vh',
+    textAlign: 'center',
     boxShadow: '-2px -2px 5px 2px rgba(255, 255, 255, 0.4), 2px 2px 5px 2px rgba(5, 5, 10, 0.6)',
     '&:hover': {
       background: '#25b8ef',
@@ -81,7 +95,7 @@ export default makeStyles((theme) => ({
     background: '#c935ff',
     marginLeft: '7vw',
     padding: '1vh',
-    
+    textAlign: 'center',
     borderRadius: '15px',
     color: '#1a1a1a',
     fontSize: '2vh',
@@ -89,11 +103,11 @@ export default makeStyles((theme) => ({
     cursor: 'pointer',
     border: '0px',
     boxShadow: '-2px -2px 4px 2px rgba(255, 255, 255, 0.3), 2px 2px 5px 2px rgba(5, 5, 10, 0.6)',
-    '&:hover':{
+    '&:hover': {
       background: '#c935ff',
       marginLeft: '7vw',
       padding: '1vh',
-    
+
       borderRadius: '15px',
       color: '#1a1a1a',
       fontSize: '2vh',
@@ -104,24 +118,25 @@ export default makeStyles((theme) => ({
     }
   },
   paperP: {
-    
+
     padding: '3vh',
     marginTop: '10vh',
     marginLeft: '15vh',
     position: 'absolute',
     backgroundColor: '#1a1a1a',
     borderRadius: '30px',
-    
+
     width: '50vw',
     position: 'absolute',
-    
+
   },
   buttonClear: {
     marginTop: '2vh',
     background: '#c935ff',
     fontSize: '2vh',
     borderRadius: '15px',
-    marginLeft: '5vw'
+    marginLeft: '5vw',
+    textAlign: 'center'
 
   },
 }));

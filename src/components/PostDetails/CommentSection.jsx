@@ -1,4 +1,4 @@
-import React, {useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Typography, TextField, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { commentPost } from '../../actions/posts';
@@ -8,9 +8,9 @@ import useStyles from './styles';
 const CommentSection = ({ post }) => {
     const classes = useStyles();
     const [comments, setComments] = useState(post?.comments);
-    const [comment, setComment ] = useState('');
+    const [comment, setComment] = useState('');
     const dispatch = useDispatch();
-    const commentsRef = useRef(); 
+    const commentsRef = useRef();
     const user = JSON.parse(localStorage.getItem('profile'));
     const handleClick = async () => {
         const finalComment = `${user.result.name}: ${comment}`;
@@ -18,7 +18,7 @@ const CommentSection = ({ post }) => {
         const newComments = await dispatch(commentPost(finalComment, post._id));
         setComments(newComments);
         setComment('');
-        commentsRef.current.scrollIntoView({ behaviour: 'smooth'});
+        commentsRef.current.scrollIntoView({ behaviour: 'smooth' });
     };
 
     return (
@@ -34,21 +34,20 @@ const CommentSection = ({ post }) => {
                     <div ref={commentsRef} />
                 </div>
                 {user?.result?.name && (
-                    <div style={{ width:'50vw'}}>
+                    <div style={{ width: '70%' }}>
                         <typography className={classes.comments} gutterBottom varaint="h6">Write a comment</typography>
                         <TextField
                             fullWidth
                             rows={3}
-                            
-                            label='Comment here...'
+                            placeholder='Comment Here....'
                             multiline
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}
                             className={classes.commentField}
-                            InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh', marginTop: '0.5vh'}}}
-                            InputProps={{ style: {color: 'rgba(37, 184, 239, 1)', margin: '0vh 1vh 0vh 1vh'}}}
+                            InputLabelProps={{ style: { color: '#25b8ef' } }}
+                            InputProps={{ style: { color: 'rgba(37, 184, 239, 1)' } }}
                         />
-                        <Button style={{ marginTop: '2vh'}} className={classes.commentButton} fullWidth  disabled={!comment} variant="contained" onClick={handleClick}>
+                        <Button style={{ marginTop: '2vh' }} className={classes.commentButton} fullWidth disabled={!comment} variant="contained" onClick={handleClick}>
                             Comment
                         </Button>
                     </div>

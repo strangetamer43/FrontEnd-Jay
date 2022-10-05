@@ -20,30 +20,15 @@ export default makeStyles({
     textAlign: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
-    background: '#fdf4dc',
+    background: '#1a1a1a',
     borderRadius: '15px',
     height: '100%',
-    width: '100%',
+    width: '80%',
     position: 'relative',
     flex: 'center',
-    "@media (min-width:1024)": {
-      background: 'red',
-    },
-    // Laptop media Query
-    "@media (max-width: 1023px)": {
-      background: 'green',
-    },
+    boxShadow: '-5px -5px 15px 5px rgba(255, 255, 255, 0.25), 5px 5px 15px 5px rgba(5, 5, 10, 0.75)',
 
-    // tablet media query
-    "@media (min-width:768px)": {
-      background: 'yellow',
-    },
-    // Mobile Media Query
-    "@media (max-width: 767px)": {
-      width: '80%',
-      background: 'blue',
 
-    }
   },
   overlay: {
     position: 'absolute',
@@ -67,6 +52,8 @@ export default makeStyles({
   },
   title: {
     padding: '0 16px',
+    color: 'white',
+    fontSize: '3.5vh'
   },
   cardActions: {
     padding: '0 16px 8px 16px',
@@ -76,5 +63,54 @@ export default makeStyles({
   cardButton: {
     display: "block",
     textAlign: "initial"
+  },
+  yesbutton: {
+    background: '#25b8ef',
+    borderRadius: '15px',
+    color: '#000000',
+    boxShadow: '-1.5px -1.5px 3px 1.5px rgba(255, 255, 255, 0.25), 1.5px 1.5px 3px 1.5px rgba(5, 5, 10, 0.75)',
+    '&:hover': {
+      background: '#25b8ef',
+      borderRadius: '15px',
+      color: '#000000',
+      boxShadow: '1.5px 1.5px 3px 1.5px rgba(255, 255, 255, 0.25), -1.5px -1.5px 3px 1.5px rgba(5, 5, 10, 0.75)',
+    }
+  },
+  nobutton: {
+    background: '#ac23e5',
+    borderRadius: '15px',
+    boxShadow: '-1.5px -1.5px 3px 1.5px rgba(255, 255, 255, 0.25), 1.5px 1.5px 3px 1.5px rgba(5, 5, 10, 0.75)',
+    '&:hover': {
+      background: '#ac23e5',
+      borderRadius: '15px',
+      color: '#000000',
+      boxShadow: '1.5px 1.5px 3px 1.5px rgba(255, 255, 255, 0.25), -1.5px -1.5px 3px 1.5px rgba(5, 5, 10, 0.75)',
+    }
+  },
+  name: {
+    fontSize: '2.5vh',
+  },
+  time: {
+    marginTop: '1vh',
+    fontSize: '1.5vh',
+    marginLeft: '2.8vw'
+  },
+  KPcount: {
+    fontSize: '2.5vh',
+    padding: '1vh'
+
+  },
+  KPnumber: {
+    border: '0.25vw solid rgba(255, 255, 255, 0.6)',
+    borderRadius: '3vh',
+    boxShadow: '1.5px 1.5px 2.5px rgba(5, 5, 10, 0.8), -1.5px -1.5px 2.5px rgba(255, 255, 255, 0.20), inset 1.5px 1.5px 2.5px rgba(5, 5, 10, 0.8), inset -1.5px -1.5px 2.5px rgba(255, 255, 255, 0.20)',
+  },
+  tags: {
+    fontSize: '2vh'
+  },
+  buttons: {
+    width: '15vw',
+    height: '4vh',
+    fontSize: '2vh'
   },
 });

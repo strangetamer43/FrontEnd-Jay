@@ -20,7 +20,6 @@
 
     /* Mobile Media Query */
     @media screen and (max-width: 768px): {
-        display: none;
         position: absolute;
         background-color: red;
         right: 0;

@@ -144,7 +144,7 @@ const Image = styled.img` {
     display: flex;
     flex-direction: column;
     padding: 0px;
-    
+    margin:auto;
     width: 17.85vh;
     height: 25.26vh;
     margin-top: 0px;

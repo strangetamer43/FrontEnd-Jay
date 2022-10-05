@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { Button, Modal } from '@material-ui/core';
 
@@ -22,21 +22,21 @@ function FormbarP() {
     const handleClose = () => setOpen(false);
     return (
         <>
-            <div className="formbar">
-                <Button  onClick={handleOpen}  className={classes.fabButton1} color='secondary'>
-                    <AddIcon style={{ marginLeft: '-15px'}}/>  Update Profile 
+            <div className={classes.post_button}>
+                <Button onClick={handleOpen} className={classes.fabButton1} color='secondary'>
+                    <AddIcon style={{ marginLeft: '-15px' }} />  Update Profile
                 </Button>
                 <Modal open={open} onClose={handleClose}>
-                
-                <FormP currentId={currentId} setCurrentId={setCurrentId}/>
+
+                    <FormP currentId={currentId} setCurrentId={setCurrentId} />
                 </Modal>
 
 
             </div>
-            
-            
 
-            
+
+
+
         </>
     );
 }

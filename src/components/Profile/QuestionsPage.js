@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Container, AppBar, Typography, Grow, Grid, Card, Button, ListItemAvatar, ListItem, List, Paper} from '@material-ui/core';
+import { Container, AppBar, Typography, Grow, Grid, Card, Button, ListItemAvatar, ListItem, List, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -23,39 +23,35 @@ const QuestionsPage = () => {
   useEffect(() => {
     const token = user?.token;
     setUser(JSON.parse(localStorage.getItem('profile')));
-}, [location]);
+  }, [location]);
   const classes = useStyles();
   const dispatch = useDispatch();
-  const sum = questions.map((question) => question.likes.length).reduce((prev, curr) => prev + curr , 0)
+  const sum = questions.map((question) => question.likes.length).reduce((prev, curr) => prev + curr, 0)
   const diff = questions.map((question) => question.disLikes.length).reduce((prev, curr) => prev + curr, 0)
-  const sum1 = questions.map((question) => question.comments.length).reduce((prev, curr) => prev + curr , 0)
+  const sum1 = questions.map((question) => question.comments.length).reduce((prev, curr) => prev + curr, 0)
   const total = ((sum) * 3 + (sum1) * 5 - diff) / 20;
-   
-    return (
-      <>
-        <Grow in>
-  
-          <Container maxWidth="lg">
-              <Grid contianer position= "absolute" justify="space-between" alignItems="stretch" spacing={1}>
-                <Paper className={classes.card} elevation={7}>
-                <ProfileData />
-                </Paper>
-                <div className={classes.buttons}>
-                  <Button className={classes.button} component={Link} to='/profile' >{user.result.name}'s Posts</Button>
-                  <Button className={classes.button} component={Link} to='/questionspage' >Questions by {user.result.name}</Button>
-                  
-                </div>
-                <Grid item xs={12} sm={9}>
-                  <QuestionsOfUser setCurrentId={setCurrentId}/>
-                </Grid>
-                
-  
-              </Grid>
-            </Container>
-        </Grow>
-      </>
-    )
-  }
+
+  return (
+    <>
+      <Grow in>
+
+        <Container maxWidth="lg">
+          <Grid contianer position="absolute" justify="space-between" alignItems="stretch" spacing={1}>
+            <ProfileData />
+            <div className={classes.buttons}>
+              <Button className={classes.button} component={Link} to='/profile' >{user.result.name}'s Posts</Button>
+              <Button className={classes.button} component={Link} to='/questionspage' >Questions by {user.result.name}</Button>
+
+            </div>
+            <QuestionsOfUser setCurrentId={setCurrentId} />
+
+
+          </Grid>
+        </Container>
+      </Grow>
+    </>
+  )
+}
 
 
 export default QuestionsPage

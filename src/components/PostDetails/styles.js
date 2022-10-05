@@ -8,19 +8,19 @@ export default makeStyles((theme) => ({
     objectFit: 'cover',
     width: '95%',
     height: '95%',
-    
-    
 
-},
+
+
+  },
 
   media2: {
-    borderRadius: '5px',  
+    borderRadius: '5px',
     objectFit: 'scale-down',
     width: '20vh',
     height: '20vh',
     marginLeft: '2vw',
     marginRight: '2vw'
-    
+
   },
   title: {
     marginTop: '1.5vh',
@@ -32,34 +32,37 @@ export default makeStyles((theme) => ({
   },
   tags: {
     fontSize: '2vh',
-    
+
     marginBottom: '2vh',
     color: '#c935ff'
   },
   paper: {
     display: 'flex',
-   
+
     width: '92%',
     background: '#1a1a1a',
     flexDirection: 'column',
+    justifyContent: 'center',
+    margin: 'auto',
+    marginTop: '20px',
     boxShadow: '5px 5px 15px 5px rgba(5, 5, 10, 0.7), -5px -5px 15px 5px rgba(255, 255, 255, 0.3)',
     [theme.breakpoints.down('sm')]: {
       flexWrap: 'wrap',
       flexDirection: 'column',
-      
+
     },
   },
   section: {
-    
+
     margin: '10px',
     display: 'flex',
     flexDirection: 'column',
-    
+
   },
   name: {
-     fontSize: '3vh',
-     marginLeft: '1vw',
-     color: '#25b8ef'
+    fontSize: '3vh',
+    marginLeft: '1vw',
+    color: '#25b8ef'
 
   },
   imageSection: {
@@ -72,7 +75,7 @@ export default makeStyles((theme) => ({
   },
   recommendedPosts: {
     display: 'inline-block',
-    
+
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'row',
     },
@@ -87,9 +90,9 @@ export default makeStyles((theme) => ({
   },
   commentsInnerContainer: {
     height: '30vh', overflowY: 'auto', marginRight: '4vw', width: '40vw',
-    
+
   },
-  commentField:{
+  commentField: {
     borderRadius: '15px',
     border: '2px solid rgb(37, 184, 239)',
     outline: '0px',
@@ -108,7 +111,7 @@ export default makeStyles((theme) => ({
     fontSize: '1.8vh',
     marginBottom: '2vh',
     color: '#e2e2de'
-  }, 
+  },
   commentButton: {
     background: '#25b8ef',
     width: '10vw',
@@ -126,7 +129,7 @@ export default makeStyles((theme) => ({
   },
   nameComments: {
     fontWeight: '700'
-  }, 
+  },
   button: {
     background: '#1a1a1a',
     border: '0',
@@ -141,7 +144,7 @@ export default makeStyles((theme) => ({
     fontSize: '1.8vh',
     margin: '2vh',
     color: '#e2e2de'
-  }, 
+  },
   upvotes: {
     color: '#25b8ef'
   },

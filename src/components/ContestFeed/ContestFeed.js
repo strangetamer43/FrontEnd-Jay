@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, AppBar, Typography, Grow, Grid, Paper, TextField, Button} from '@material-ui/core';
+import { Container, AppBar, Typography, Grow, Grid, Paper, TextField, Button } from '@material-ui/core';
 import { useNavigate, useLocation } from "react-router-dom";
 import ChipInput from 'material-ui-chip-input';
 import { useDispatch } from "react-redux";
@@ -8,7 +8,7 @@ import { Marginer } from "../Auth/Marginer";
 import Contests from '../Contests/Contests';
 import FormQ from '../Form/FormQ';
 import "../../App.css";
-import useStyles from './styles'; 
+import useStyles from './styles';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -24,11 +24,11 @@ const ContestFeed = () => {
   useEffect(() => {
     dispatch(getContests());
   }, [currentId, dispatch]);
-  
+
   const [search, setSearch] = useState('');
   const [tags, setTags] = useState([]);
   const searchContest = () => {
-    if(search.trim() || tags) {
+    if (search.trim() || tags) {
       dispatch(getContestsBySearch({ search, tags: tags.join(',') }));
       navigate(`/contests/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
     } else {
@@ -36,39 +36,37 @@ const ContestFeed = () => {
     }
   };
   const handleKeyPress = (e) => {
-    if(e.keyCode === 13) {
+    if (e.keyCode === 13) {
       searchContest();
     }
   };
-  const handleAdd = (tag) => setTags([ ...tags, tag]);
-  const handleDelete = (tagToDelete) => setTags(tags.filter((tag) => tag !== tagToDelete)); 
-  
-  
+  const handleAdd = (tag) => setTags([...tags, tag]);
+  const handleDelete = (tagToDelete) => setTags(tags.filter((tag) => tag !== tagToDelete));
+
+
   return (
     <>
-    
-    
-        <Grow in>
-          <Container maxWidth='xl' >
-          
-          <Paper className={classes.appBarSearch}>
-                  <TextField name='search'  onKeyPress={handleKeyPress} className={classes.searchBar} InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {color: 'rgba(37, 184, 239, 1)', marginLeft: '1vh', marginRight: '1vh'}}} label='Search Contests' value={search} onChange={(e) => setSearch(e.target.value)}/>
-                  <ChipInput style={{ margin: '10px 0' }}  className={classes.searchBar} value={tags} onAdd={handleAdd} onDelete={handleDelete} InputLabelProps={{style: {color: '#25b8ef', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {color: 'rgba(37, 184, 239, 1)', marginLeft: '1vh', marginRight: '1vh'}}} label="Search Using Skills required" />
-                  <Button onClick={searchContest} className={classes.searchButton}> Search</Button>
-                </Paper>
-            <Grid contianer position= "absolute" justify="space-between" alignItems="stretch" Spacing={3} className={classes.gridContainer}>
-              <Grid item xs={12} sm={6} md={9} >
-                <Contests setCurrentId={setCurrentId}/>
-              </Grid>
-              <Grid item xs={12} sm={6} md={3}>
-              
-              </Grid>
-            </Grid>
-          </Container>
 
-        </Grow>
-        
-        
+
+      <Grow in>
+        <Container maxWidth='lg' >
+
+          <Paper className={classes.appBarSearch}>
+            <TextField name='search' onKeyPress={handleKeyPress} className={classes.searchBar} InputLabelProps={{ style: { color: '#25b8ef', marginLeft: '1vh' } }} InputProps={{ disableUnderline: true, style: { color: 'rgba(37, 184, 239, 1)', marginLeft: '1vh', marginRight: '1vh' } }} label='Search Contests' value={search} onChange={(e) => setSearch(e.target.value)} />
+            <ChipInput style={{ margin: '10px 0' }} className={classes.searchBar} value={tags} onAdd={handleAdd} onDelete={handleDelete} InputLabelProps={{ style: { color: '#25b8ef', marginLeft: '1vh' } }} InputProps={{ disableUnderline: true, style: { color: 'rgba(37, 184, 239, 1)', marginLeft: '1vh', marginRight: '1vh' } }} label="Search Using Skills required" />
+            <Button onClick={searchContest} className={classes.searchButton}> Search</Button>
+          </Paper>
+          <Grid contianer justify="space-between" alignItems="stretch" Spacing={3} >
+            <Grid item xs={12} sm={12} md={12} >
+              <Contests setCurrentId={setCurrentId} />
+            </Grid>
+
+          </Grid>
+        </Container>
+
+      </Grow>
+
+
     </>
   );
 };

@@ -2,12 +2,12 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 export default makeStyles((theme) => ({
-    
+
     appBarSearch: {
         borderRadius: '30px',
         marginTop: '6vh',
-        
-        
+
+
         display: 'flex',
         flexDirection: 'column',
         margin: '8vw',
@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
         boxShadow: '-2.5px -2.5px 6px 2.5px rgba(255, 255, 255, 0.25), 2.5px 2.5px 6px 2.5px rgba(5, 5, 10, 0.75)',
     },
     gridConatainer: {
-        
+
         [theme.breakpoints.down('xs')]: {
             flexDirection: 'column-reverse',
         },
@@ -31,7 +31,7 @@ export default makeStyles((theme) => ({
         fontSize: '2vh',
         width: '30vh',
         boxShadow: '-2.5px -2.5px 5px rgba(255, 255, 255, 0.30), 2.5px 2.5px 5px rgba(5, 5, 10, 0.7)',
-        '&:hover':{
+        '&:hover': {
             borderRadius: '15px',
             marginBottom: '1vh',
             fontSize: '2vh',

@@ -14,44 +14,21 @@ export default makeStyles({
     height: '100%',
   },
   card: {
+    margin: '0 auto',
+    float: 'none',
     display: 'flex',
+    textAlign: 'center',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    background: '#1a1a1a',
     borderRadius: '15px',
-    background:'#1a1a1a',
     height: '100%',
-    width: '100%',
+    width: '80%',
     position: 'relative',
-    boxShadow: '-2.5px -2.5px 6px 2.5px rgba(255, 255, 255, 0.25), 2.5px 2.5px 6px 2.5px rgba(5, 5, 10, 0.75)',
-  },
-  name: {
-    fontSize: '2vh',
-  },
-  KPcount: {
-    fontSize: '1.5vh',
-    padding: '0.5vh'
+    flex: 'center',
+    boxShadow: '-5px -5px 15px 5px rgba(255, 255, 255, 0.25), 5px 5px 15px 5px rgba(5, 5, 10, 0.75)',
 
-  },
-  purple:{
-    width: '2vh',
-    height: '2vh'
-  },
-  KPnumber: {
-    border: '0.12vw solid rgba(255, 255, 255, 0.6)',
-    borderRadius: '1.5vh',
-    boxShadow: '1px 1px 2px rgba(5, 5, 10, 0.8), -1px -1px 2px rgba(255, 255, 255, 0.20), inset 1px 1px 2px rgba(5, 5, 10, 0.8), inset -1px -1px 2px rgba(255, 255, 255, 0.20)',
-  },
-  tags: {
-    fontSize: '2vh',
-    color: '#c935ff'
-  },
-  message:{
-    color: '#e2e2de'
-  },
-  title1: {
-    padding: '0 16px',
-    color: '#e2e2de',
-    fontSize: '2vh'
+
   },
   overlay: {
     position: 'absolute',
@@ -75,6 +52,8 @@ export default makeStyles({
   },
   title: {
     padding: '0 16px',
+    color: 'white',
+    fontSize: '3.5vh'
   },
   cardActions: {
     padding: '0 16px 8px 16px',
@@ -85,16 +64,53 @@ export default makeStyles({
     display: "block",
     textAlign: "initial"
   },
-  nameDet: {
-    display: 'flex',
-    direction: "row",
-    justifyContent: "flex-start",
-    margin: '0px',
-    marginRight: '5px',
+  yesbutton: {
+    background: '#25b8ef',
+    borderRadius: '15px',
+    color: '#000000',
+    boxShadow: '-1.5px -1.5px 3px 1.5px rgba(255, 255, 255, 0.25), 1.5px 1.5px 3px 1.5px rgba(5, 5, 10, 0.75)',
+    '&:hover': {
+      background: '#25b8ef',
+      borderRadius: '15px',
+      color: '#000000',
+      boxShadow: '1.5px 1.5px 3px 1.5px rgba(255, 255, 255, 0.25), -1.5px -1.5px 3px 1.5px rgba(5, 5, 10, 0.75)',
+    }
   },
-  removeDialog: {
-    margin: '425px',
-    marginLeft: '750px',
+  nobutton: {
+    background: '#ac23e5',
+    borderRadius: '15px',
+    boxShadow: '-1.5px -1.5px 3px 1.5px rgba(255, 255, 255, 0.25), 1.5px 1.5px 3px 1.5px rgba(5, 5, 10, 0.75)',
+    '&:hover': {
+      background: '#ac23e5',
+      borderRadius: '15px',
+      color: '#000000',
+      boxShadow: '1.5px 1.5px 3px 1.5px rgba(255, 255, 255, 0.25), -1.5px -1.5px 3px 1.5px rgba(5, 5, 10, 0.75)',
+    }
+  },
+  name: {
+    fontSize: '2.5vh',
+  },
+  time: {
+    marginTop: '1vh',
+    fontSize: '1.5vh',
+    marginLeft: '2.8vw'
+  },
+  KPcount: {
+    fontSize: '2.5vh',
+    padding: '1vh'
 
+  },
+  KPnumber: {
+    border: '0.25vw solid rgba(255, 255, 255, 0.6)',
+    borderRadius: '3vh',
+    boxShadow: '1.5px 1.5px 2.5px rgba(5, 5, 10, 0.8), -1.5px -1.5px 2.5px rgba(255, 255, 255, 0.20), inset 1.5px 1.5px 2.5px rgba(5, 5, 10, 0.8), inset -1.5px -1.5px 2.5px rgba(255, 255, 255, 0.20)',
+  },
+  tags: {
+    fontSize: '2vh'
+  },
+  buttons: {
+    width: '15vw',
+    height: '4vh',
+    fontSize: '2vh'
   },
 });
