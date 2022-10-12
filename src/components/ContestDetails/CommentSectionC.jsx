@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Typography, TextField, Button } from '@material-ui/core';
+import { Typography, TextField, Button, Avatar } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { commentContest } from '../../actions/contests';
 
@@ -13,7 +13,7 @@ const CommentSection = ({ contest }) => {
     const commentsRef = useRef();
     const user = JSON.parse(localStorage.getItem('profile'));
     const handleClick = async () => {
-        const finalComment = `${user.result.name}: ${comment}`;
+        const finalComment = { value: `${user.result.name}: ${comment}`, userID: user?.result?._id, name: user?.result?.name, profile: user?.result?.imageUrl };
 
         const newComments = await dispatch(commentContest(finalComment, contest._id));
         setComments(newComments);
@@ -25,11 +25,14 @@ const CommentSection = ({ contest }) => {
         <div>
             <div className={classes.commentsOuterContainer}>
                 <div className={classes.commentsInnerContainer}>
-                    <Typography className={classes.comments} gutterBottom varaint="h6">Comments</Typography>
-                    {comments.map((c, i) => (
-                        <Typography className={classes.comments} key={i} gutterBottom varaint="subtitle1">
-                            <strong className={classes.nameComments}>{c.split(': ')[0]}</strong>:{c.split(':')[1]}
-                        </Typography>
+                    {comments?.map((c, i) => (
+                        <>
+                            <Avatar sx={{ width: 10, height: 10 }} className={classes.purple} alt={contest.name} src={c.profile}></Avatar>
+                            <Typography className={classes.comments} key={i} gutterBottom varaint="subtitle1">
+                                <typography className={classes.nameComments} >{c.value}</typography>
+                            </Typography>
+                        </>
+
                     ))}
                     <div ref={commentsRef} />
                 </div>
