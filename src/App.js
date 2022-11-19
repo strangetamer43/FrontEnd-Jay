@@ -28,6 +28,14 @@ import WithoutHeader from "./WithoutHeader";
 import WithHeader from "./WithHeader";
 import ViewTasks from './components/Tasks/ViewTasks';
 import CreateTask from './components/Tasks/CreateTask';
+
+import HomePage from "./components/Home/HomePage"
+import MyQuizs from './components/MyQuizs/MyQuizs';
+import ShowMyQuiz from "./components/MyQuizs/ShowMyQuiz"
+import CollectResponse from './components/Response/CollectResponse';
+import ResponseSuccess from './components/Response/ResponseSuccess';
+import Check from './components/Response/Check';
+import MyResponses from './components/MyQuizs/MyResponses';
 const user = JSON.parse(localStorage.getItem('profile'));
 const App = () => {
 
@@ -48,6 +56,12 @@ const App = () => {
           <Route element={<WithoutHeader />}>
             <Route path="/" element={<Auth />} /> /*Responsive*/
             <Route path='/entrypage' exact element={<EntryPage1 />} /> /*Responsive*/
+            <Route exact path="/challenge/home" element={<HomePage />} />
+            <Route exact path="/myChallenges" element={<MyQuizs />} />
+            <Route exact path="/myChallenges/:quizId" element={<ShowMyQuiz />} />
+            <Route exact path="/submit/:quizId" element={<Check />} />
+            <Route exact path="/submitted" element={<ResponseSuccess />} />
+            <Route exact path="/myResponse" element={<MyResponses />} />
           </Route>
           <Route element={<WithHeader />}>
             <Route path='/feed' exact element={<ContentFeed />} /> /*Responsive*/
@@ -68,6 +82,7 @@ const App = () => {
             <Route path='/gettingstarted' exact element={<GettingStarted />} /> /*Responsive*/
             <Route path='/tasks' exact element={<ViewTasks />} /> /*Responsive*/
             <Route path='/createtask' exact element={<CreateTask />} /> /*Responsive*/
+
           </Route>
         </Routes>
 
