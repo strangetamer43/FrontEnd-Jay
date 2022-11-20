@@ -28,9 +28,7 @@ import "./Style.css"
 
 
 const CollectResponse = (props) => {
-
-
-    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).result)
+    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
     const [quizDetails, setQuizDetails] = React.useState();
     const [loading, setLoading] = React.useState(true)
     const [responseData, setResponseData] = React.useState(JSON.parse(localStorage.getItem("response" + props.quizId + user._id)) || [])
@@ -111,7 +109,7 @@ const CollectResponse = (props) => {
 
 
     React.useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).result);
+        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
         var quizId = props.quizId;
         if (quizId !== undefined) {
             submittingQuiz({ userId: user._id, quizId })
@@ -165,7 +163,7 @@ const CollectResponse = (props) => {
 
 
     React.useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).result);
+        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
         var quizId = props.quizId
 
 

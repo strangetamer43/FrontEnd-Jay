@@ -7,6 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Quiz from './Quiz/Quiz';
 import NavBar from '../NavBar/NavBar';
 import Form from 'react-bootstrap/Form';
+import { createUser } from '../../APIServices/User';
 
 
 const Quizs = ({ user }) => {
@@ -30,6 +31,10 @@ const Quizs = ({ user }) => {
                     error.toString();
                 console.log(resMessage);
             });
+
+
+
+
     }, [user])
 
     const search = (value) => {

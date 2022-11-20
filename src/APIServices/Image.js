@@ -3,7 +3,7 @@ const API = "http://localhost:5000/image";
 
 export const uploadImage = async (data) => {
     console.log("dkfd")
-    return axios
+    return await axios
         .post(API + "/uploadImage", data)
         .then(res => {
             console.log(res);

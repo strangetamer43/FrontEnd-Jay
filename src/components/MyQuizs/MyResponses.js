@@ -35,14 +35,14 @@ const rows = [
 
 const MyResponses = () => {
     const classes = useStyles();
-    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).result)
+    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
     const [responseData, setResponseData] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
 
 
 
     React.useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).result)
+        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
 
         if (user._id !== undefined && user._id !== "") {
             getResponseByUser(user._id)

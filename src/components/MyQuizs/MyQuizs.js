@@ -18,7 +18,7 @@ const MyQuizs = () => {
     const classes = useStyle();
     const [quizs, setQuizs] = useState([])
     const [isLoading, setLoading] = useState(true);
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")).result)
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
     const [searchValue, setSearchValue] = useState("");
     const [instructions, setInstructions] = useState([]);
     const [insvalue, setInsValue] = useState("");
@@ -27,7 +27,7 @@ const MyQuizs = () => {
 
 
     useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).result)
+        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
         getQuizByUser(user._id)
             .then((data) => {
                 setQuizs(data.data)

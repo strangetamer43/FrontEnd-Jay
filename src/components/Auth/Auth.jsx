@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { signin, signup } from '../../actions/auth';
 
 import "./Style.scss"
+import { createUser } from '../../APIServices/User';
 const Container = styled.div`
   
   display: flex;
@@ -301,8 +302,15 @@ const Auth = () => {
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
     const token = res?.tokenId;
+    let obj;
+    await createUser(result)
+      .then((res) => {
+        obj = res.data;
+      }, (err) => {
+        console.log(err);
+      })
     try {
-      dispatch({ type: 'AUTH', data: { result, token } });
+      dispatch({ type: 'AUTH', data: { result, token, obj } });
       navigate('/feed');
 
     } catch (error) {

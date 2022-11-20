@@ -10,13 +10,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 
 const ResponseSuccess = () => {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")).result)
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
     const [result, setResult] = useState(JSON.parse(localStorage.getItem("result")))
     const [response, setResponse] = useState(JSON.parse(localStorage.getItem("response")))
     const [showScore, setShowScore] = useState(JSON.parse(localStorage.getItem("showscore")))
 
     useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).result)
+        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
     }, [])
 
 

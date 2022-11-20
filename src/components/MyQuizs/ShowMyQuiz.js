@@ -62,7 +62,7 @@ const ShowMyQuiz = () => {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
     const [open, setOpen] = React.useState(false);
-    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).result)
+    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
     const [quizId, setQuizId] = React.useState("");
 
 
@@ -75,7 +75,7 @@ const ShowMyQuiz = () => {
 
 
     React.useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).result);
+        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
     }, [])
 
 
