@@ -40,3 +40,6 @@ export const getResponseById = async (responseId) => {
         })
 }
 
+export const getResponseByUserName = async (value) => {
+    return API.get(`/getResponseByUserName/${value}`);
+}

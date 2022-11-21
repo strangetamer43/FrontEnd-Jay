@@ -65,7 +65,6 @@ const Questions = (props) => {
 
 
     React.useEffect(() => {
-        setVisibility(props.formData.visibility)
         if (props.formData.questions !== undefined) {
             //console.log(props.formData.questions.length);
             if (props.formData.questions.length === 0) {
@@ -95,6 +94,7 @@ const Questions = (props) => {
             }
         }
         setQuizDetails(props.formData)
+        setVisibility(props.formData?.visibility || true)
         setTimer(props.formData?.timer || "individual")
         setMinutes(props.formData?.duration?.minutes)
         setSeconds(props.formData?.duration?.seconds)

@@ -1,15 +1,14 @@
 import React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+
 import { getResponseByQuizId } from '../../APIServices/ResponseAPI';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Accordion, AccordionDetails, AccordionSummary, Typography, Paper, Container, Button } from '@material-ui/core';
+import Form from 'react-bootstrap/Form';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import { Grid } from '@material-ui/core';
+import { getResponseByUserName } from '../../APIServices/ResponseAPI';
 
 
 
@@ -23,6 +22,7 @@ const useStyles = makeStyles({
 function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };
 }
+
 
 const rows = [
     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
@@ -39,6 +39,33 @@ const Responses = (props) => {
     const [responseData, setResponseData] = React.useState([]);
     const [questions, setQuestions] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
+    const [expanded, setExpanded] = React.useState('');
+
+    const [searchValue, setSearchValue] = React.useState("");
+
+
+
+    const search = (value) => {
+
+        getResponseByUserName(value)
+            .then((data) => {
+                console.log(data);
+                setResponseData(data.data)
+            },
+
+                error => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||
+                        error.toString();
+                    console.log(resMessage);
+                }
+            );
+
+    }
+
 
 
     React.useEffect(() => {
@@ -76,7 +103,6 @@ const Responses = (props) => {
         //console.log(oneResData);
 
         var selectedOp = oneResData.response.filter(qss => qss.questionId === qId);
-        console.log(selectedOp);
 
         if (selectedOp.length > 0) {
 
@@ -101,51 +127,82 @@ const Responses = (props) => {
     return (
         <>
             {loading ? (<CircularProgress />) : (
-                <div>
-                    <p>Responses</p>
-                    <div>
-                        <TableContainer component={Paper}>
-                            <Table className={classes.table} aria-label="simple table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>User</TableCell>
-                                        {questions.map((ques, i) => (
-                                            <TableCell key={i} align="right">{ques.question}</TableCell>
-                                        ))}
-                                        <TableCell key="correct" align="right">Score</TableCell>
-
-                                    </TableRow>
-
-                                </TableHead>
-                                <TableBody>
-
-                                    {responseData.map((rs, j) => (
-                                        <TableRow key={j}>
-                                            <TableCell component="th" scope="row">
-                                                {rs.userName}
-                                            </TableCell>
-                                            {questions.map((ques, i) => (
-                                                <TableCell key={i} align="right">{getSelectedOption(ques._id, i, j)}</TableCell>
-                                            ))}
-                                            <TableCell key="correct" align="right">{rs.correctAnswers}</TableCell>
+                <>
+                    <Container className={classes.cardGrid} maxWidth="lg" style={{ marginTop: "30px" }}>
+                        <Form className="d-flex">
+                            <Form.Control
+                                type="search"
+                                placeholder="User Name"
+                                className="me-2"
+                                aria-label="Search"
+                                value={searchValue}
+                                width="10rem"
+                                onChange={(e) => { setSearchValue(e.target.value) }}
+                            />
+                            <>
 
 
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
+                                <Button variant="contained" color="primary" onClick={(e) => { search(searchValue) }}>
+                                    Search
+                                </Button>
+                                &nbsp;
+                                <Button variant="contained" color="secondary" href={"/myChallenges/" + props.quizId}>
+                                    ALL
+                                </Button>
+                            </>
+                        </Form>
+                    </Container>
+                    <div style={{ margin: "30px" }}>
+                        <Grid
+                            container
+                            direction="column"
+                            justify="center"
+                            alignItems="center"
+                        >
+                            <Grid item xs={10} sm={8} md={8} style={{ width: '100%' }}>
 
-                            </Table>
-                        </TableContainer>
+                                <Grid style={{ borderRadius: 10 }}>
+                                    {
+                                        responseData.map((res, i) => (
+                                            <>
+                                                <Paper elevation={2} style={{ width: '100%' }}>
+                                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginLeft: '15px', paddingTop: '20px', paddingBottom: '20px' }}>
+
+                                                        <Typography variant='h5' >
+                                                            <b>{"Name : " + res.userName}    {" | Total Score : " + res.correctAnswers}</b>
+                                                        </Typography>
+                                                        <br></br>
+                                                        <Typography sx={{ color: 'text.secondary' }}></Typography>
+                                                        {questions.map((ques, j) => (
+                                                            <>
+                                                                <Typography key={j} variant="h6">{"Question : " + ques.question}</Typography>
+                                                                <Typography key={j} variant="h6">{"Answer : "}{getSelectedOption(ques._id, j, i)}</Typography>
+                                                                <br></br>
+                                                            </>
+
+                                                        ))}
+                                                    </div>
+                                                </Paper>
+                                                <br></br>
+                                            </>
+
+                                        ))
+                                    }
+                                </Grid>
+                            </Grid>
+                        </Grid>
                     </div>
 
-                </div>
+                </>
+            )
+            }
 
-            )}
 
         </>
 
-    );
-}
+
+    )
+};
 export default Responses
 
 
