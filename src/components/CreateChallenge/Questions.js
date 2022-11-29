@@ -65,6 +65,7 @@ const Questions = (props) => {
 
 
     React.useEffect(() => {
+        setVisibility(props.formData.visibility)
         if (props.formData.questions !== undefined) {
             //console.log(props.formData.questions.length);
             if (props.formData.questions.length === 0) {
@@ -94,15 +95,13 @@ const Questions = (props) => {
             }
         }
         setQuizDetails(props.formData)
-        setVisibility(props.formData?.visibility || true)
         setTimer(props.formData?.timer || "individual")
         setMinutes(props.formData?.duration?.minutes)
         setSeconds(props.formData?.duration?.seconds)
         setName(props.formData?.quizName)
         setDescription(props.formData?.description)
         setInstructions(props.formData?.instructions)
-        setRecoring(props.formData?.recording || "none")
-        setInstructions(props.formData?.instructions)
+        setRecoring(props.formData?.recording)
 
     }, [props])
 
@@ -145,7 +144,8 @@ const Questions = (props) => {
             },
             timer: timer,
             instructions: instructions,
-            recording: recording
+            recording: recording,
+
         }
 
         editQuiz(data)
@@ -210,7 +210,12 @@ const Questions = (props) => {
 
     function addMoreQuestionFieldTEXT() {
         expandCloseAll();
-        setQuestions(questions => [...questions, { question: "Question", qImage: "", opne: false, duration: { minutes: 0, seconds: 0 }, questionType: "text" }])
+        setQuestions(questions => [...questions, { question: "Question", qImage: "", open: false, duration: { minutes: 0, seconds: 0 }, questionType: "text" }])
+    }
+
+    function addMoreQuestionFieldAUDIO() {
+        expandCloseAll();
+        setQuestions(questions => [...questions, { question: "Question", qImage: "", open: false, duration: { minutes: 0, seconds: 0 }, questionType: "audio", multipleAudio: false }])
     }
 
     function copyQuestion(i) {
@@ -344,6 +349,13 @@ const Questions = (props) => {
         setNumericalRange(temprange)
     }
 
+    function handleScoreRangeNumerical(text, i, j, k) {
+        var temprange = [...numericalRange]
+        temprange[i].scoreRange[j][k] = Number(text)
+        setNumericalRange(temprange)
+    }
+
+
     function handleScoreRange(text, i, j, k) {
         var temprange = [...numericalRange]
         temprange[i].scoreRange[j][k] = text
@@ -435,6 +447,13 @@ const Questions = (props) => {
         temp.splice(i, 1);
         setInstructions(temp)
     }
+
+    function handleAudio(i) {
+        var optionsOfQuestion = [...questions];
+        optionsOfQuestion[i].multipleAudio = !optionsOfQuestion[i].multipleAudio;
+        //newMembersEmail[i]= email;
+        setQuestions(optionsOfQuestion);
+    }
     function questionsUI() {
         return questions.map((ques, i) => (
 
@@ -496,7 +515,7 @@ const Questions = (props) => {
                                         required
                                         value={ques.question}
                                         variant="filled"
-                                        onChange={(e) => { handleQuestionValue(e.target.value, i) }}
+                                        onChange={e => handleQuestionValue(e.target.value, i)}
                                     />
                                     <Tooltip title="Add Image">
 
@@ -588,10 +607,18 @@ const Questions = (props) => {
                                             required
                                         />
                                     </div>
-                                ) : ""}
+                                ) :
+                                    ques.questionType === "audio" ? (
+                                        <>
+                                            <FormControlLabel control={<Checkbox />} checked={ques.multipleAudio} onChange={() => handleAudio(i)} label="Multiple Audio Record" color="success" />
+                                        </>
+                                    ) : ""
+                                }
+
 
 
                                 <div style={{ width: '100%' }}>
+
                                     {ques.questionType === "mcq" && ques.options.map((op, j) => (
                                         <>
                                             <div key={j}>
@@ -1188,7 +1215,7 @@ const Questions = (props) => {
                                                                             error={j > 0 && numericalRange[i].scoreRange[j][0] >= numericalRange[i].scoreRange[j - 1][1]}
                                                                             helperText={j > 0 && numericalRange[i].scoreRange[j][0] >= numericalRange[i].scoreRange[j - 1][1] ? "Invalid value" : ""}
                                                                             onChange={(e) => {
-                                                                                handleScoreRange(e.target.value, i, j, 0)
+                                                                                handleScoreRangeNumerical(e.target.value, i, j, 0)
                                                                             }}
 
                                                                         />
@@ -1205,7 +1232,7 @@ const Questions = (props) => {
                                                                             error={numericalRange[i].scoreRange[j][1] > numericalRange[i].scoreRange[j][0]}
                                                                             helperText={numericalRange[i].scoreRange[j][1] > numericalRange[i].scoreRange[j][0] ? "Invalid value" : ""}
                                                                             onChange={(e) => {
-                                                                                handleScoreRange(e.target.value, i, j, 1)
+                                                                                handleScoreRangeNumerical(e.target.value, i, j, 1)
                                                                             }}
 
                                                                         />
@@ -1220,7 +1247,7 @@ const Questions = (props) => {
                                                                             size="small"
                                                                             label="Score"
                                                                             onChange={(e) => {
-                                                                                handleScoreRange(e.target.value, i, j, 2)
+                                                                                handleScoreRangeNumerical(e.target.value, i, j, 2)
                                                                             }}
 
                                                                         />
@@ -1290,7 +1317,7 @@ const Questions = (props) => {
                                                 onChange={(e) => setRecoring(e.target.value)}
                                             >
                                                 <FormControlLabel value="video" control={<Radio />} label="Video & Audio" />
-                                                <FormControlLabel value="audio" control={<Radio />} label="Audio" />
+                                                <FormControlLabel value="audio" control={<Radio />} label="audio" />
                                                 <FormControlLabel value="none" control={<Radio />} label="No Recording" />
 
 
@@ -1339,6 +1366,14 @@ const Questions = (props) => {
                                         endIcon={<AddCircleIcon />}
                                         style={{ margin: '5px' }}
                                     >Add TextField </Button>
+
+                                    <Button
+                                        variant="contained"
+
+                                        onClick={addMoreQuestionFieldAUDIO}
+                                        endIcon={<AddCircleIcon />}
+                                        style={{ margin: '5px' }}
+                                    >Add AudioQue </Button>
 
                                     <Button
                                         variant="contained"

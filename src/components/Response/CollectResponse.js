@@ -14,11 +14,14 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Divider from '@material-ui/core/Divider';
-import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, FormControl, Box } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, FormControl } from '@material-ui/core';
 import { TextField } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import { getQuizById } from '../../APIServices/QuestionAPI';
-
-import { useprops } from 'react-router-dom';
+import { uploadVideo } from '../../APIServices/Image';
+import Mic from "@material-ui/icons/Mic"
+import Stop from "@material-ui/icons/GraphicEq"
+import { useReactMediaRecorder, } from "react-media-recorder";
 import { submitResponse } from '../../APIServices/ResponseAPI';
 import { submittingQuiz } from '../../APIServices/ResponseAPI';
 import "./Style.css"
@@ -28,7 +31,9 @@ import "./Style.css"
 
 
 const CollectResponse = (props) => {
-    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
+
+
+    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).result)
     const [quizDetails, setQuizDetails] = React.useState();
     const [loading, setLoading] = React.useState(true)
     const [responseData, setResponseData] = React.useState(JSON.parse(localStorage.getItem("response" + props.quizId + user._id)) || [])
@@ -45,10 +50,65 @@ const CollectResponse = (props) => {
     const [questionCount, setQuestionCount] = React.useState(JSON.parse(localStorage.getItem("currentQuestion" + props.quizId + user._id)) + 1 || 0);
     const [attribute, setAttribute] = React.useState(JSON.parse(localStorage.getItem("attribute" + props.quizId + user._id)) || "");
     const [aopen, setAopen] = React.useState(JSON.parse(localStorage.getItem("aopen" + props.quizId + user._id)) === false ? false : true);
+    const [active, setActive] = React.useState(false)
+    const [audioLoading, setAudioLoading] = React.useState(false)
+    const [disable, setDisable] = React.useState(false)
 
 
 
 
+
+    const { error, startRecording, stopRecording } =
+        useReactMediaRecorder({
+
+            audio: true, type: "audio/wav", askPermissionOnMount: true, async onStop(blobstr, blob, data) {
+
+                var file = new File([blob], "sample", { lastModified: new Date().getTime(), type: "audio/wav" })
+                setAudioLoading(true)
+                const formData = new FormData();
+                formData.append("file", file)
+
+                await uploadVideo(formData)
+                    .then((res) => {
+                        console.log(res);
+                        // nextQuestion(true); 
+                        var questionId = questions[currentQuestion]._id
+                        var option = res.data
+                        var data = {
+                            questionId,
+                            option
+                        }
+
+                        // console.log(value)
+                        var fakeRData = [...responseData];
+
+                        var indexOfResponse = fakeRData.findIndex(x => x.questionId === questionId);
+                        if (indexOfResponse === -1) {
+                            setResponseData(responseData => [...responseData, data])
+
+                        } else {
+                            fakeRData[indexOfResponse].option = option
+                            setResponseData(fakeRData);
+                        }
+                        setAudioLoading(false)
+                        setValue(res.data)
+
+
+                    },
+                        error => {
+                            const resMessage =
+                                (error.response &&
+                                    error.response.data &&
+                                    error.response.data.message) ||
+                                error.message ||
+                                error.toString();
+                            console.log(resMessage);
+                        }
+                    );
+
+
+            }
+        })
 
     const handleRadioChange = (j) => {
         var questionId = questions[currentQuestion]._id
@@ -109,7 +169,7 @@ const CollectResponse = (props) => {
 
 
     React.useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
+        setUser(JSON.parse(localStorage.getItem("profile")).result);
         var quizId = props.quizId;
         if (quizId !== undefined) {
             submittingQuiz({ userId: user._id, quizId })
@@ -163,7 +223,7 @@ const CollectResponse = (props) => {
 
 
     React.useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
+        setUser(JSON.parse(localStorage.getItem("profile")).result);
         var quizId = props.quizId
 
 
@@ -271,6 +331,20 @@ const CollectResponse = (props) => {
 
 
     };
+
+    const audioButtonClick = (e) => {
+        if (!active) {
+            setValue(null)
+            setActive(!active)
+            startRecording();
+        } else {
+            setActive(!active)
+            stopRecording(e);
+            if (questions[currentQuestion].multipleAudio === false) {
+                setDisable(true)
+            }
+        }
+    }
 
 
 
@@ -396,25 +470,40 @@ const CollectResponse = (props) => {
                                                                         </RadioGroup>
                                                                     </FormControl>
                                                                 ) : (
+                                                                    questions[currentQuestion].questionType === "text" ? (
 
-                                                                    <>
-                                                                        <TextField
-                                                                            required
-                                                                            id="fullwidth"
-                                                                            label="Answer"
-                                                                            multiline
-                                                                            maxRows={4}
-                                                                            value={value}
-                                                                            style={{ margin: "10px", width: "150%" }}
-                                                                            onChange={(e) => { handleTextChange(e.target.value) }}
+                                                                        <>
+                                                                            <TextField
+                                                                                required
+                                                                                id="fullwidth"
+                                                                                label="Answer"
+                                                                                multiline
+                                                                                maxRows={4}
+                                                                                value={value}
+                                                                                style={{ margin: "10px", width: "150%" }}
+                                                                                onChange={(e) => { handleTextChange(e.target.value) }}
+                                                                                fullWidth
+                                                                                variant="standard"
+                                                                            />
+                                                                        </>
+                                                                    ) : (
+
+                                                                        <LoadingButton
+                                                                            style={{ margin: "10%" }}
+                                                                            color={active ? "secondary" : "primary"}
+                                                                            onClick={e => audioButtonClick(e)}
+                                                                            startIcon={active ? <Stop /> : <Mic />}
+                                                                            variant="contained"
+                                                                            loading={audioLoading}
+                                                                            loadingPosition="start"
                                                                             fullWidth
-                                                                            variant="standard"
-                                                                        />
-                                                                    </>
+                                                                            disabled={disable}
+                                                                        >
+                                                                            {active ? "Stop Recording" : "Record"}
+                                                                        </LoadingButton>
 
 
-
-
+                                                                    )
                                                                 )}
 
 
