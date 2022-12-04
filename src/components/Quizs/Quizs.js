@@ -68,7 +68,7 @@ const Quizs = ({ user }) => {
                     {isLoading ? (<CircularProgress />) : ""}
 
                     <Container className={classes.cardGrid} maxWidth="lg">
-                        <Form className="d-flex">
+                        <Form className="d-flex" >
                             <Form.Control
                                 type="search"
                                 placeholder="Search"

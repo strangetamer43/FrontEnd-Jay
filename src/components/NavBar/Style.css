@@ -24,3 +24,13 @@
     background-image: linear-gradient(to bottom, #757575, #adadad);
     text-decoration: none;
 }
+
+
+
+@media screen and (max-width: 1000px) {
+    .nav-bar {
+        margin-bottom: 30px;
+        color: white;
+    }
+
+}

@@ -36,7 +36,7 @@ const NavBar = (props) => {
 
     return (
         <div>
-            <Navbar expand="lg" className="navbar-dark bg-secondary">
+            <Navbar expand="lg" className="navbar-dark bg-secondary nav-bar">
                 <Container fluid>
                     <Navbar.Brand href="/challenge/home">
                         <img
@@ -49,7 +49,7 @@ const NavBar = (props) => {
                         Usurp Challenge
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
-                    <Navbar.Collapse id="navbarScroll">
+                    <Navbar.Collapse id="navbarScroll" >
                         <Nav
                             className="me-auto my-2 my-lg-0"
                             style={{ maxHeight: '100px' }}
@@ -72,8 +72,6 @@ const NavBar = (props) => {
                                         <Image
                                             src={user.imageUrl}
                                             alt="profile"
-                                            roundedCircle
-                                            style={{ width: '35px' }}
                                         />
                                         &nbsp;
                                         {user.name}
@@ -84,7 +82,9 @@ const NavBar = (props) => {
                                 <MenuItem className={classes.drop} eventKey={1.1} onClick={() => { console.log("Profile") }}>Profile</MenuItem>
                                 <MenuItem className="col-xs-12" eventKey={1.3} onClick={logout}>
                                     <i className="fa fa-sign-out"></i> Logout
-                                </MenuItem>
+                                                  roundedCircle
+                                            style={{ width: '35px' }}
+                          </MenuItem>
                             </NavDropdown>
                         </Nav> */}
 

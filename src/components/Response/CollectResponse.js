@@ -394,7 +394,6 @@ const CollectResponse = (props) => {
                         >
                             <Grid item xs={10} sm={8} md={6} style={{ width: '100%' }}>
                                 <Grid style={{ borderTop: '10px solid teal', borderRadius: 10 }}>
-                                    <img src="https://cdn.pixabay.com/photo/2015/09/16/08/55/online-942406_960_720.jpg" width="90%" height="auto" alt="optionImage" />
 
                                     <div>
                                         <div>
@@ -481,7 +480,7 @@ const CollectResponse = (props) => {
 
                                                                                     <div style={{ display: 'flex', marginLeft: '10px' }}>
                                                                                         {op.image !== "" ? (
-                                                                                            <img src={op.image} width="80%" height="auto" alt="optionImage" />
+                                                                                            <img src={op.image} width="40%" height="auto" alt="optionImage" />
                                                                                         ) : ""}
                                                                                         <Divider />
                                                                                     </div>

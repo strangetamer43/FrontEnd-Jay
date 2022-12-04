@@ -110,8 +110,18 @@ export default makeStyles((theme) => ({
         textDecoration: 'none',
         "&:active , &:hover": {
             backgroundColor: '#3C4048'
-        }
+        },
 
+
+    },
+    "@media (max-width: 1000px)": {
+        active: {
+            color: 'white',
+            "&:active , &:hover": {
+                backgroundColor: '#3C4056'
+            },
+
+        }
     },
 }
 ));

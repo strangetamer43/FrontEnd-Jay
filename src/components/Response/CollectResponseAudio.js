@@ -434,7 +434,7 @@ const CollectResponseAudio = (props) => {
 
                                                             {questions[currentQuestion].qImage !== "" ? (
                                                                 <div>
-                                                                    <img src={questions[currentQuestion].qImage} width="80%" height="auto" alt="questionimage" /><br></br><br></br>
+                                                                    <img src={questions[currentQuestion].qImage} width="50%" height="auto" alt="questionimage" /><br></br><br></br>
                                                                 </div>
                                                             ) : ""}
 
@@ -459,7 +459,7 @@ const CollectResponseAudio = (props) => {
 
                                                                                     <div style={{ display: 'flex', marginLeft: '10px' }}>
                                                                                         {op.image !== "" ? (
-                                                                                            <img src={op.image} width="50%" height="auto" alt="optionImage" />
+                                                                                            <img src={op.image} width="40%" height="auto" alt="optionImage" />
                                                                                         ) : ""}
                                                                                         <Divider />
                                                                                     </div>
