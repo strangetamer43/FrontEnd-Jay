@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import { Paper, Typography } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -17,7 +17,8 @@ import { getQuizById } from '../../APIServices/QuestionAPI';
 import { uploadVideo } from '../../APIServices/Image';
 import { submitResponse } from '../../APIServices/ResponseAPI';
 import { submittingQuiz } from '../../APIServices/ResponseAPI';
-import { useReactMediaRecorder, } from "react-media-recorder";
+import { useReactMediaRecorder, ReactMediaRecorder } from "react-media-recorder";
+import { createResponse } from '../../APIServices/ResponseAPI';
 import "./Style.css"
 
 const CollectResponseVideo = (props) => {
@@ -28,6 +29,7 @@ const CollectResponseVideo = (props) => {
     const [responseData, setResponseData] = React.useState(JSON.parse(localStorage.getItem("response" + props.quizId + user._id)) || [])
     const [noattempts, setNoAttempts] = React.useState(false);
     const [videos, setVideos] = React.useState(JSON.parse(localStorage.getItem("videos")) || [])
+    const [screenRecording, setScreenRecording] = React.useState([])
     const [currentQuestion, setCurrentQuestion] = React.useState(JSON.parse(localStorage.getItem("currentQuestion" + props.quizId + user._id)) || 0)
     const [isSubmitted, setIsSubmitted] = React.useState(false)
     const [open, setOpen] = React.useState(true)
@@ -38,6 +40,9 @@ const CollectResponseVideo = (props) => {
     const [questionCount, setQuestionCount] = React.useState(JSON.parse(localStorage.getItem("currentQuestion" + props.quizId + user._id)) + 1 || 0);
     const [attribute, setAttribute] = React.useState(JSON.parse(localStorage.getItem("attribute" + props.quizId + user._id)) || "");
     const [aopen, setAopen] = React.useState(JSON.parse(localStorage.getItem("aopen" + props.quizId + user._id)) === false ? false : true);
+    const [recording, setRecording] = React.useState(false)
+    const [responseId, setResponseId] = React.useState(localStorage.getItem("responseid" + props.quizId + user._id) || "")
+
 
 
 
@@ -55,69 +60,31 @@ const CollectResponseVideo = (props) => {
                 console.log(file)
                 const formData = new FormData();
                 formData.append("file", file)
+                formData.append("responseid", responseId)
+                formData.append("type", "video")
 
-                await uploadVideo(formData)
+
+                // nextQuestion(true);  
+
+
+                uploadVideo(formData)
                     .then((res) => {
-                        console.log(res);
-                        videos.push(res.data)
-                        // nextQuestion(true);  
+                        console.log(res)
 
-                        if (JSON.parse(localStorage.getItem("currentQuestion" + props.quizId + user._id)) + 1 >= total) {
-                            var data = {
-                                quizId: quizDetails._id,
-                                userId: user._id,
-                                response: JSON.parse(localStorage.getItem("response" + props.quizId + user._id)),
-                                quizName: quizDetails.quizName,
-                                userName: user.name,
-                                attribute: attribute,
-                                videos: videos
-                            }
-                            console.log(data);
-                            submitResponse(data)
-                                .then((data2) => {
-                                    setIsSubmitted(true);
-                                    localStorage.removeItem("quizId" + props.quizId + user._id);
-                                    localStorage.removeItem("currentQuestion" + props.quizId + user._id);
-                                    localStorage.removeItem("counter" + props.quizId + user._id);
-                                    localStorage.removeItem("response" + props.quizId + user._id);
-                                    localStorage.removeItem("value" + props.quizId + user._id);
-                                    localStorage.removeItem("attribute" + props.quizId + user._id);
-                                    localStorage.removeItem("aopen" + props.quizId + user._id);
-                                    localStorage.removeItem("videos" + props.quizId + user._id)
-                                    localStorage.setItem("response", JSON.stringify(data2))
-                                    localStorage.setItem("result", quizDetails.result.show)
-                                    localStorage.setItem("showscore", quizDetails.showScore)
-                                    window.open("/submitted", "_self");
-                                },
-                                    error => {
-                                        const resMessage =
-                                            (error.response &&
-                                                error.response.data &&
-                                                error.response.data.message) ||
-                                            error.message ||
-                                            error.toString();
-                                        console.log(resMessage);
-                                    }
-                                )
+                    }, error => {
+                        console.log(error)
+                    })
 
-                        }
-                    },
-                        error => {
-                            const resMessage =
-                                (error.response &&
-                                    error.response.data &&
-                                    error.response.data.message) ||
-                                error.message ||
-                                error.toString();
-                            console.log(resMessage);
-                        }
-                    );
+            },
 
 
-            }
+
         })
+
+
     React.useEffect(() => {
         window.addEventListener('beforeunload', async (e) => {
+            setRecording(false)
             e.preventDefault();
             stopRecording()
         });
@@ -263,6 +230,15 @@ const CollectResponseVideo = (props) => {
 
                         setCounter(counter < (data.data.questions[currentQuestion].duration.minutes * 60 + data.data.questions[currentQuestion].duration.seconds) ? counter : data.data.questions[currentQuestion].duration.minutes * 60 + data.data.questions[currentQuestion].duration.seconds)
                     }
+                    if (responseId === "") {
+                        createResponse()
+                            .then((data) => {
+                                console.log(data)
+                                setResponseId(data.data._id)
+                                localStorage.setItem("responseid" + props.quizId + user._id, data.data._id)
+                            })
+
+                    }
                 },
                     error => {
                         const resMessage =
@@ -301,8 +277,11 @@ const CollectResponseVideo = (props) => {
 
     const nextQuestion = async (flag) => {
         if (questionCount === total || flag) {
+            setCurrentQuestion(currentQuestion + 1);
+
             setLoading(true);
-            stopRecording()
+            setRecording(false)
+            console.log(recording);
         } else {
             setCurrentQuestion(currentQuestion + 1);
             setQuestionCount(questionCount + 1);
@@ -319,8 +298,110 @@ const CollectResponseVideo = (props) => {
 
 
 
+
     return (
         <>
+            <ReactMediaRecorder
+                screen
+                onStop={async (str, blob) => {
+                    var file = new File([blob], "sample", { lastModified: new Date().getTime(), type: "video/mp4" })
+                    console.log(file)
+                    const formData = new FormData();
+                    formData.append("file", file)
+                    formData.append("responseid", responseId)
+                    formData.append("type", "screen")
+
+
+                    if (JSON.parse(localStorage.getItem("currentQuestion" + props.quizId + user._id)) >= total) {
+                        console.log("inseds")
+                        var data = {
+                            quizId: quizDetails._id,
+                            userId: user._id,
+                            response: JSON.parse(localStorage.getItem("response" + props.quizId + user._id)),
+                            quizName: quizDetails.quizName,
+                            userName: user.name,
+                            attribute: attribute,
+                            id: responseId
+                        }
+                        console.log(data);
+                        submitResponse(data)
+                            .then((data2) => {
+                                setIsSubmitted(true);
+                                localStorage.removeItem("quizId" + props.quizId + user._id);
+                                localStorage.removeItem("currentQuestion" + props.quizId + user._id);
+                                localStorage.removeItem("counter" + props.quizId + user._id);
+                                localStorage.removeItem("response" + props.quizId + user._id);
+                                localStorage.removeItem("value" + props.quizId + user._id);
+                                localStorage.removeItem("attribute" + props.quizId + user._id);
+                                localStorage.removeItem("aopen" + props.quizId + user._id);
+                                localStorage.removeItem("videos" + props.quizId + user._id)
+                                localStorage.removeItem("responseid" + props.quizId + user._id)
+                                localStorage.setItem("response", JSON.stringify(data2))
+                                localStorage.setItem("result", quizDetails.result.show)
+                                localStorage.setItem("showscore", quizDetails.showScore)
+                                stopRecording()
+                                uploadVideo(formData)
+                                    .then((res) => {
+                                        console.log(res);
+                                    },
+                                        error => {
+                                            const resMessage =
+                                                (error.response &&
+                                                    error.response.data &&
+                                                    error.response.data.message) ||
+                                                error.message ||
+                                                error.toString();
+                                            console.log(resMessage);
+                                        }
+                                    );
+
+                                window.open("/submitted", "_self");
+                            },
+                                error => {
+                                    const resMessage =
+                                        (error.response &&
+                                            error.response.data &&
+                                            error.response.data.message) ||
+                                        error.message ||
+                                        error.toString();
+                                    console.log(resMessage);
+                                }
+                            )
+
+                    } else {
+                        uploadVideo(formData)
+                            .then((res) => {
+                                console.log(res)
+
+                            }, error => {
+                                console.log(error)
+                            })
+                    }
+                }
+                }
+
+                // {...useEffect(() => {
+                //     window.addEventListener('beforeunload', async (e) => {
+                //         e.preventDefault();
+                //         stopRecording()
+                //     });
+
+                //     return () => {
+                //         window.removeEventListener('beforeunload', stopRecording);
+                //         window.addEventListener('unload', stopRecording)
+                //     };
+                // }, [stopRecording])}
+
+
+
+
+                render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
+                    <>
+                        {recording && status === "idle" ? startRecording() : (!recording && status === "recording" ? stopRecording() : "")
+                        }
+                    </>
+                )}
+            />
             {loading ? (<CircularProgress />) : (
                 <div style={{ minHeight: '100vh' }}>
                     <div>
@@ -508,6 +589,7 @@ const CollectResponseVideo = (props) => {
                             <DialogActions>
                                 <Button onClick={() => {
                                     setOpen(false)
+                                    setRecording(true)
                                     startRecording()
 
                                 }} color="primary">
@@ -590,6 +672,7 @@ const CollectResponseVideo = (props) => {
                             </DialogActions>
                         </Dialog>
 
+
                     </div>
 
                 </div >
@@ -599,5 +682,6 @@ const CollectResponseVideo = (props) => {
         </>
     )
 }
+
 
 export default CollectResponseVideo;

@@ -1,9 +1,6 @@
-import React from 'react'
-
+import React from 'react';
 import { Grid } from '@material-ui/core';
-
 import { Paper, Typography } from '@material-ui/core';
-
 import CircularProgress from '@material-ui/core/CircularProgress';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
@@ -16,44 +13,31 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Divider from '@material-ui/core/Divider';
 import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, FormControl } from '@material-ui/core';
 import { TextField } from '@mui/material';
-import LoadingButton from '@mui/lab/LoadingButton';
 import { getQuizById } from '../../APIServices/QuestionAPI';
-import { uploadVideo, uploadAudio } from '../../APIServices/Image';
-import Mic from "@material-ui/icons/Mic"
-import Stop from "@material-ui/icons/GraphicEq"
-import { useReactMediaRecorder, } from "react-media-recorder";
+import { uploadVideo } from '../../APIServices/Image';
 import { submitResponse } from '../../APIServices/ResponseAPI';
-import { submittingQuiz } from '../../APIServices/ResponseAPI';
-import { createResponse } from '../../APIServices/ResponseAPI';
+import { submittingQuiz, createResponse } from '../../APIServices/ResponseAPI';
+import { useReactMediaRecorder, } from "react-media-recorder";
 import "./Style.css"
 
-
-
-
-
-const CollectResponse = (props) => {
-
+const CollectResponseScreen = (props) => {
 
     const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).result)
     const [quizDetails, setQuizDetails] = React.useState();
     const [loading, setLoading] = React.useState(true)
     const [responseData, setResponseData] = React.useState(JSON.parse(localStorage.getItem("response" + props.quizId + user._id)) || [])
     const [noattempts, setNoAttempts] = React.useState(false);
-    //console.log(responseData);
-
+    const [videos, setVideos] = React.useState(JSON.parse(localStorage.getItem("videos")) || [])
     const [currentQuestion, setCurrentQuestion] = React.useState(JSON.parse(localStorage.getItem("currentQuestion" + props.quizId + user._id)) || 0)
     const [isSubmitted, setIsSubmitted] = React.useState(false)
     const [open, setOpen] = React.useState(true)
     const [questions, setQuestions] = React.useState([]);
-    const [value, setValue] = React.useState(localStorage.getItem("value" + props.quizId + user._id) || null);
+    const [value, setValue] = React.useState(localStorage.getItem("value" + props.quizId + user._id) || "");
     const [counter, setCounter] = React.useState(JSON.parse(localStorage.getItem("counter" + props.quizId + user._id)) || 1000);
     const [total, setTotal] = React.useState(0);
     const [questionCount, setQuestionCount] = React.useState(JSON.parse(localStorage.getItem("currentQuestion" + props.quizId + user._id)) + 1 || 0);
     const [attribute, setAttribute] = React.useState(JSON.parse(localStorage.getItem("attribute" + props.quizId + user._id)) || "");
     const [aopen, setAopen] = React.useState(JSON.parse(localStorage.getItem("aopen" + props.quizId + user._id)) === false ? false : true);
-    const [active, setActive] = React.useState(false)
-    const [audioLoading, setAudioLoading] = React.useState(false)
-    const [disable, setDisable] = React.useState(false)
     const [responseId, setResponseId] = React.useState(localStorage.getItem("responseid" + props.quizId + user._id) || "")
 
 
@@ -61,57 +45,110 @@ const CollectResponse = (props) => {
 
 
 
+
+    // Video Recorder 
     const { error, startRecording, stopRecording } =
         useReactMediaRecorder({
 
-            audio: true, type: "audio/wav", askPermissionOnMount: true, async onStop(blobstr, blob, data) {
+            screen: true, type: "video/mp4", askPermissionOnMount: true, async onStop(blobstr, blob, data) {
 
-                var file = new File([blob], "sample", { lastModified: new Date().getTime(), type: "audio/wav" })
-                setAudioLoading(true)
+                var file = new File([blob], "sample", { lastModified: new Date().getTime(), type: "video/mp4" })
+                console.log(file)
                 const formData = new FormData();
                 formData.append("file", file)
-
-                await uploadAudio(formData)
-                    .then((res) => {
-                        console.log(res);
-                        // nextQuestion(true); 
-                        var questionId = questions[currentQuestion]._id
-                        var option = res.data
-                        var data = {
-                            questionId,
-                            option
-                        }
-
-                        // console.log(value)
-                        var fakeRData = [...responseData];
-
-                        var indexOfResponse = fakeRData.findIndex(x => x.questionId === questionId);
-                        if (indexOfResponse === -1) {
-                            setResponseData(responseData => [...responseData, data])
-
-                        } else {
-                            fakeRData[indexOfResponse].option = option
-                            setResponseData(fakeRData);
-                        }
-                        setAudioLoading(false)
-                        setValue(res.data)
+                formData.append("responseid", responseId)
+                formData.append("type", "screen")
 
 
-                    },
-                        error => {
-                            const resMessage =
-                                (error.response &&
-                                    error.response.data &&
-                                    error.response.data.message) ||
-                                error.message ||
-                                error.toString();
-                            console.log(resMessage);
-                        }
-                    );
+                // nextQuestion(true);  
+
+                if (JSON.parse(localStorage.getItem("currentQuestion" + props.quizId + user._id)) >= total) {
+                    console.log("inseds")
+                    var data = {
+                        quizId: quizDetails._id,
+                        userId: user._id,
+                        response: JSON.parse(localStorage.getItem("response" + props.quizId + user._id)),
+                        quizName: quizDetails.quizName,
+                        userName: user.name,
+                        attribute: attribute,
+                        id: responseId,
+
+                    }
+                    console.log(data);
+                    submitResponse(data)
+                        .then((data2) => {
+                            setIsSubmitted(true);
+                            localStorage.removeItem("quizId" + props.quizId + user._id);
+                            localStorage.removeItem("currentQuestion" + props.quizId + user._id);
+                            localStorage.removeItem("counter" + props.quizId + user._id);
+                            localStorage.removeItem("response" + props.quizId + user._id);
+                            localStorage.removeItem("value" + props.quizId + user._id);
+                            localStorage.removeItem("attribute" + props.quizId + user._id);
+                            localStorage.removeItem("aopen" + props.quizId + user._id);
+                            localStorage.removeItem("videos" + props.quizId + user._id)
+                            localStorage.removeItem("responseid" + props.quizId + user._id)
+                            localStorage.setItem("response", JSON.stringify(data2))
+                            localStorage.setItem("result", quizDetails.result.show)
+                            localStorage.setItem("showscore", quizDetails.showScore)
+                            uploadVideo(formData)
+                                .then((res) => {
+                                    console.log(res);
+                                },
+                                    error => {
+                                        const resMessage =
+                                            (error.response &&
+                                                error.response.data &&
+                                                error.response.data.message) ||
+                                            error.message ||
+                                            error.toString();
+                                        console.log(resMessage);
+                                    }
+                                );
+
+                            window.open("/submitted", "_self");
+                        },
+                            error => {
+                                const resMessage =
+                                    (error.response &&
+                                        error.response.data &&
+                                        error.response.data.message) ||
+                                    error.message ||
+                                    error.toString();
+                                console.log(resMessage);
+                            }
+                        )
+
+                } else {
+                    uploadVideo(formData)
+                        .then((res) => {
+                            console.log(res)
+
+                        }, error => {
+                            console.log(error)
+                        })
+                }
+            },
 
 
-            }
+
         })
+
+
+
+
+    React.useEffect(() => {
+        window.addEventListener('beforeunload', async (e) => {
+            e.preventDefault();
+            stopRecording()
+        });
+
+        return () => {
+            window.removeEventListener('beforeunload', stopRecording);
+            window.addEventListener('unload', stopRecording)
+        };
+    }, [stopRecording]);
+
+
 
     const handleRadioChange = (j) => {
         var questionId = questions[currentQuestion]._id
@@ -150,7 +187,7 @@ const CollectResponse = (props) => {
             option
         }
         if (j.trim() === "") {
-            setValue(null)
+            setValue("")
         } else {
 
             setValue(j)
@@ -189,7 +226,9 @@ const CollectResponse = (props) => {
                         localStorage.removeItem("value" + props.quizId + user._id);
                         localStorage.removeItem("attribute" + props.quizId + user._id);
                         localStorage.removeItem("aopen" + props.quizId + user._id);
+                        localStorage.removeItem("videos" + props.quizId + user._id)
                         localStorage.removeItem("responseid" + props.quizId + user._id)
+
 
 
 
@@ -215,6 +254,8 @@ const CollectResponse = (props) => {
             localStorage.setItem("counter" + props.quizId + user._id, counter);
             localStorage.setItem("response" + props.quizId + user._id, JSON.stringify(responseData));
             localStorage.setItem("value" + props.quizId + user._id, value);
+            localStorage.setItem("videos" + props.quizId + user._id, videos)
+
         }
 
 
@@ -223,8 +264,6 @@ const CollectResponse = (props) => {
 
 
     }, [user._id, props.quizId, currentQuestion, counter, responseData, noattempts, isSubmitted, value]);
-
-
 
 
     React.useEffect(() => {
@@ -283,85 +322,30 @@ const CollectResponse = (props) => {
                     nextQuestion();
                 }
             }
-            //add glowing effect to circle depend on counter
 
             return () => clearInterval(timer);
         }
 
-    }, [counter, open])
+    }, [counter, open, noattempts])
 
-    const nextQuestion = (flag) => {
+
+
+    const nextQuestion = async (flag) => {
         if (questionCount === total || flag) {
+            setCurrentQuestion(currentQuestion + 1);
             setLoading(true);
-            setQuestionCount(questionCount + 1);
-
-            var data = {
-                quizId: quizDetails._id,
-                userId: user._id,
-                response: responseData,
-                quizName: quizDetails.quizName,
-                userName: user.name,
-                attribute: attribute,
-                id: responseId
-            }
-
-            submitResponse(data)
-                .then((data2) => {
-                    setIsSubmitted(true);
-                    localStorage.removeItem("quizId" + props.quizId + user._id);
-                    localStorage.removeItem("currentQuestion" + props.quizId + user._id);
-                    localStorage.removeItem("counter" + props.quizId + user._id);
-                    localStorage.removeItem("response" + props.quizId + user._id);
-                    localStorage.removeItem("value" + props.quizId + user._id);
-                    localStorage.removeItem("attribute" + props.quizId + user._id);
-                    localStorage.removeItem("aopen" + props.quizId + user._id);
-                    localStorage.removeItem("responseid" + props.quizId + user._id)
-
-                    localStorage.setItem("response", JSON.stringify(data2))
-                    localStorage.setItem("result", quizDetails.result.show)
-                    localStorage.setItem("showscore", quizDetails.showScore)
-                    window.open("/submitted", "_self");
-                },
-                    error => {
-                        const resMessage =
-                            (error.response &&
-                                error.response.data &&
-                                error.response.data.message) ||
-                            error.message ||
-                            error.toString();
-                        console.log(resMessage);
-                    }
-                );
-
-
-
+            stopRecording()
         } else {
             setCurrentQuestion(currentQuestion + 1);
             setQuestionCount(questionCount + 1);
+            console.log(questionCount);
             if (quizDetails.timer === "individual") {
                 setCounter(quizDetails.questions[currentQuestion + 1].duration.minutes * 60 + quizDetails.questions[currentQuestion + 1].duration.seconds)
 
             }
-            setValue(null);
+            setValue("");
         }
-
-
-
     };
-
-    const audioButtonClick = (e) => {
-        if (!active) {
-            setValue(null)
-            setActive(!active)
-            startRecording();
-        } else {
-            setActive(!active)
-            stopRecording(e);
-            if (questions[currentQuestion].multipleAudio === false) {
-                setDisable(true)
-            }
-        }
-    }
 
 
 
@@ -370,8 +354,6 @@ const CollectResponse = (props) => {
     return (
         <>
             {loading ? (<CircularProgress />) : (
-
-
                 <div style={{ minHeight: '100vh' }}>
                     <div>
                         <AppBar position="static" style={{ backgroundColor: 'teal' }}>
@@ -394,8 +376,6 @@ const CollectResponse = (props) => {
                         >
                             <Grid item xs={10} sm={8} md={6} style={{ width: '100%' }}>
                                 <Grid style={{ borderTop: '10px solid teal', borderRadius: 10 }}>
-                                    <img src="https://cdn.pixabay.com/photo/2015/09/16/08/55/online-942406_960_720.jpg" width="90%" height="auto" alt="optionImage" />
-
                                     <div>
                                         <div>
                                             <Paper elevation={2} style={{ width: '100%' }}>
@@ -455,8 +435,7 @@ const CollectResponse = (props) => {
 
                                                             {questions[currentQuestion].qImage !== "" ? (
                                                                 <div>
-                                                                    <img src={questions[currentQuestion].qImage} width="50%" height="auto" alt="questionimage" /><br></br><br></br>
-
+                                                                    <img src={questions[currentQuestion].qImage} width="80%" height="auto" alt="questionimage" /><br></br><br></br>
                                                                 </div>
                                                             ) : ""}
 
@@ -481,7 +460,7 @@ const CollectResponse = (props) => {
 
                                                                                     <div style={{ display: 'flex', marginLeft: '10px' }}>
                                                                                         {op.image !== "" ? (
-                                                                                            <img src={op.image} width="80%" height="auto" alt="optionImage" />
+                                                                                            <img src={op.image} width="50%" height="auto" alt="optionImage" />
                                                                                         ) : ""}
                                                                                         <Divider />
                                                                                     </div>
@@ -490,40 +469,25 @@ const CollectResponse = (props) => {
                                                                         </RadioGroup>
                                                                     </FormControl>
                                                                 ) : (
-                                                                    questions[currentQuestion].questionType === "text" ? (
 
-                                                                        <>
-                                                                            <TextField
-                                                                                required
-                                                                                id="fullwidth"
-                                                                                label="Answer"
-                                                                                multiline
-                                                                                maxRows={4}
-                                                                                value={value}
-                                                                                style={{ margin: "10px", width: "150%" }}
-                                                                                onChange={(e) => { handleTextChange(e.target.value) }}
-                                                                                fullWidth
-                                                                                variant="standard"
-                                                                            />
-                                                                        </>
-                                                                    ) : (
-
-                                                                        <LoadingButton
-                                                                            style={{ margin: "10%" }}
-                                                                            color={active ? "secondary" : "primary"}
-                                                                            onClick={e => audioButtonClick(e)}
-                                                                            startIcon={active ? <Stop /> : <Mic />}
-                                                                            variant="contained"
-                                                                            loading={audioLoading}
-                                                                            loadingPosition="start"
+                                                                    <>
+                                                                        <TextField
+                                                                            required
+                                                                            id="fullwidth"
+                                                                            label="Answer"
+                                                                            multiline
+                                                                            maxRows={4}
+                                                                            value={value}
+                                                                            style={{ margin: "10px", width: "150%" }}
+                                                                            onChange={(e) => { handleTextChange(e.target.value) }}
                                                                             fullWidth
-                                                                            disabled={disable}
-                                                                        >
-                                                                            {active ? "Stop Recording" : "Record"}
-                                                                        </LoadingButton>
+                                                                            variant="standard"
+                                                                        />
+                                                                    </>
 
 
-                                                                    )
+
+
                                                                 )}
 
 
@@ -538,7 +502,7 @@ const CollectResponse = (props) => {
                                         <Grid>
                                             <br></br>
                                             <div style={{ display: 'flex' }}>
-                                                <Button id="next" variant="contained" color="primary" onClick={() => nextQuestion(false)} disabled={value === null ? true : false} >
+                                                <Button id="next" variant="contained" color="primary" onClick={() => { nextQuestion(false) }} disabled={value === "" ? true : false} >
                                                     {questionCount === total ? "End" : "Next"}
                                                 </Button>
                                             </div>
@@ -571,14 +535,12 @@ const CollectResponse = (props) => {
                                     {quizDetails?.instructions?.map((ins, i) => (
                                         <h5>--{ins}</h5>
                                     ))}
-
-
-
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions>
                                 <Button onClick={() => {
                                     setOpen(false)
+                                    startRecording()
 
                                 }} color="primary">
                                     Continue
@@ -639,6 +601,27 @@ const CollectResponse = (props) => {
                             </DialogActions>
                         </Dialog>
 
+                        <Dialog open={error} onClose={() => { }} aria-labelledby="form-dialog-title">
+                            <DialogTitle id="form-dialog-title">Permission Denied</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText>
+                                    <Typography>
+                                        Please Allow the persmission for video and audio then only you will be allow to continue the test
+                                    </Typography>
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+
+                                <Button onClick={() => {
+                                    // localStorage.setItem("attribute" + props.quizId + user._id, attribute)
+                                    // localStorage.setItem("aopen" + props.quizId + user._id, false);
+                                    // setAopen(false);
+                                }} color="primary">
+                                    OK
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+
                     </div>
 
                 </div >
@@ -649,4 +632,4 @@ const CollectResponse = (props) => {
     )
 }
 
-export default CollectResponse;
+export default CollectResponseScreen;

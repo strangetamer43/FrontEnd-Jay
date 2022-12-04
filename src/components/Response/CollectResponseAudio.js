@@ -16,13 +16,13 @@ import { TextField } from '@mui/material';
 import { getQuizById } from '../../APIServices/QuestionAPI';
 import { uploadVideo } from '../../APIServices/Image';
 import { submitResponse } from '../../APIServices/ResponseAPI';
-import { submittingQuiz } from '../../APIServices/ResponseAPI';
+import { submittingQuiz, createResponse } from '../../APIServices/ResponseAPI';
 import { useReactMediaRecorder, } from "react-media-recorder";
 import "./Style.css"
 
 const CollectResponseAudio = (props) => {
 
-    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
+    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).result)
     const [quizDetails, setQuizDetails] = React.useState();
     const [loading, setLoading] = React.useState(true)
     const [responseData, setResponseData] = React.useState(JSON.parse(localStorage.getItem("response" + props.quizId + user._id)) || [])
@@ -38,6 +38,7 @@ const CollectResponseAudio = (props) => {
     const [questionCount, setQuestionCount] = React.useState(JSON.parse(localStorage.getItem("currentQuestion" + props.quizId + user._id)) + 1 || 0);
     const [attribute, setAttribute] = React.useState(JSON.parse(localStorage.getItem("attribute" + props.quizId + user._id)) || "");
     const [aopen, setAopen] = React.useState(JSON.parse(localStorage.getItem("aopen" + props.quizId + user._id)) === false ? false : true);
+    const [responseId, setResponseId] = React.useState(localStorage.getItem("responseid" + props.quizId + user._id) || "")
 
 
 
@@ -55,39 +56,42 @@ const CollectResponseAudio = (props) => {
                 console.log(file)
                 const formData = new FormData();
                 formData.append("file", file)
+                formData.append("responseid", responseId)
+                formData.append("type", "audio")
 
-                await uploadVideo(formData)
-                    .then((res) => {
-                        console.log(res);
-                        videos.push(res.data)
-                        // nextQuestion(true);  
 
-                        if (JSON.parse(localStorage.getItem("currentQuestion" + props.quizId + user._id)) + 1 >= total) {
-                            var data = {
-                                quizId: quizDetails._id,
-                                userId: user._id,
-                                response: JSON.parse(localStorage.getItem("response" + props.quizId + user._id)),
-                                quizName: quizDetails.quizName,
-                                userName: user.name,
-                                attribute: attribute,
-                                videos: videos
-                            }
-                            console.log(data);
-                            submitResponse(data)
-                                .then((data2) => {
-                                    setIsSubmitted(true);
-                                    localStorage.removeItem("quizId" + props.quizId + user._id);
-                                    localStorage.removeItem("currentQuestion" + props.quizId + user._id);
-                                    localStorage.removeItem("counter" + props.quizId + user._id);
-                                    localStorage.removeItem("response" + props.quizId + user._id);
-                                    localStorage.removeItem("value" + props.quizId + user._id);
-                                    localStorage.removeItem("attribute" + props.quizId + user._id);
-                                    localStorage.removeItem("aopen" + props.quizId + user._id);
-                                    localStorage.removeItem("videos" + props.quizId + user._id)
-                                    localStorage.setItem("response", JSON.stringify(data2))
-                                    localStorage.setItem("result", quizDetails.result.show)
-                                    localStorage.setItem("showscore", quizDetails.showScore)
-                                    window.open("/submitted", "_self");
+                // nextQuestion(true);  
+
+                if (JSON.parse(localStorage.getItem("currentQuestion" + props.quizId + user._id)) >= total) {
+                    console.log("inseds")
+                    var data = {
+                        quizId: quizDetails._id,
+                        userId: user._id,
+                        response: JSON.parse(localStorage.getItem("response" + props.quizId + user._id)),
+                        quizName: quizDetails.quizName,
+                        userName: user.name,
+                        attribute: attribute,
+                        id: responseId
+                    }
+                    console.log(data);
+                    submitResponse(data)
+                        .then((data2) => {
+                            setIsSubmitted(true);
+                            localStorage.removeItem("quizId" + props.quizId + user._id);
+                            localStorage.removeItem("currentQuestion" + props.quizId + user._id);
+                            localStorage.removeItem("counter" + props.quizId + user._id);
+                            localStorage.removeItem("response" + props.quizId + user._id);
+                            localStorage.removeItem("value" + props.quizId + user._id);
+                            localStorage.removeItem("attribute" + props.quizId + user._id);
+                            localStorage.removeItem("aopen" + props.quizId + user._id);
+                            localStorage.removeItem("videos" + props.quizId + user._id)
+                            localStorage.removeItem("responseid" + props.quizId + user._id)
+                            localStorage.setItem("response", JSON.stringify(data2))
+                            localStorage.setItem("result", quizDetails.result.show)
+                            localStorage.setItem("showscore", quizDetails.showScore)
+                            uploadVideo(formData)
+                                .then((res) => {
+                                    console.log(res);
                                 },
                                     error => {
                                         const resMessage =
@@ -98,24 +102,39 @@ const CollectResponseAudio = (props) => {
                                             error.toString();
                                         console.log(resMessage);
                                     }
-                                )
+                                );
 
-                        }
-                    },
-                        error => {
-                            const resMessage =
-                                (error.response &&
-                                    error.response.data &&
-                                    error.response.data.message) ||
-                                error.message ||
-                                error.toString();
-                            console.log(resMessage);
-                        }
-                    );
+                            window.open("/submitted", "_self");
+                        },
+                            error => {
+                                const resMessage =
+                                    (error.response &&
+                                        error.response.data &&
+                                        error.response.data.message) ||
+                                    error.message ||
+                                    error.toString();
+                                console.log(resMessage);
+                            }
+                        )
+
+                } else {
+                    uploadVideo(formData)
+                        .then((res) => {
+                            console.log(res)
+
+                        }, error => {
+                            console.log(error)
+                        })
+                }
+            },
 
 
-            }
+
         })
+
+
+
+
     React.useEffect(() => {
         window.addEventListener('beforeunload', async (e) => {
             e.preventDefault();
@@ -189,7 +208,7 @@ const CollectResponseAudio = (props) => {
 
 
     React.useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
+        setUser(JSON.parse(localStorage.getItem("profile")).result);
         var quizId = props.quizId;
         if (quizId !== undefined) {
             submittingQuiz({ userId: user._id, quizId })
@@ -207,6 +226,8 @@ const CollectResponseAudio = (props) => {
                         localStorage.removeItem("attribute" + props.quizId + user._id);
                         localStorage.removeItem("aopen" + props.quizId + user._id);
                         localStorage.removeItem("videos" + props.quizId + user._id)
+                        localStorage.removeItem("responseid" + props.quizId + user._id)
+
 
 
 
@@ -263,6 +284,15 @@ const CollectResponseAudio = (props) => {
 
                         setCounter(counter < (data.data.questions[currentQuestion].duration.minutes * 60 + data.data.questions[currentQuestion].duration.seconds) ? counter : data.data.questions[currentQuestion].duration.minutes * 60 + data.data.questions[currentQuestion].duration.seconds)
                     }
+                    if (responseId === "") {
+                        createResponse()
+                            .then((data) => {
+                                console.log(data)
+                                setResponseId(data.data._id)
+                                localStorage.setItem("responseid" + props.quizId + user._id, data.data._id)
+                            })
+
+                    }
                 },
                     error => {
                         const resMessage =
@@ -301,6 +331,7 @@ const CollectResponseAudio = (props) => {
 
     const nextQuestion = async (flag) => {
         if (questionCount === total || flag) {
+            setCurrentQuestion(currentQuestion + 1);
             setLoading(true);
             stopRecording()
         } else {

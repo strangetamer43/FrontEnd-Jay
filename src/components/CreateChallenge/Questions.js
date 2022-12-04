@@ -1316,8 +1316,9 @@ const Questions = (props) => {
                                                 value={recording}
                                                 onChange={(e) => setRecoring(e.target.value)}
                                             >
-                                                <FormControlLabel value="video" control={<Radio />} label="Video & Audio" />
+                                                <FormControlLabel value="video" control={<Radio />} label="Video & Screen" />
                                                 <FormControlLabel value="audio" control={<Radio />} label="audio" />
+                                                <FormControlLabel value="screen" control={<Radio />} label="Screen" />
                                                 <FormControlLabel value="none" control={<Radio />} label="No Recording" />
 
 

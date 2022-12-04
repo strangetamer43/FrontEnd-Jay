@@ -4,6 +4,7 @@ import CollectResponseVideo from './CollectResponseVideo';
 import { getQuizById } from '../../APIServices/QuestionAPI';
 import CollectResponseAudio from './CollectResponseAudio';
 import CollectResponse from './CollectResponse';
+import CollectResponseScreen from './CollectResponseScreen';
 const Check = () => {
     const [quizDetails, setQuizDetails] = React.useState();
     const params = useParams();
@@ -41,6 +42,14 @@ const Check = () => {
 
             <>
                 <CollectResponseAudio quizId={params.quizId} />
+            </>
+        )
+    }
+    else if (quizDetails?.recording === "screen") {
+        return (
+
+            <>
+                <CollectResponseScreen quizId={params.quizId} />
             </>
         )
     }

@@ -20,3 +20,11 @@ export const uploadVideo = async (video) => {
             return res;
         })
 }
+
+export const uploadAudio = async (audio) => {
+    return await axios
+        .post(API + "/uploadAudio", audio)
+        .then(res => {
+            return res;
+        })
+}
