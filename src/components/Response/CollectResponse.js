@@ -34,7 +34,7 @@ import "./Style.css"
 const CollectResponse = (props) => {
 
 
-    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).result)
+    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
     const [quizDetails, setQuizDetails] = React.useState();
     const [loading, setLoading] = React.useState(true)
     const [responseData, setResponseData] = React.useState(JSON.parse(localStorage.getItem("response" + props.quizId + user._id)) || [])
@@ -172,7 +172,7 @@ const CollectResponse = (props) => {
 
 
     React.useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).result);
+        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
         var quizId = props.quizId;
         if (quizId !== undefined) {
             submittingQuiz({ userId: user._id, quizId })
@@ -627,10 +627,15 @@ const CollectResponse = (props) => {
                             <DialogActions>
 
                                 <Button onClick={() => {
-                                    localStorage.setItem("attribute" + props.quizId + user._id, attribute)
-                                    localStorage.setItem("aopen" + props.quizId + user._id, false);
-                                    setAopen(false);
 
+                                    // console.log(attribute)
+                                    if (attribute !== "") {
+                                        setAopen(false)
+                                        localStorage.setItem("attribute" + props.quizId + user._id, attribute)
+                                        localStorage.setItem("aopen" + props.quizId + user._id, false);
+                                    } else {
+
+                                    }
 
                                 }} color="primary">
                                     OK

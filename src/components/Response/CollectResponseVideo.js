@@ -51,7 +51,7 @@ const CollectResponseVideo = (props) => {
 
 
     // Video Recorder 
-    const { error, startRecording, stopRecording } =
+    const { error, status, startRecording, stopRecording } =
         useReactMediaRecorder({
 
             video: true, type: "video/mp4", askPermissionOnMount: true, async onStop(blobstr, blob, data) {
@@ -651,7 +651,7 @@ const CollectResponseVideo = (props) => {
                             </DialogActions>
                         </Dialog>
 
-                        <Dialog open={error} onClose={() => { }} aria-labelledby="form-dialog-title">
+                        <Dialog open={error || status === "acquiring_media"} onClose={() => { }} aria-labelledby="form-dialog-title">
                             <DialogTitle id="form-dialog-title">Permission Denied</DialogTitle>
                             <DialogContent>
                                 <DialogContentText>

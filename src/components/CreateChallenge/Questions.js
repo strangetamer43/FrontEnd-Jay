@@ -1367,14 +1367,14 @@ const Questions = (props) => {
                                         endIcon={<AddCircleIcon />}
                                         style={{ margin: '5px' }}
                                     >Add TextField </Button>
-
-                                    <Button
+                                    {recording === "none" ? (<Button
                                         variant="contained"
 
                                         onClick={addMoreQuestionFieldAUDIO}
                                         endIcon={<AddCircleIcon />}
                                         style={{ margin: '5px' }}
                                     >Add AudioQue </Button>
+                                    ) : ""}
 
                                     <Button
                                         variant="contained"

@@ -22,7 +22,7 @@ import "./Style.css"
 
 const CollectResponseAudio = (props) => {
 
-    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).result)
+    const [user, setUser] = React.useState(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
     const [quizDetails, setQuizDetails] = React.useState();
     const [loading, setLoading] = React.useState(true)
     const [responseData, setResponseData] = React.useState(JSON.parse(localStorage.getItem("response" + props.quizId + user._id)) || [])
@@ -47,7 +47,7 @@ const CollectResponseAudio = (props) => {
 
 
     // Video Recorder 
-    const { error, startRecording, stopRecording } =
+    const { error, status, startRecording, stopRecording } =
         useReactMediaRecorder({
 
             audio: true, type: "audio/wav", askPermissionOnMount: true, async onStop(blobstr, blob, data) {
@@ -134,7 +134,6 @@ const CollectResponseAudio = (props) => {
 
 
 
-
     React.useEffect(() => {
         window.addEventListener('beforeunload', async (e) => {
             e.preventDefault();
@@ -208,7 +207,7 @@ const CollectResponseAudio = (props) => {
 
 
     React.useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).result);
+        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
         var quizId = props.quizId;
         if (quizId !== undefined) {
             submittingQuiz({ userId: user._id, quizId })
@@ -600,12 +599,12 @@ const CollectResponseAudio = (props) => {
                             </DialogActions>
                         </Dialog>
 
-                        <Dialog open={error} onClose={() => { }} aria-labelledby="form-dialog-title">
+                        <Dialog open={error || status === "acquiring_media"} onClose={() => { }} aria-labelledby="form-dialog-title">
                             <DialogTitle id="form-dialog-title">Permission Denied</DialogTitle>
                             <DialogContent>
                                 <DialogContentText>
                                     <Typography>
-                                        Please Allow the persmission for video and audio then only you will be allow to continue the test
+                                        Please Allow the persmission for video / audio then only you will be allow to continue the test
                                     </Typography>
                                 </DialogContentText>
                             </DialogContent>

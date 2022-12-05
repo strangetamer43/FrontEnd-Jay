@@ -51,8 +51,6 @@ const ProfilePage = () => {
           <div style={{ display: 'flex', flexDirection: 'column' }}>
 
             <ProfileData />
-
-
             <IntroductionAndGoals />
             <EducationalDetails />
             <Certifications />
