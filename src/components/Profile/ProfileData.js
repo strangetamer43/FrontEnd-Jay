@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { Marginer } from "../Auth/Marginer";
-
+import Edit from "@material-ui/icons/Edit"
 
 import { getUserProfile } from '../../actions/profile';
 import { Container, AppBar, Typography, Grow, Grid, Card, ListItemAvatar, Button, ListItem, List, Paper, Divider } from '@material-ui/core';
 import useStyles from "./styles";
 import FormbarP from '../FormBar/FormButtonP';
 import ProfilePoints from './ProfilePoints';
+import { IconButton } from '@material-ui/core';
+import FormPd from '../Form/FormPd';
+import { Modal } from '@material-ui/core';
 
 
 const ProfileData = ({ currentId, setCurrentId }) => {
@@ -66,7 +69,6 @@ const ProfileData = ({ currentId, setCurrentId }) => {
 
       <Marginer direction="vertical" margin="40px" />
 
-      <FormbarP currentId={currentId} setCurrentId={setCurrentId} />
 
 
     </Paper>

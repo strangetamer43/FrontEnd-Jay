@@ -386,5 +386,30 @@ export default makeStyles({
     color: '#25b8ef',
     marginBottom: '1vh',
     fontSize: '2vh',
-  }
-});
+  },
+  editButton: {
+    color: "white",
+    '&:hover': {
+      cursor: "pointer",
+      // backgroundColor: '#1a1a1e',
+      width: '30px',
+      height: '30px',
+      backgroundColor: '#262626',
+      boxShadow: '10px - 10px  rgba(0,0,0,0.6)- moz - box - shadow: 10px - 10px  rgba(0, 0, 0, 0.6)- webkit - box - shadow: 10px - 10px  rgba(0, 0, 0, 0.6)- o - box - shadow: 10px - 10px  rgba(0, 0, 0, 0.6)',
+      borderRadius: '100px',
+    },
+    textAlign: "right",
+    marginLeft: "auto",
+    marginRight: '5px'
+
+  },
+  modalSize: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    top: '30%',
+
+
+  },
+}
+);

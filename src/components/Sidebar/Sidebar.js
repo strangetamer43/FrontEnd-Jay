@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -6,10 +6,11 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as BiIcons from "react-icons/bi";
 import { Link, Dispatch } from 'react-router-dom';
-import {SidebarData} from './SidebarData';
+import { SidebarData } from './SidebarData';
 import "./Sidebar.css";
 import { IconContext } from "react-icons";
 import usurpLogo from "./usurp-logo.png";
+import { Navigate } from 'react-router-dom';
 
 const Button = styled.button`
     border-radius: 15px;
@@ -45,51 +46,51 @@ const Button = styled.button`
 
 
 function Sidebar() {
-  const [sidebar, setSidebar] = useState(false);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const logout = () => {
-    dispatch({ type: 'LOGOUT'});
-    navigate('/');
-    setUser(null);
-}
-  const showSidebar = () => setSidebar(!sidebar);
-  return (
-    <>
-    <IconContext.Provider value={{color:"#25b8ef"}}>
-        <div className='navbar' style={{borderRadius: "30px"}}>
-            <Link to="#" className='menu-bars'>
-                <FaIcons.FaBars onClick={showSidebar} />
-            </Link>
-            
-            
-
-        </div>
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <ul className='nav-menu-items' onClick={showSidebar}>
-                <li className="navbar-toggle">
+    const [sidebar, setSidebar] = useState(false);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const logout = () => {
+        dispatch({ type: 'LOGOUT' });
+        navigate('/');
+        setUser(null);
+    }
+    const showSidebar = () => setSidebar(!sidebar);
+    return (
+        <>
+            <IconContext.Provider value={{ color: "#25b8ef" }}>
+                <div className='navbar' style={{ borderRadius: "30px" }}>
                     <Link to="#" className='menu-bars'>
-                        <AiIcons.AiOutlineClose />
+                        <FaIcons.FaBars onClick={showSidebar} />
                     </Link>
-                </li>
-                {SidebarData.map((item, index) => {
-                    return (
-                        <li key={index} className={item.className}>
-                            <Link to={item.path}>
-                                {item.icon}
-                                <span>{item.title}</span>
+
+
+
+                </div>
+                <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                    <ul className='nav-menu-items' onClick={showSidebar}>
+                        <li className="navbar-toggle">
+                            <Link to="#" className='menu-bars'>
+                                <AiIcons.AiOutlineClose />
                             </Link>
                         </li>
-                    );
-                })}
-                <Button value={{color:"#ffffff"}} onClick={logout} ><BiIcons.BiPowerOff style={{color: 'white'}} size={20}/>&nbsp;&nbsp;LOG OUT</Button>
-            </ul>
+                        {SidebarData.map((item, index) => {
+                            return (
+                                <li key={index} className={item.className}>
+                                    <Link to={item.path} id={user?.result?.googleId || user?.result?._id}>
+                                        {item.icon}
+                                        <span>{item.title}</span>
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                        <Button value={{ color: "#ffffff" }} onClick={logout} ><BiIcons.BiPowerOff style={{ color: 'white' }} size={20} />&nbsp;&nbsp;LOG OUT</Button>
+                    </ul>
 
-        </nav>
-    </IconContext.Provider>
-    </>
-  )
+                </nav>
+            </IconContext.Provider>
+        </>
+    )
 }
 
 export default Sidebar;

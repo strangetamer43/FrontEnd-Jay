@@ -139,4 +139,26 @@ export default makeStyles((theme) => ({
     textAlign: 'center'
 
   },
+  smallDetails: {
+    marginLeft: '3vw',
+    marginBottom: '1vh',
+    color: '#e2e2de',
+    fontSize: '1.8vh',
+  },
+  editButton: {
+    color: "white",
+    '&:hover': {
+      cursor: "pointer",
+      // backgroundColor: '#1a1a1e',
+      width: '30px',
+      height: '30px',
+      backgroundColor: '#262626',
+      boxShadow: '10px - 10px  rgba(0,0,0,0.6)- moz - box - shadow: 10px - 10px  rgba(0, 0, 0, 0.6)- webkit - box - shadow: 10px - 10px  rgba(0, 0, 0, 0.6)- o - box - shadow: 10px - 10px  rgba(0, 0, 0, 0.6)',
+      borderRadius: '100px',
+    },
+    textAlign: "right",
+    marginLeft: "auto",
+    marginRight: '5px'
+
+  },
 }));

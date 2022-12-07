@@ -35,7 +35,7 @@ const CollectResponseVideo = (props) => {
     const [open, setOpen] = React.useState(true)
     const [questions, setQuestions] = React.useState([]);
     const [value, setValue] = React.useState(localStorage.getItem("value" + props.quizId + user._id) || "");
-    const [counter, setCounter] = React.useState(JSON.parse(localStorage.getItem("counter" + props.quizId + user._id)) || 1000);
+    const [counter, setCounter] = React.useState(JSON.parse(localStorage.getItem("counter" + props.quizId + user._id)) || Number.MAX_SAFE_INTEGER);
     const [total, setTotal] = React.useState(0);
     const [questionCount, setQuestionCount] = React.useState(JSON.parse(localStorage.getItem("currentQuestion" + props.quizId + user._id)) + 1 || 0);
     const [attribute, setAttribute] = React.useState(JSON.parse(localStorage.getItem("attribute" + props.quizId + user._id)) || "");

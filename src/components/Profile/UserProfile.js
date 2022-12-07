@@ -12,16 +12,19 @@ import { getUserProfile, getProfile } from '../../actions/profile';
 import IntroductionAndGoals from './IntroductionAndGoals';
 import EducationalDetails from './EducationalDetails';
 import Certifications from './Certifications';
+import { useParams } from 'react-router-dom';
 
 
 const UserProfile = ({ currentId, setCurrentId }) => {
+  const params = useParams();
   const classes = useStyles();
   const { profiles, profile, isLoading } = useSelector((state) => state.profiles);
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const location = useLocation();
+  const id = params.id;
   useEffect(() => {
-    dispatch(getProfile());
+    dispatch(getProfile(id));
   }, [currentId, dispatch]);
 
   useEffect(() => {

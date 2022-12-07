@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { createProfile, updateProfile } from "../../actions/profile";
 
-const FormP = ({ currentId, setCurrentId }) => {
+const FormPd = ({ currentId, setCurrentId, handleClose }) => {
     const [profileData, setProfileData] = useState({ name: '', number: '', introduction: '', education: '', education1: '', education2: '', certifications: '', avatarUrl: '', certificationURL: '', goals: '' });
     const profile = useSelector((state) => currentId ? state.profiles.profiles.find((p) => p._id === currentId) : null);
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -71,7 +71,7 @@ const FormP = ({ currentId, setCurrentId }) => {
                 </form>
                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: '10px' }}>
                     <button className={classes.ButtonS} onClick={handleSubmit} type="submit" >Submit</button>
-                    <button className={classes.ButtonC} onClick={clear} >Clear</button>
+                    <button className={classes.ButtonC} onClick={handleClose} >Cancel</button>
                 </div>
 
             </Paper>
@@ -79,4 +79,4 @@ const FormP = ({ currentId, setCurrentId }) => {
     );
 }
 
-export default FormP;
+export default FormPd;

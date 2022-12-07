@@ -10,7 +10,6 @@ import PostsOfUser from '../Posts/UserPostsB';
 import axios from 'axios';
 import UserQuestions from '../Questions/UserQuestions'
 import usurpLogo from "../Sidebar/usurp-logo.png";
-
 import "../../App.css";
 import ProfileData from './ProfileData';
 import useStyles from "./styles";
@@ -19,15 +18,16 @@ import StatsOfUser1 from './StatsOfUser1';
 import IntroductionAndGoals from './IntroductionAndGoals';
 import EducationalDetails from './EducationalDetails';
 import Certifications from './Certifications';
+import Experiences from './Experiences';
 
-const ProfilePage = () => {
+const ProfilePage = (props) => {
   const [currentId, setCurrentId] = useState(null);
 
   const { post, posts, isLoading } = useSelector((state) => state.posts);
 
-
-
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+
 
   useEffect(() => {
     const token = user?.token;
@@ -54,6 +54,7 @@ const ProfilePage = () => {
             <IntroductionAndGoals />
             <EducationalDetails />
             <Certifications />
+            <Experiences />
 
           </div>
 

@@ -7,9 +7,9 @@ import AddIcon from '@material-ui/icons/Add';
 
 import useStyles from './styles';
 
-import FormP from "../Form/FormP";
+import FormP from "../Form/FormPd";
 
-function FormbarP() {
+function FormbarPd() {
     const [formbar, setFormbar] = useState(false);
     const showFormbar = () => setFormbar(!formbar);
     const [currentId, setCurrentId] = useState(null);
@@ -27,7 +27,6 @@ function FormbarP() {
                     <AddIcon style={{ marginLeft: '-15px' }} />  Update Profile
                 </Button>
                 <Modal open={open} onClose={handleClose}>
-
                     <FormP currentId={currentId} setCurrentId={setCurrentId} />
                 </Modal>
 
@@ -41,4 +40,4 @@ function FormbarP() {
     );
 }
 
-export default FormbarP;
+export default FormbarPd;
