@@ -8,10 +8,11 @@ import { Marginer } from "../Auth/Marginer";
 import { Container, AppBar, Typography, Grow, Grid, Card, ListItemAvatar, Button, ListItem, List, Paper, Divider } from '@material-ui/core';
 import useStyles from "./styles";
 import FormbarP from '../FormBar/FormButtonP';
-import { getUserProfile, getProfile } from '../../actions/profile';
-import IntroductionAndGoals from './IntroductionAndGoals';
-import EducationalDetails from './EducationalDetails';
-import Certifications from './Certifications';
+import { getUserProfile, getProfile, getSpecificUserProfile } from '../../actions/profile';
+import IntroductionAndGoalsView from './IntroductionAndGoalsView';
+import EducationalDetailsView from './EducationalDetailsView';
+import CertificationsView from './CertificationsView';
+import ExperiencesView from './ExperiencesView';
 import { useParams } from 'react-router-dom';
 
 
@@ -23,20 +24,26 @@ const UserProfile = ({ currentId, setCurrentId }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const location = useLocation();
   const id = params.id;
+
+
   useEffect(() => {
-    dispatch(getProfile(id));
-  }, [currentId, dispatch]);
+    dispatch(getSpecificUserProfile(id))
+
+  }, [currentId, dispatch])
 
   useEffect(() => {
     const token = user?.token;
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
 
+
+
   return (
     <>
       <Grow in>
 
         <Container maxWidth="lg">
+
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <Paper className={classes.card} elevation={7}>
 
@@ -44,15 +51,15 @@ const UserProfile = ({ currentId, setCurrentId }) => {
               <div className={classes.details}>
                 <img className={classes.image}
                   class_name="header_logo"
-                  src={user.result.imageUrl}
+                  src={profile?.data?.avatarUrl}
                   alt="profile-picture"
                 />
 
                 <Typography className={classes.h5} variant="h4"  >
-                  {user.result.name}
+                  {profile?.data?.name}
                 </Typography>
 
-                <ProfilePoints />
+                <ProfilePoints creator={id} />
 
               </div>
 
@@ -60,20 +67,21 @@ const UserProfile = ({ currentId, setCurrentId }) => {
               <div className={classes.title}>
                 <div className={classes.details2}>
                   <Typography variant="h5" className={classes.h5} gutterBottom >
-                    Email ID: {user.result.email || user.result.emailId}
+                    Email ID: {profile?.email || profile?.emailId}
                   </Typography>
                 </div>
                 <Marginer margin="40px" />
                 <div className={classes.details2}>
                   <Typography variant="h5" className={classes.h5} gutterBottom >
-                    Phone Number: {user.result.phoneNumber}
+                    Phone Number: {profile?.phoneNumber}
                   </Typography>
                 </div>
               </div>
             </Paper>
-            <IntroductionAndGoals />
-            <EducationalDetails />
-            <Certifications />
+            <IntroductionAndGoalsView profile={profile?.data} />
+            <EducationalDetailsView profile={profile?.data} />
+            <CertificationsView profile={profile?.data} />
+            <ExperiencesView profile={profile?.data} />
           </div>
         </Container>
       </Grow>

@@ -27,11 +27,10 @@ function IntroductionAndGoals({ currentId, setCurrentId }) {
   useEffect(() => {
     dispatch(getUserProfile());
   }, [currentId, dispatch]);
-  console.log(profiles)
   return (
     <Paper className={classes.IntroPaper} elevation={7}>
 
-      {user._id === profiles?.creator ? <Edit className={classes.editButton} fontSize="medium" onClick={() => { setOpen(true) }} /> : ""}
+      <Edit className={classes.editButton} fontSize="medium" onClick={() => { setOpen(true) }} />
 
 
       <typography className={classes.IntroHead} > Introduction and Goals of {user?.result?.name}</typography>

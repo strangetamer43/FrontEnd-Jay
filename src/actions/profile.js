@@ -58,10 +58,13 @@ export const getUserProfile = (userProfile) => async (dispatch) => {
     }
 
 }
-export const getSpecificUserProfile = (specificUserProfile) => async (dispatch) => {
+export const getSpecificUserProfile = (userId) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
-        const { data } = await api.fetchSpecificUserPosts(specificUserProfile);
+        const reqdata = {
+            userId: userId
+        }
+        const { data } = await api.fetchSpecificUserProfile(reqdata);
 
         dispatch({ type: FETCH_SPECIFIC_USER_PROFILE, payload: data });
         dispatch({ type: END_LOADING });

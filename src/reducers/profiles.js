@@ -17,7 +17,7 @@ export default (state = { isLoading: true, profiles: [] }, action) => {
         case FETCH_USER_PROFILE:
             return { ...state, profiles: action.payload };
         case FETCH_SPECIFIC_USER_PROFILE:
-            return { ...state, profiles: action.payload };
+            return { ...state, profile: action.payload };
         case CREATE:
             return { ...state, profiles: action.payload };
         default:

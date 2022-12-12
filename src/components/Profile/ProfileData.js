@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Marginer } from "../Auth/Marginer";
 import Edit from "@material-ui/icons/Edit"
 
-import { getUserProfile } from '../../actions/profile';
+import { getSpecificUserProfile, getUserProfile } from '../../actions/profile';
 import { Container, AppBar, Typography, Grow, Grid, Card, ListItemAvatar, Button, ListItem, List, Paper, Divider } from '@material-ui/core';
 import useStyles from "./styles";
 import FormbarP from '../FormBar/FormButtonP';
@@ -33,6 +33,7 @@ const ProfileData = ({ currentId, setCurrentId }) => {
   }, [currentId, dispatch]);
 
 
+
   return (
     <Paper className={classes.card} elevation={7}>
 
@@ -47,7 +48,7 @@ const ProfileData = ({ currentId, setCurrentId }) => {
           {user.result.name}
         </typography>
 
-        <ProfilePoints />
+        <ProfilePoints creator={profiles?.creator} />
 
       </div>
 

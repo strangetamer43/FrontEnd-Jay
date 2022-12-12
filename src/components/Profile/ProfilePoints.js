@@ -12,8 +12,9 @@ import GodL from '../../Assets/godlike.png';
 import King from '../../Assets/ruler.png';
 import Usurper from '../../Assets/usurper.png';
 import useStyles from "./styles";
+import { createFollowers } from '../../actions/followers';
 
-const ProfilePoints = () => {
+const ProfilePoints = ({ creator }) => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
   const { question, questions } = useSelector((state) => state.questions);
   const [currentId, setCurrentId] = useState(null);
@@ -30,11 +31,12 @@ const ProfilePoints = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUserPosts());
-  }, [currentId, dispatch]);
+    dispatch(getUserPosts(creator));
+  }, [currentId, dispatch, creator]);
   useEffect(() => {
-    dispatch(getUserQuestions());
-  }, [currentId, dispatch]);
+    dispatch(getUserQuestions(creator));
+  }, [currentId, dispatch, creator]);
+
   const sum = posts.map((post) => post.likes.length).reduce((prev, curr) => prev + curr, 0)
   const diff = posts.map((post) => post.disLikes.length).reduce((prev, curr) => prev + curr, 0)
   const sum1 = posts.map((post) => post.comments.length).reduce((prev, curr) => prev + curr, 0)

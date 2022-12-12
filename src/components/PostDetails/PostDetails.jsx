@@ -22,6 +22,7 @@ const PostDetails = () => {
   const classes = useStyles();
   const { id } = useParams();
   const but = post?.creator;
+
   useEffect(() => {
     dispatch(getPost(id));
   }, [id]);
@@ -79,7 +80,7 @@ const PostDetails = () => {
           </div>
           <div className={classes.section}>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <Button component={Link} to='/userprofile' state={{ creator: post.creator }} className={classes.button}>
+              <Button component={Link} to={`/profile/${post?.creator}`} state={{ creator: post.creator }} className={classes.button}>
                 <div style={{ display: 'flex', direction: 'row', justifyContent: 'flex-start' }}>
                   <Avatar className={classes.purple} alt={post.name} src={post.avatarUrl}></Avatar>
                   <Typography className={classes.name}>{post.name}</Typography>

@@ -103,9 +103,9 @@ const FormPAddExp = ({ currentId, setCurrentId, handleClose, profile }) => {
                 <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                     <typography className={classes.formTitle} >Experiences</typography>
 
-                    <TextField value={experience.title} name="title" label="Title" InputLabelProps={{ style: { color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh' } }} InputProps={{ disableUnderline: true, style: { marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef' } }} style={{ borderRadius: '15px', border: '1px solid #25b8ef' }} fullWidth onChange={(e) => setExperience({ ...experience, title: e.target.value })} />
+                    <TextField value={experience?.title} name="title" label="Title" InputLabelProps={{ style: { color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh' } }} InputProps={{ disableUnderline: true, style: { marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef' } }} style={{ borderRadius: '15px', border: '1px solid #25b8ef' }} fullWidth onChange={(e) => setExperience({ ...experience, title: e.target.value })} />
                     &nbsp;
-                    <TextField value={experience.company} name="company" label="Company" InputLabelProps={{ style: { color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh' } }} InputProps={{ disableUnderline: true, style: { marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef' } }} style={{ borderRadius: '15px', border: '1px solid #25b8ef' }} fullWidth onChange={(e) => setExperience({ ...experience, company: e.target.value })} />
+                    <TextField value={experience?.company} name="company" label="Company" InputLabelProps={{ style: { color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh' } }} InputProps={{ disableUnderline: true, style: { marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef' } }} style={{ borderRadius: '15px', border: '1px solid #25b8ef' }} fullWidth onChange={(e) => setExperience({ ...experience, company: e.target.value })} />
                     &nbsp;
                     <FormControl sx={{ m: 1, minWidth: 120 }} style={{ "margin": "10px" }}>
 

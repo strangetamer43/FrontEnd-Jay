@@ -13,7 +13,7 @@ import CloseIcon from "@material-ui/icons/CloseOutlined"
 const FormPRemExp = ({ currentId, setCurrentId, handleClose, profile }) => {
     const [profileData, setProfileData] = useState(profile);
     const user = JSON.parse(localStorage.getItem('profile'));
-    const [experience, setExperience] = useState(profile.experiences)
+    const [experience, setExperience] = useState(profile?.experiences)
 
     const profileName = user?.result?.name;
     const email = user?.result?.email;

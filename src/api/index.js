@@ -46,8 +46,8 @@ export const commentC = (value, id) => API.post(`/contests/${id}/commentContest`
 export const disLikeContest = (id) => API.patch(`/contests/${id}/disLikeContest`);
 export const createProfile = (newProfile) => API.post('/profiles', newProfile);
 export const updateProfile = (id, updatedProfile) => API.patch(`/profiles/${id}`, updatedProfile);
-export const fetchUserProfile = (userProfile) => API.get('/profiles', userProfile);
-export const fetchSpecificUserProfile = (specificUserProfile) => API.post('/profiles/userspecific', specificUserProfile)
+export const fetchUserProfile = (reqdata) => API.post('/profiles', reqdata);
+export const fetchSpecificUserProfile = (reqdata) => API.post('/profiles/userspecific', reqdata)
 export const fetchProfile = (id) => API.get(`/profiles/${id}`)
 export const fetchProfiles = () => API.get('/profiles/all');
 export const fetchFollowers = () => API.get('/followers');

@@ -20,12 +20,12 @@ const CommentSection = ({ post }) => {
         setComment('');
         commentsRef.current.scrollIntoView({ behaviour: 'smooth' });
     };
-    console.log(comments)
 
     return (
         <div>
             <div className={classes.commentsOuterContainer}>
                 <div className={classes.commentsInnerContainer}>
+                    <Typography className={classes.comments} gutterBottom varaint="h6">Comments...</Typography>
                     {comments?.map((c, i) => (
                         <>
                             <Avatar sx={{ width: 10, height: 10 }} className={classes.purple} alt={post.name} src={c.profile}></Avatar>
@@ -33,23 +33,23 @@ const CommentSection = ({ post }) => {
                                 <typography className={classes.nameComments} >{c.value}</typography>
                             </Typography>
                         </>
-
                     ))}
                     <div ref={commentsRef} />
                 </div>
                 {user?.result?.name && (
-                    <div style={{ width: '70%' }}>
+                    <div className={classes.commentOut}>
                         <typography className={classes.comments} gutterBottom varaint="h6">Write a comment</typography>
                         <TextField
                             fullWidth
                             rows={3}
-                            placeholder='Comment Here....'
+
+                            label='Comment here...'
                             multiline
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}
                             className={classes.commentField}
-                            InputLabelProps={{ style: { color: '#25b8ef' } }}
-                            InputProps={{ style: { color: 'rgba(37, 184, 239, 1)' } }}
+                            InputLabelProps={{ style: { color: '#25b8ef', marginLeft: '1vh', marginTop: '0.5vh' } }}
+                            InputProps={{ style: { color: 'rgba(37, 184, 239, 1)', margin: '0vh 1vh 0vh 1vh' } }}
                         />
                         <Button style={{ marginTop: '2vh' }} className={classes.commentButton} fullWidth disabled={!comment} variant="contained" onClick={handleClick}>
                             Comment
@@ -61,4 +61,4 @@ const CommentSection = ({ post }) => {
     );
 };
 
-export default CommentSection;
+export default CommentSection; 
