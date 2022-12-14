@@ -6,10 +6,10 @@ import { useSelector } from "react-redux";
 import { Marginer } from "../Auth/Marginer";
 import Formbar from "../FormBar/FormButton";
 
-const Questions = ({ setCurrentId }) => {
+const Questions = ({ setCurrentId, show = true }) => {
     const { questions, isLoading } = useSelector((state) => state.questions);
     const classes = useStyles();
-    if (!questions.length && !isLoading) return (
+    if (!questions.length && !isLoading && show) return (
         <div style={{ marginLeft: '130px' }}>
             <Formbar />
             <Paper className={classes.paper} style={{ marginLeft: '50px' }}>
@@ -26,7 +26,7 @@ const Questions = ({ setCurrentId }) => {
             <Grid className={classes.container1} container alignItems="stretch" spacing={8}>
 
                 <Marginer direction="vertical" margin="75px" />
-                <Formbar />
+                {show ? (<Formbar />) : ""}
                 {questions.map((question) => (
                     <Grid key={question._id} item xs={12} md={12} sm={12}>
                         <Question question={question} setCurrentId={setCurrentId} />

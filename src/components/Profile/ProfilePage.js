@@ -60,13 +60,13 @@ const ProfilePage = (props) => {
 
 
           <div className={classes.buttons}>
-            <Button className={classes.button} component={Link} to='/profile'>{user.result.name}'s Posts</Button>
-            <Button className={classes.button} component={Link} to='/questionspage' >Questions by {user.result.name}</Button>
+            <a href="/profile"><Button className={classes.button} >{user.result.name}'s Posts</Button></a>
+            <a href="/questionspage"> <Button className={classes.button} >Questions by {user.result.name}</Button></a>
 
           </div>
 
 
-          <PostsOfUser setCurrentId={setCurrentId} />
+          <PostsOfUser currentId={currentId} setCurrentId={setCurrentId} />
 
 
 

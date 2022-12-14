@@ -16,8 +16,7 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-const QuestionsOfUser = () => {
-  const [currentId, setCurrentId] = useState(null);
+const QuestionsOfUser = ({ currentId, setCurrentId, show = true }) => {
   const { question, questions, isLoading } = useSelector((state) => state.questions);
   const query = useQuery();
   const navigate = useNavigate();
@@ -25,10 +24,10 @@ const QuestionsOfUser = () => {
   const dispatch = useDispatch();
   const searchQuery = query.get('searchQuery');
   useEffect(() => {
-    dispatch(getUserQuestions());
+    dispatch(getUserQuestions(currentId));
   }, [currentId, dispatch]);
 
-  if (questions.length === 0 && !isLoading) {
+  if (questions.length === 0 && !isLoading && show) {
     return (
       <div style={{ marginLeft: "135px" }}>
         <Formbar />
@@ -53,7 +52,7 @@ const QuestionsOfUser = () => {
 
           <Grid contianer justify="space-between" alignItems="stretch" Spacing={3} >
             <Grid item xs={12} sm={12} md={12} >
-              <Questions setCurrentId={setCurrentId} />
+              <Questions setCurrentId={setCurrentId} show={show} />
             </Grid>
           </Grid>
         </Container>

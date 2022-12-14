@@ -14,6 +14,8 @@ import EducationalDetailsView from './EducationalDetailsView';
 import CertificationsView from './CertificationsView';
 import ExperiencesView from './ExperiencesView';
 import { useParams } from 'react-router-dom';
+import PostsOfUser from '../Posts/UserPostsB';
+import QuestionsOfUser from "../Questions/UserQuestions"
 
 
 const UserProfile = ({ currentId, setCurrentId }) => {
@@ -67,13 +69,13 @@ const UserProfile = ({ currentId, setCurrentId }) => {
               <div className={classes.title}>
                 <div className={classes.details2}>
                   <Typography variant="h5" className={classes.h5} gutterBottom >
-                    Email ID: {profile?.email || profile?.emailId}
+                    Email ID: {profile?.data?.email || profile?.data?.emailId}
                   </Typography>
                 </div>
                 <Marginer margin="40px" />
                 <div className={classes.details2}>
                   <Typography variant="h5" className={classes.h5} gutterBottom >
-                    Phone Number: {profile?.phoneNumber}
+                    Phone Number: {profile?.data?.phoneNumber}
                   </Typography>
                 </div>
               </div>
@@ -82,6 +84,17 @@ const UserProfile = ({ currentId, setCurrentId }) => {
             <EducationalDetailsView profile={profile?.data} />
             <CertificationsView profile={profile?.data} />
             <ExperiencesView profile={profile?.data} />
+            <Typography className={classes.h5} variant="h4" style={{ marginLeft: "40px", marginTop: "20px" }}>
+              Posts:
+            </Typography>
+            <PostsOfUser currentId={id} setCurrentId={setCurrentId} show={false} />
+
+            <Typography className={classes.h5} variant="h4" style={{ marginLeft: "40px", marginTop: "20px" }}>
+              Questions:
+            </Typography>
+            <QuestionsOfUser currentId={id} setCurrentId={setCurrentId} show={false} />
+
+
           </div>
         </Container>
       </Grow>

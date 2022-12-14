@@ -16,20 +16,18 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-const PostsOfUser = () => {
-  const [currentId, setCurrentId] = useState(null);
+const PostsOfUser = ({ currentId, setCurrentId, show = true }) => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
-
   const query = useQuery();
   const navigate = useNavigate();
   const classes = useStyles();
   const dispatch = useDispatch();
   const searchQuery = query.get('searchQuery');
   useEffect(() => {
-    dispatch(getUserPosts());
+    dispatch(getUserPosts(currentId));
   }, [currentId, dispatch]);
 
-  if (posts.length === 0 && !isLoading) {
+  if (posts.length === 0 && !isLoading && show) {
     return (
       <div style={{ marginLeft: '130px' }}>
         <Formbar />
@@ -55,7 +53,7 @@ const PostsOfUser = () => {
 
           <Grid contianer justify="space-between" alignItems="stretch" Spacing={3} className={classes.gridContainer1} >
             <Grid item xs={12} sm={12} md={12} >
-              <Posts1 setCurrentId={setCurrentId} />
+              <Posts1 setCurrentId={setCurrentId} show={show} />
             </Grid>
           </Grid>
         </Container>

@@ -42,7 +42,7 @@ function Certifications({ currentId, setCurrentId }) {
 
 
           <typography className={classes.smallDetails} >
-            {profiles?.certifications?.map((certifications) => <typography> {certifications}</typography>)}
+            {profiles?.certifications?.map((certification) => certification)}
           </typography>
 
         </div>

@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { Marginer } from "../Auth/Marginer";
 import Formbar1 from "../FormBar/FloatingButtonForm1";
 
-const Posts1 = ({ setCurrentId }) => {
+const Posts1 = ({ setCurrentId, show }) => {
     const { posts, isLoading } = useSelector((state) => state.posts);
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const [creator, setCreator] = useState(null);
@@ -15,7 +15,7 @@ const Posts1 = ({ setCurrentId }) => {
     const classes = useStyles();
 
 
-    if (!posts.length && !isLoading) return (
+    if (!posts.length && !isLoading && show) return (
         <div>
             <Formbar />
             <Paper className={classes.paper}>
@@ -25,6 +25,7 @@ const Posts1 = ({ setCurrentId }) => {
             </Paper>
         </div>
     );
+    console.log("this page")
 
     return (
         isLoading ? <CircularProgress /> : (
@@ -32,7 +33,8 @@ const Posts1 = ({ setCurrentId }) => {
             <Grid className={classes.container1} container alignItems="stretch" spacing={8}>
 
                 <Marginer direction="vertical" margin="75px" />
-                <Formbar1 />
+                {show ? (<Formbar1 />) : ""}
+
                 {posts.map((post) => (
                     <Grid key={post._id} item xs={12} md={12} sm={12} >
                         <Post post={post} setCurrentId={setCurrentId} />

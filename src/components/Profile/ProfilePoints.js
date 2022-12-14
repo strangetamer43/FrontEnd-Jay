@@ -12,6 +12,7 @@ import GodL from '../../Assets/godlike.png';
 import King from '../../Assets/ruler.png';
 import Usurper from '../../Assets/usurper.png';
 import useStyles from "./styles";
+import { useLocation } from 'react-router-dom';
 import { createFollowers } from '../../actions/followers';
 
 const ProfilePoints = ({ creator }) => {
@@ -30,12 +31,18 @@ const ProfilePoints = ({ creator }) => {
   const [max, setMax] = useState();
   const classes = useStyles();
   const dispatch = useDispatch();
+  const location = useLocation()
   useEffect(() => {
     dispatch(getUserPosts(creator));
-  }, [currentId, dispatch, creator]);
+
+
+  }, [currentId, dispatch, creator, location]);
   useEffect(() => {
     dispatch(getUserQuestions(creator));
-  }, [currentId, dispatch, creator]);
+  }, [currentId, dispatch, creator, location]);
+  // console.log(post)
+  // console.log(questions)
+
 
   const sum = posts.map((post) => post.likes.length).reduce((prev, curr) => prev + curr, 0)
   const diff = posts.map((post) => post.disLikes.length).reduce((prev, curr) => prev + curr, 0)

@@ -36,6 +36,7 @@ import CollectResponse from './components/Response/CollectResponse';
 import ResponseSuccess from './components/Response/ResponseSuccess';
 import Check from './components/Response/Check';
 import MyResponses from './components/MyQuizs/MyResponses';
+import QuestionsPageExternal from "./components/Profile/QuestionPageExternal";
 const user = JSON.parse(localStorage.getItem('profile'));
 const App = () => {
 
@@ -75,6 +76,8 @@ const App = () => {
             <Route path='/questions/:id' element={<QuestionDetails />} />/*Responsive*/
             <Route path='/profile' exact element={<ProfilePage />} />  /*Responsive*/
             <Route path='/questionspage' exact element={<QuestionsPage />} /> /*Responsive*/
+            <Route path='/questionspage/:id' exact element={<QuestionsPageExternal />} /> /*Responsive*/
+
             <Route path='/profile/:id' exact element={<UserProfile />} />/*Responsive*/
             <Route path='/about' exact element={<AboutUsurp />} /> /*Responsive*/
             <Route path='/chat' exact element={<ChatFunction />} /> /*Responsive*/
