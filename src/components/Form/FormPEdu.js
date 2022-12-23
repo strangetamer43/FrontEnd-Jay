@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { createProfile, updateProfile } from "../../actions/profile";
 
 const FormPEdu = ({ currentId, setCurrentId, handleClose, profile }) => {
-    const [profileData, setProfileData] = useState(profile);
+    const [profileData, setProfileData] = useState(profile?.data);
     const user = JSON.parse(localStorage.getItem('profile'));
 
     const profileName = user?.result?.name;
@@ -21,11 +21,11 @@ const FormPEdu = ({ currentId, setCurrentId, handleClose, profile }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("heo")
+        
         handleClose()
         setProfileData({ ...profileData, name: e.target.profileName })
         if (profile) {
-            dispatch(updateProfile(profile._id, { ...profileData, name: user?.result?.name, avatarUrl: user.result?.imageUrl }));
+            dispatch(updateProfile(profile?.data?._id, { ...profileData, name: user?.result?.name, avatarUrl: user.result?.imageUrl }));
 
         } else {
             dispatch(createProfile({ ...profileData, name: user?.result?.name, avatarUrl: user?.result?.imageUrl }, navigate));

@@ -3,18 +3,17 @@ import Cookies from "universal-cookie";
 import axios from 'axios';
 import { GoogleLogin } from 'react-google-login';
 import { Typography, Paper } from '@material-ui/core';
-import FileBase from 'react-file-base64';
+import Spline from '@splinetool/react-spline';
 import * as FcIcons from 'react-icons/fc';
 import styled from 'styled-components';
 import { Marginer } from "./Marginer";
-import usurp_logo from "../../Assets/Usurp-new-logo.png";
+
 import * as BsIcons from "react-icons/bs";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signin, signup } from '../../actions/auth';
-
+import { createUser } from '../../APIServices/UserAPI';
 import "./Style.scss"
-import { createUser } from '../../APIServices/User';
 const Container = styled.div`
   
   display: flex;
@@ -36,12 +35,12 @@ const Container = styled.div`
   padding: 25px;
   }
   @media only screen and (max-width: 450px) {
-    margin: 5px;
-  padding: 5px;
+    margin: 10px;
+  
   }
   @media only screen and (max-width: 350px) {
-    margin: 5px;
-  padding: 5px;
+    margin: 10px;
+  
   }
 `;
 
@@ -62,16 +61,24 @@ const Content = styled.div`
   justify-content: flex-start;
     
   padding: 5rem;
-  box-shadow: 0px 1px 5px #000;
+  
   border-radius: 30px;
   transition: 0.8s ease;
   box-shadow: -4px -4px 15px 4px rgba(255, 255, 255, 0.20), 4px 4px 15px 4px rgba(0, 0, 0, 0.65);
   background: #1a1a1a;
   @media only screen and (max-width: 1100px) {
-    padding: 1.5rem;
+    padding: 3.5rem;
   }
   @media only screen and (max-width: 800px) {
-    padding: 0.85rem;
+    padding: 3rem;
+    
+  }
+  @media only screen and (max-width: 600px) {
+    padding: 2.5rem;
+    
+  }
+  @media only screen and (max-width: 450px) {
+    padding: 1.5rem;
     
   }
 `;
@@ -82,7 +89,14 @@ const Para = styled.p`
   color: #25b8ef;
   font-weight: 600;
   padding: 1rem 0rem;
-  
+  @media only screen and (max-width: 800px) {
+    font-size: 25px;
+    
+  }
+  @media only screen and (max-width: 550px) {
+    font-size: 25px;
+    
+  }
 `;
 
 const Input = styled.div`
@@ -97,11 +111,11 @@ const Input = styled.div`
         
       }
     @media only screen and (max-width: 800px) {
-        padding: 0.3rem;
+        padding: 1rem;
         
       }
     @media only screen and (max-width: 650px) {
-        padding: 0.1rem;
+        padding: 0.8rem;
         
     }
 `;
@@ -140,20 +154,26 @@ const Span = styled.span` {
     font-weight: 550;
     }
 `;
-const Image = styled.img` {
+const Image = styled.div` {
     
     display: flex;
     flex-direction: column;
-    padding: 0px;
+    padding: 20px;
     margin:auto;
-    width: 17.85vh;
-    height: 25.26vh;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 30vh;
+    height: 30vh;
     margin-top: 0px;
     @media only screen and (max-width: 650px) {
       display: column-reverse;
     }
-}
-    
+    @media only screen and (max-width: 450px) {
+      padding: 0px;
+      margin-top: -35px;
+      margin-left: 30px;
+    }
+}    
 `;
 const SignIn = styled.button`
     border-radius: 15px;
@@ -187,20 +207,60 @@ const SignIn = styled.button`
     @media only screen and (max-width: 1100px) {
         padding: 0.5rem 1.25rem;
         font-size: 14px;
-        border: 3px solid #1167bf;
-        border-radius: 20px;
+        border: 0px solid #1167bf;
+        border-radius: 15px;
+        :hover{
+          padding: 0.5rem 1.25rem;
+          font-size: 14px;
+          border: 0px solid #1167bf;
+          border-radius: 15px;
+          box-shadow: 2px 2px 6px 2px rgba(255, 255, 255, 0.25), -2px -2px 6px 2px rgba(0, 0, 0, 0.75);
+        }
       }
     @media only screen and (max-width: 800px) {
         padding: 0.5rem 1.25rem;
         font-size: 13px;
-        border: 3px solid #1167bf;
-        border-radius: 20px;
-      }
-    @media only screen and (max-width: 375px) {
-        padding: 0.5rem 1.25rem;
-        font-size: 12px;
-        border: 3px solid #1167bf;
+        border: 0px solid #1167bf;
         border-radius: 15px;
+        :hover{
+          padding: 0.5rem 1.25rem;
+          font-size: 14px;
+          border: 0px solid #1167bf;
+          border-radius: 15px;
+          box-shadow: 2px 2px 6px 2px rgba(255, 255, 255, 0.25), -2px -2px 6px 2px rgba(0, 0, 0, 0.75);
+        }
+      }
+    @media only screen and (max-width: 500px) {
+      padding: 0.25rem 0.6rem;
+      font-size: 14px;
+      border: 0px solid #1167bf;
+      border-radius: 15px;
+      width: 22vw;
+      box-shadow: -1.5px -1.5px 4.5px 1.5px rgba(255, 255, 255, 0.25), 1.5px 1.5px 4.5px 1.5px rgba(0, 0, 0, 0.75);
+      :hover{
+        padding: 0.25rem 0.6rem;
+        font-size: 14px;
+        width: 22vw;
+        border: 0px solid #1167bf;
+        border-radius: 15px;
+        box-shadow: 1.5px 1.5px 4.5px 1.5px rgba(255, 255, 255, 0.25), -1.5px -1.5px 4.5px 1.5px rgba(0, 0, 0, 0.75);
+      }
+    }  
+    @media only screen and (max-width: 440px) {
+        padding: 0.15rem 0.45rem;
+        font-size: 14px;
+        border: 0px solid #1167bf;
+        width: 22vw;
+        border-radius: 15px;
+        box-shadow: -1.5px -1.5px 4.5px 1.5px rgba(255, 255, 255, 0.25), 1.5px 1.5px 4.5px 1.5px rgba(0, 0, 0, 0.75);
+        :hover{
+          padding: 0.15rem 0.45rem;
+          font-size: 14px;
+          width: 22vw;
+          border: 0px solid #1167bf;
+          border-radius: 15px;
+          box-shadow: 1.5px 1.5px 4.5px 1.5px rgba(255, 255, 255, 0.25), -1.5px -1.5px 4.5px 1.5px rgba(0, 0, 0, 0.75);
+        }
       }
 `;
 const SignIng = styled.button`
@@ -235,23 +295,63 @@ const SignIng = styled.button`
     transition: 0.3s ease;
     }
     @media only screen and (max-width: 1100px) {
+      padding: 0.5rem 1.25rem;
+      font-size: 14px;
+      border: 0px solid #1167bf;
+      border-radius: 15px;
+      :hover{
         padding: 0.5rem 1.25rem;
         font-size: 14px;
-        border: 3px solid #1167bf;
-        border-radius: 20px;
-      }
-    @media only screen and (max-width: 800px) {
-        padding: 0.25rem 0.625rem;
-        font-size: 13px;
-        border: 3px solid #1167bf;
-        border-radius: 20px;
-      }
-    @media only screen and (max-width: 375px) {
-        padding: 0.1rem 0.25rem;
-        font-size: 10px;
-        border: 3px solid #1167bf;
+        border: 0px solid #1167bf;
         border-radius: 15px;
+        box-shadow: 2px 2px 6px 2px rgba(255, 255, 255, 0.25), -2px -2px 6px 2px rgba(0, 0, 0, 0.75);
       }
+    }
+    @media only screen and (max-width: 800px) {
+      padding: 0.5rem 1.25rem;
+      font-size: 13px;
+      border: 0px solid #1167bf;
+      border-radius: 15px;
+      :hover{
+        padding: 0.5rem 1.25rem;
+        font-size: 14px;
+        border: 0px solid #1167bf;
+        border-radius: 15px;
+        box-shadow: 2px 2px 6px 2px rgba(255, 255, 255, 0.25), -2px -2px 6px 2px rgba(0, 0, 0, 0.75);
+      }
+    }
+    @media only screen and (max-width: 500px) {
+      padding: 0.25rem 0.6rem 0.25rem 0.6rem;
+      font-size: 14px;
+      border: 0px solid #1167bf;
+      border-radius: 15px;
+      
+      box-shadow: -1.5px -1.5px 4.5px 1.5px rgba(255, 255, 255, 0.25), 1.5px 1.5px 4.5px 1.5px rgba(0, 0, 0, 0.75);
+      :hover{
+        padding: 0.25rem 0.6rem 0.25rem 0.6rem;
+        font-size: 14px;
+        border: 0px solid #1167bf;
+        
+        border-radius: 15px;
+        box-shadow: 1.5px 1.5px 4.5px 1.5px rgba(255, 255, 255, 0.25), -1.5px -1.5px 4.5px 1.5px rgba(0, 0, 0, 0.75);
+      }
+    }  
+    @media only screen and (max-width: 440px) {
+      padding: 0.15rem 0.45rem 0.15rem 0.45rem;
+      font-size: 14px;
+      border: 0px solid #1167bf;
+      border-radius: 15px;
+      
+      box-shadow: -1.5px -1.5px 4.5px 1.5px rgba(255, 255, 255, 0.25), 1.5px 1.5px 4.5px 1.5px rgba(0, 0, 0, 0.75);
+      :hover{
+        padding: 0.15rem 0.45rem 0.15rem 0.45rem;
+        font-size: 14px;
+        border: 0px solid #1167bf;
+        border-radius: 15px;
+        
+        box-shadow: 1.5px 1.5px 4.5px 1.5px rgba(255, 255, 255, 0.25), -1.5px -1.5px 4.5px 1.5px rgba(0, 0, 0, 0.75);
+      }
+    }
 `;
 
 const initialState = {
@@ -318,6 +418,7 @@ const Auth = () => {
     }
 
   };
+  
   const googleFailure = (error) => {
     console.log(error);
     console.log("Google Sign In was unsuccessful");
@@ -328,9 +429,8 @@ const Auth = () => {
 
     <Container className="main-container">
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <Image
-          className='logo-image'
-          src={usurp_logo}>
+        <Image>
+        <Spline scene="https://prod.spline.design/S9EsPGrVWiDU9gYJ/scene.splinecode" />
 
         </Image>
         <Fields >

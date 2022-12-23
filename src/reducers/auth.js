@@ -1,5 +1,5 @@
 import { AUTH, LOGOUT } from '../constants/actionTypes';
-import { createUser } from "../APIServices/User"
+import { createUser } from "../APIServices/UserAPI";
 const authReducer = async (state = { authData: null }, action) => {
     switch (action.type) {
         case AUTH:

@@ -98,15 +98,15 @@ const MyResponses = () => {
                 <>
                     <NavBar />
                     <div>
-                        <p> Responses</p>
+                        <p style={{color: '#e3e3e3', fontSize: '3vh', marginTop: '2.5vh', marginLeft: '1vh'}}> Responses</p>
                         <div>
                             <TableContainer component={Paper}>
                                 <Table className={classes.table} aria-label="simple table">
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell>Challenge</TableCell>
+                                            <TableCell>Challenge Name</TableCell>
 
-                                            <TableCell key="correct" align="right">Correct Answers</TableCell>
+                                            <TableCell key="correct" align="right">No.of Correct Answers</TableCell>
 
                                         </TableRow>
 

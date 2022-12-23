@@ -55,4 +55,4 @@ const ExperiencesView = ({ currentId, setCurrentId, profile }) => {
     )
 }
 
-export default ExperiencesView
+export default ExperiencesView;

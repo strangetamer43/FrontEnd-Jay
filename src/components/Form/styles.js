@@ -6,38 +6,58 @@ export default makeStyles((theme) => ({
       margin: theme.spacing(0),
     },
   },
-
+  
   paper: {
+    
     padding: '3vh',
+    marginTop: '20vh',
+    marginLeft: '15vh',
+    position: 'absolute',
     backgroundColor: '#1a1a1a',
     borderRadius: '30px',
+    
     width: '50vw',
-    textAlign: 'center',
-    margin: 'auto',
-    justifyContent: 'center',
-    "@media (min-width:1400)": {
-
+    position: 'absolute',
+    "@media (max-width: 1100px)" : {
+      marginLeft: '10vh',
+      marginTop: '15vh',
+      width: '70vw',
     },
-    // Laptop media Query
-    "@media (max-width: 1400px)": {
-
+    "@media (max-width: 900px)" : {
+      marginLeft: '7.5vh',
+      marginTop: '15vh',
+      width: '70vw',
     },
-
-    // tablet media query
-    "@media (max-width: 1000px)": {
-
+    "@media (max-width: 750px)" : {
+      marginLeft: '4vh',
+      marginTop: '15vh',
+      width: '80vw',
     },
-    // Mobile Media Query
-    "@media (max-width: 768px)": {
-      width: '80vw'
-    }
-
+    "@media (max-width: 600px)" : {
+      marginLeft: '3.5vh',
+      marginTop: '15vh',
+      width: '80vw',
+    },
+    "@media (max-width: 450px)" : {
+      marginLeft: '3vh',
+      marginTop: '15vh',
+      width: '80vw',
+    },
   },
   Field: {
     border: '1px solid #25b8ef',
     borderRadius: '15px',
     marginBottom: '1vh',
     boxShadow: '-1px -1px 2px 1px rgba(255, 255, 255, 0.4), 1px 1px 2px 1px rgba(5, 5, 10, 0.6)',
+    "@media (max-width: 600px)" : {
+      padding: '-3vh'
+      
+    },
+    "@media (max-width: 430px)" : {
+      padding: '-5vh'
+      
+    },
+    
   },
   form: {
     display: 'flex',
@@ -50,15 +70,21 @@ export default makeStyles((theme) => ({
     marginTop: '1vh',
     marginBottom: '1vh',
     display: 'flex',
-
-
+    
+    
   },
   buttonSubmit: {
     marginTop: '2vh',
     background: '#25b8ef',
     fontSize: '2vh',
     borderRadius: '15px',
-    marginLeft: '-15vw'
+    marginLeft: '-15vw',
+    "@media (max-width: 450px)" : {
+      marginTop: '3vh',
+      marginLeft: '1vw',
+      fontSize: '1vh',
+      paddingRight: '4vw'
+    },
 
   },
   formTitle: {
@@ -76,7 +102,6 @@ export default makeStyles((theme) => ({
     cursor: 'pointer',
     border: '0px',
     padding: '1vh',
-    textAlign: 'center',
     boxShadow: '-2px -2px 5px 2px rgba(255, 255, 255, 0.4), 2px 2px 5px 2px rgba(5, 5, 10, 0.6)',
     '&:hover': {
       background: '#25b8ef',
@@ -89,13 +114,29 @@ export default makeStyles((theme) => ({
       border: '0px',
       padding: '1vh',
       boxShadow: '2px 2px 5px 2px rgba(255, 255, 255, 0.4), -2px -2px 5px 2px rgba(5, 5, 10, 0.6)',
-    }
+    },
+    "@media (max-width: 600px)" : {
+      
+      
+      fontSize: '1.5vh',
+      padding: '0.75vh',
+      boxShadow: '-1px -1px 2.5px 1px rgba(255, 255, 255, 0.3), 1px 1px 2.5px 1px rgba(5, 5, 10, 0.7)',
+      '&:hover': {
+        
+        
+        fontSize: '1.5vh',
+       
+        
+        padding: '0.75vh',
+        boxShadow: '1px 1px 2.5px 1px rgba(255, 255, 255, 0.3), -1px -1px 2.5px 1px rgba(5, 5, 10, 0.7)',
+      }
+    },
   },
   ButtonC: {
     background: '#c935ff',
     marginLeft: '7vw',
     padding: '1vh',
-    textAlign: 'center',
+    
     borderRadius: '15px',
     color: '#1a1a1a',
     fontSize: '2vh',
@@ -103,11 +144,11 @@ export default makeStyles((theme) => ({
     cursor: 'pointer',
     border: '0px',
     boxShadow: '-2px -2px 4px 2px rgba(255, 255, 255, 0.3), 2px 2px 5px 2px rgba(5, 5, 10, 0.6)',
-    '&:hover': {
+    '&:hover':{
       background: '#c935ff',
       marginLeft: '7vw',
       padding: '1vh',
-
+    
       borderRadius: '15px',
       color: '#1a1a1a',
       fontSize: '2vh',
@@ -115,20 +156,61 @@ export default makeStyles((theme) => ({
       cursor: 'pointer',
       border: '0px',
       boxShadow: '2px 2px 4px 2px rgba(255, 255, 255, 0.3), -2px -2px 5px 2px rgba(5, 5, 10, 0.6)',
-    }
+    },
+    "@media (max-width: 600px)" : {
+      
+      
+      fontSize: '1.5vh',
+      padding: '0.75vh',
+      boxShadow: '-1px -1px 2.5px 1px rgba(255, 255, 255, 0.3), 1px 1px 2.5px 1px rgba(5, 5, 10, 0.7)',
+      '&:hover': {
+        
+        
+        fontSize: '1.5vh',
+       
+        
+        padding: '0.75vh',
+        boxShadow: '1px 1px 2.5px 1px rgba(255, 255, 255, 0.3), -1px -1px 2.5px 1px rgba(5, 5, 10, 0.7)',
+      }
+    },
   },
   paperP: {
-
+    
     padding: '3vh',
     marginTop: '10vh',
     marginLeft: '15vh',
     position: 'absolute',
     backgroundColor: '#1a1a1a',
     borderRadius: '30px',
-
+    
     width: '50vw',
     position: 'absolute',
-
+    "@media (max-width: 1100px)" : {
+      marginLeft: '10vh',
+      marginTop: '15vh',
+      width: '70vw',
+    },
+    "@media (max-width: 900px)" : {
+      marginLeft: '7.5vh',
+      marginTop: '15vh',
+      width: '70vw',
+    },
+    "@media (max-width: 750px)" : {
+      marginLeft: '4vh',
+      marginTop: '15vh',
+      width: '80vw',
+    },
+    "@media (max-width: 600px)" : {
+      marginLeft: '3.5vh',
+      marginTop: '5vh',
+      width: '80vw',
+    },
+    "@media (max-width: 450px)" : {
+      marginLeft: '3vh',
+      marginTop: '5vh',
+      width: '80vw',
+    },
+    
   },
   buttonClear: {
     marginTop: '2vh',
@@ -136,8 +218,96 @@ export default makeStyles((theme) => ({
     fontSize: '2vh',
     borderRadius: '15px',
     marginLeft: '5vw',
-    textAlign: 'center'
+    "@media (max-width: 450px)" : {
+      marginTop: '3vh',
+      fontSize: '1vh',
+      paddingRight: '4vw'
+    },
 
+  },
+  buttonsBelow: {
+    display: 'flex', 
+    flexDirection: 'row', 
+    justifyContent: 'center', 
+    marginLeft: '-15vw',
+    marginTop: '3vh',
+    "@media (max-width: 600px)" : {
+      
+      marginLeft: '-7vw',
+      marginTop: '3vh'
+      
+    },
+    "@media (max-width: 600px)" : {
+      
+      marginLeft: '-7vw',
+      marginTop: '3vh'
+      
+    },
+    
+  },
+  videIcon: {
+    color: '#25b8ef', 
+    cursor: 'pointer', 
+    marginLeft: '75px',
+    "@media (max-width: 650px)" : {
+      
+      marginLeft: '45px',
+      
+      
+    },
+    "@media (max-width: 450px)" : {
+      
+      marginLeft: '35px',
+      
+      
+    },
+  },
+  label: {
+    "@media (max-width: 900px)" : {
+      fontSize: '2.0vh',
+      
+      
+    },
+    "@media (max-width: 650px)" : {
+      fontSize: '1.8vh',
+      
+      
+    },
+    "@media (max-width: 450px)" : {
+      fontSize: '1.5vh',
+      
+      
+    },
+   
+  },
+  choice: {
+    fontSize: '1.8vh', 
+    color: '#c935ff',
+    marginTop: '1vh',
+    "@media (max-width: 650px)" : {
+      fontSize: '1.2vh',
+      
+      
+    },
+    "@media (max-width: 450px)" : {
+      fontSize: '1.1vh',
+      
+      
+    },
+  },
+  Or: {
+    color: '#c935ff', 
+    marginLeft: '2vw',
+    "@media (max-width: 650px)" : {
+      marginLeft: '10vw',
+      
+      
+    },
+    "@media (max-width: 450px)" : {
+      marginLeft: '10vw',
+      
+      
+    },
   },
   smallDetails: {
     marginLeft: '3vw',

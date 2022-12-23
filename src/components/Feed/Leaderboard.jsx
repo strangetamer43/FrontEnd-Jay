@@ -21,7 +21,7 @@ const Leaderboard = () => {
     const getUsersData = (e) => {
         e.preventDefault();
         setOpen(true)
-      axios.get('http://127.0.0.1:5000/top5users').then(res => {
+      axios.get('https://2f2t3o.deta.dev/top5users').then(res => {
           setData(res)
       })
       .catch(function (err) {
@@ -34,7 +34,7 @@ const Leaderboard = () => {
     const getTagsData = (e) => {
         e.preventDefault();
         setOpenS(true);
-      axios.get('http://127.0.0.1:5000/top5tags').then(res => {
+      axios.get('https://2f2t3o.deta.dev/top5tags').then(res => {
         setTagData(res)
       }).catch(function (err) {
           console.log(err);
@@ -45,7 +45,7 @@ const Leaderboard = () => {
     const getPostsData = (e) => {
         e.preventDefault();
         setOpenP(true);
-        axios.get('http://127.0.0.1:5000/top5posts').then(res => {
+        axios.get('https://2f2t3o.deta.dev/top5posts').then(res => {
             setPostData(res)
         })
         .catch(function (err) {
@@ -74,24 +74,24 @@ const Leaderboard = () => {
     const dil5 = dil4?.split(',');
     const tagdil = tagData?.data;
     
-    const tagdil1 = tagdil?.slice(74, tagdil?.length - 3);
+    const tagdil1 = tagdil?.slice(75, tagdil?.length - 3);
     const tagdil2 = tagdil1?.replaceAll('",' , ': ');  
     const tagdil3 = tagdil2?.replaceAll('["' , '');
     const tagdil4 = tagdil3?.replaceAll(']', '');
     const tagdil5 = tagdil4?.split(',');
   return (
-    <div>
-      <Paper className={classes.leaderboardButtons}>
+    <div className={classes.leaderboardWhole}>
+      <Paper className={classes.leaderboardButtons} elevation={10}>
         <img src={LeaderboardIm} className={classes.LeaderboardIcon}/>
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <Button className={classes.buttonsL} onClick={getUsersData}>
-        <FaUsers size={30} style={{marginLeft: '-0.75vw'}}/>
+        <FaUsers className={classes.Icon}/>
         </Button>
         <Button className={classes.buttonsP} onClick={getPostsData}>
-        <BsFileEarmarkPostFill size={30} style={{marginLeft: '-0.75vw'}}/>
+        <BsFileEarmarkPostFill className={classes.Icon}/>
         </Button>
         <Button className={classes.buttonsQ} onClick={getTagsData}>
-        <GiSkills size={30} style={{marginLeft: '-0.75vw'}}/>
+        <GiSkills className={classes.Icon}/>
         </Button>
         </div>
         </Paper>
@@ -110,7 +110,7 @@ const Leaderboard = () => {
             <Modal open={openP} onClose={handleCloseP}>
             <Paper className={classes.appBarSearch1}>
               <typography className={classes.topTitle}>Top 5 Posts</typography>
-              {top5posts7?.map((item,i) => <li key={i} className={classes.top5users}><span>{item}</span></li>)}
+              {top5posts7?.map((item,i) => <li key={i} className={classes.top5users}><pre>{item}</pre></li>)}
             </Paper>
             </Modal>
       

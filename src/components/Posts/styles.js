@@ -2,40 +2,56 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   container: {
-    textAlign: 'center',
-    margin: 'auto',
-
-    "@media (min-width:1400)": {
-      marginLeft: '130px',
-      textAlign: 'center',
-      margin: 'auto'
+    marginLeft: '11vw',
+    "@media (max-width: 1100px)" : {
+        marginLeft: '10vw',   
+        
+      },
+      "@media (max-width: 900px)" : {
+        marginLeft: '10vw',   
+        
+      },
+      "@media (max-width: 600px)" : {
+        width: '85vw',
+        marginLeft: '2vw'
+      },
+      "@media (max-width: 450px)"  : {
+        width: '90vw',
+        marginLeft: '1vw'
+      },
+      "@media (max-width: 375px)" : {
+        width: '90vw',
+        marginLeft: '1vw'
+      }
+      
+  },
+  container1: {
+    marginLeft: '7vw',
+    "@media (max-width: 900px)" : {
+      marginLeft: '10vw',   
+      
     },
-    // Laptop media Query
-    "@media (max-width: 1400px)": {
-      marginLeft: '130px',
-      textAlign: 'center',
-      margin: 'auto'
+    "@media (max-width: 650px)" : {
+      width: '85vw',
+      marginLeft: '2vw'
     },
-
-    // tablet media query
-    "@media (max-width: 1000px)": {
-      marginLeft: '150px',
-      width: '500px',
-      marginRight: '50px',
-      textAlign: 'center',
-      margin: 'auto'
+    "@media (max-width: 450px)"  : {
+      width: '90vw',
+      marginLeft: '-5vw'
     },
-    // Mobile Media Query
-    "@media (max-width: 768px)": {
-      width: '450px',
-      marginRight: '100px',
-      textAlign: 'center',
-      margin: 'auto'
-
-
-
+    "@media (max-width: 375px)" : {
+      width: '90vw',
+      marginLeft: '1vw'
     }
-
+    
+  },
+  formbar: {
+    marginLeft: '500px'
+  },
+  paper: {
+    marginTop: '75px',
+    marginLeft: '150px',
+    
   },
   mainContainer: {
     display: 'flex',
@@ -47,4 +63,7 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
+  gridContainer1 :{
+    marginLeft: '1vw'
+  }
 }));

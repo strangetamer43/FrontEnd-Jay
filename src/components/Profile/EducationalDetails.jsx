@@ -43,13 +43,13 @@ function EducationalDetails({ currentId, setCurrentId }) {
 
 
         <typography className={classes.smallDetails} >
-          Graduate/Post Graduate: {profiles?.education}
+          Graduate/Post Graduate: {profiles?.data?.education}
         </typography>
         <typography className={classes.smallDetails}>
-          Senior Secondary Education: {profiles?.education1}
+          Senior Secondary Education: {profiles?.data?.education1}
         </typography>
         <typography className={classes.smallDetails}>
-          Secondary Education: {profiles?.education2}
+          Secondary Education: {profiles?.data?.education2}
         </typography>
       </div>
 
@@ -61,4 +61,4 @@ function EducationalDetails({ currentId, setCurrentId }) {
   )
 }
 
-export default EducationalDetails
+export default EducationalDetails;

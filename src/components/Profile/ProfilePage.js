@@ -80,4 +80,4 @@ const ProfilePage = (props) => {
 }
 
 
-export default ProfilePage
+export default ProfilePage;

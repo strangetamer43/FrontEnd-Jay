@@ -11,6 +11,12 @@ export default makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    Navbar: {
+        backgroundColor: '#1a1a1a',
+    },
+    brand: {
+        color: '#e3e3e3'
+    },
     heading: {
         color: 'rgba(0,183,255, 1)',
     },
@@ -108,20 +114,13 @@ export default makeStyles((theme) => ({
 
     }, active: {
         textDecoration: 'none',
+        color: '#e3e3e3',
         "&:active , &:hover": {
-            backgroundColor: '#3C4048'
-        },
-
-
-    },
-    "@media (max-width: 1000px)": {
-        active: {
-            color: 'white',
-            "&:active , &:hover": {
-                backgroundColor: '#3C4056'
-            },
-
+            backgroundColor: '#3C4048',
+            color: '#e3e3e3',
+            borderRadius: '15px'
         }
+
     },
 }
 ));

@@ -52,4 +52,4 @@ const QuestionsPageExternal = () => {
 }
 
 
-export default QuestionsPageExternal
+export default QuestionsPageExternal;

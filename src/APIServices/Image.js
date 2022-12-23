@@ -1,5 +1,5 @@
 import axios from "axios"
-const API = "http://localhost:5000/image";
+const API = "https://usurp.live/image";
 
 export const uploadImage = async (data) => {
     console.log("dkfd")

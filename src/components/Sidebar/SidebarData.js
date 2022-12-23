@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import * as BsIcons from "react-icons/bs";
 import * as MdIcons from "react-icons/md";
 import * as RiIcons from "react-icons/ri";
-
+import * as GiIcons from "react-icons/gi";
 
 export const SidebarData = [
     {
@@ -17,6 +17,12 @@ export const SidebarData = [
         title: 'Contest Dashboard',
         path: '/contests',
         icon: <MdIcons.MdEmojiEvents/>,
+        className:'nav-text'
+    },
+    {
+        title: 'Challenges',
+        path: '/challenge/home',
+        icon: <GiIcons.GiArcheryTarget/>,
         className:'nav-text'
     }, 
     {

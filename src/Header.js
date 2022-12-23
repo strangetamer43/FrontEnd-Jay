@@ -19,60 +19,60 @@ import useStyles from './Navbarstyles';
 
 
 const Header = () => {
-
-
+   
+    
     const classes = useStyles();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const logout = () => {
-        dispatch({ type: 'LOGOUT' });
-        navigate('/');
-        setUser(null);
-    }
-
+      dispatch({ type: 'LOGOUT'});
+      navigate('/');
+      setUser(null);
+  }
+      
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-
+    
     const location = useLocation();
 
     useEffect(() => {
         const token = user?.token;
-        if (token) {
+        if(token) {
             const decodedToken = decode(token);
-            if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+            if(decodedToken.exp * 1000 < new Date().getTime()) logout();
         }
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
-
+    
     return (
-
+        
         <div className={classes.header}>
             <Sidebar />
-            <img className="header-image" style={{ marginLeft: '10vw', width: '2.5vw', height: '2.75vw', }}
-                class_name={classes.headerLogo}
-                src={usurpLogo}
+            <img 
+                className={classes.headerLogo}
+                src={ usurpLogo }
                 alt="usurp-logo"
             />
             <Toolbar className={classes.toolbar}>
                 {user ? (
                     <div className={classes.profile}>
-                        <PointsForHeader />
-                        <typography className={classes.userName} style={{ color: "#e2e2de" }} >{user?.result?.name || user.user.name}</typography>
+                        <PointsForHeader/>
+                        <typography className={classes.userName}  >{user?.result?.name || user.user.name}</typography>
                         <Button component={Link} to='/profile'>
-                            <Avatar className={classes.purple} alt={user?.result?.name || user.user.name} src={user?.result?.imageUrl || user.user.imageUrl}></Avatar>
+                        <Avatar className={classes.purple} alt={user?.result?.name || user.user.name} src={user?.result?.imageUrl || user.user.imageUrl}></Avatar>
                         </Button>
-
-
+                        
+                        
                     </div>
                 ) : (
-                    <Button className={classes.button} fontSize='large' component={Link} to='/'><BiIcons.BiLogIn />&nbsp;Log In</Button>
+                    <Button className={classes.button}  fontSize='large' component={Link} to='/auth'><BiIcons.BiLogIn/>&nbsp;Log In</Button>
                 )}
             </Toolbar>
-
+            
         </div>
-
-
+        
+        
     )
-
+               
 }
 
 export default Header;

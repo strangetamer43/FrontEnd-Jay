@@ -1,8 +1,6 @@
 body {
   background-color: #2a2a2a !important;
-  background-image:
-    radial-gradient(at 99% 98%, hsla(201, 100%, 9%, 0.7) 0px, transparent 40%),
-    radial-gradient(at 0% 2%, hsla(281, 100%, 9%, 0.7) 0px, transparent 40%) !important;
+  
 
   height: 100% !important;
   background-repeat: no-repeat !important;

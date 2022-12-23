@@ -7,7 +7,7 @@ import axios from'axios';
 import useStyles from "./styles";
 function PointsForHeader() {
   const [headerData, setHeaderData] = useState({});
-  
+  const [headerData1, setHeaderData1] = useState({});
   const user = JSON.parse(localStorage.getItem('profile'));
   const name = user?.result?.name;
   useEffect(() =>{
@@ -15,7 +15,7 @@ function PointsForHeader() {
     const formData1 = new FormData();
     
     formData1.append("Name", name);
-    axios({method: 'post', url: 'http://127.0.0.1:5000/rankingspercentileprofiles', data: formData1}).then(res => {
+    axios({method: 'post', url: 'https://2f2t3o.deta.dev/rankingspercentileprofiles', data: formData1}).then(res => {
     
     setHeaderData(res);
   })
@@ -23,14 +23,49 @@ function PointsForHeader() {
       console.error(err);
   })
   }, []);
+
+  useEffect(() =>{
+    
+    const formData2 = new FormData();
+    
+    formData2.append("Name", name);
+    axios({method: 'post', url: 'https://2f2t3o.deta.dev/rankingspercentilequestions', data: formData2}).then(res => {
+    
+    setHeaderData1(res);
+  })
+  .catch(function (err) {
+      console.error(err);
+  })
+  }, []);
+
   const classes = useStyles();
   const dataNew = headerData?.data;
   const dataNew1 = dataNew?.slice(7, dataNew.length - 20);
   const dataNew2 = dataNew1?.replace('":', ':  ');
+  const dataNew3 = parseFloat(dataNew2);
+  const dataQ = headerData1?.data;
+  const dataQ1 = dataQ?.slice(7, dataQ.length - 20);
+  const dataQ2 = dataQ1?.replace('":', ': ');
+  const dataQ3 = parseFloat(dataQ2);
   
+  let total = 0;
+  let totalR = 0;
+  const ViewPoints = () =>{
+    if(!dataQ3){
+      return total = total + dataNew2; 
+    }else if (!dataNew3){
+      return total = total + dataQ2
+    }else{
+      total = parseFloat(total) + dataNew3 + dataQ3
+      return totalR = total.toFixed(2)
+    };
+  };
+  
+ 
   return (
-    <div style={{ marginRight: '15px'}}>
-      <typography variant="h4" style={{ color: '#25b8ef', fontSize: '3.8vh' }}>KP: {dataNew2}</typography>
+    <div className={classes.headerPoints} >
+      <typography variant="h4" className={classes.kpFirst}>KP:&nbsp; </typography>
+      <typography className={classes.kpSecond}><ViewPoints/></typography>
     </div>
   )
 }

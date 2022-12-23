@@ -267,7 +267,7 @@ const CollectResponseScreen = (props) => {
 
 
     React.useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
+        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result);
         var quizId = props.quizId
 
 

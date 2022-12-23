@@ -204,5 +204,3 @@ const Responses = (props) => {
     )
 };
 export default Responses
-
-

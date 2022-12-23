@@ -43,4 +43,4 @@ function CertificationsView({ currentId, setCurrentId, profile }) {
     )
 }
 
-export default CertificationsView
+export default CertificationsView;

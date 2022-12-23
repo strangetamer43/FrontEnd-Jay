@@ -1,5 +1,5 @@
 import axios from "axios";
-const API = axios.create({ baseURL: "http://localhost:5000" })
+const API = axios.create({ baseURL: "https://usurp.live/" })
 
 // Contains the all the API requests for questions
 

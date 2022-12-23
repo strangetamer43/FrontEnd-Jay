@@ -57,7 +57,7 @@ const CollectResponse = (props) => {
     const [responseId, setResponseId] = React.useState(localStorage.getItem("responseid" + props.quizId + user._id) || "")
 
 
-    console.log(user)
+
 
 
 
@@ -228,7 +228,7 @@ const CollectResponse = (props) => {
 
 
     React.useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
+        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result);
         var quizId = props.quizId
 
 

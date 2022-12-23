@@ -1,22 +1,19 @@
 .header {
-    display: flex;
+    display:flex;
     align-items: center;
-    background-color: red;
+    background-color: #022658;
     background: #00ffff;
     justify-content: space-between;
     z-index: -1;
     margin-top: 0;
-
-
-
+    
 }
-
 .button_style {
     border-radius: 2px;
     background: #022658;
-
+    
     color: #fff;
-
+    
     font-weight: 500;
     font-size: 17px;
     padding: 0.7rem 1.2rem;
@@ -24,47 +21,43 @@
     cursor: pointer;
     transition: 0.3s ease;
 }
-
 .header_logo {
     object-fit: contain;
-
-
+    
+    
     height: 15px;
 }
-
-.header-image {
+/* img {
     width: 150px;
     height: 50px;
     justify-content: center;
     overflow: hidden;
-
+    
     margin-top: 0px;
-}
-
+} */
 .header_icon {
     color: white;
 }
-
 body {
     background-color: #778899;
 }
-
 .profile {
     display: 'flex';
     justify-content: 'space-between';
     width: '400px';
     color: #fff;
 }
-
 .toolbar {
     display: 'flex';
     justify-content: 'flex-end';
     width: '400px';
 }
-
 .userName {
     display: 'flex';
     align-items: 'center';
 }
-
-@media screen and (max-width: 650px) {}
+@media screen and (max-width: 650px) {
+    .header {
+      width: 100vh;
+    }
+  }

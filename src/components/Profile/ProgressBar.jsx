@@ -10,6 +10,9 @@ const Bar = styled.div`
     width: 185px;
     -webkit-appearance: none;
     appearance: none;
+    @media only screen and (max-width: 650px) {
+      width: 60px;
+    }
  }
 
  progress[value]::-webkit-progress-bar {
@@ -17,6 +20,9 @@ const Bar = styled.div`
     border-radius: 6px;
     background-color: #616161;
     box-shadow:  1.5px 1.5px 2px 1.5px rgba(5, 5, 10, 0.8),  -1.5px -1.5px 2px 1.5px rgba(255, 255, 255, 0.20);
+    @media only screen and (max-width: 650px) {
+      height: 9px;
+    }
  }
  progress[value]::-webkit-progress-value {
     height: 18px;
@@ -24,6 +30,9 @@ const Bar = styled.div`
     background: linear-gradient(90deg, rgba(145,2,238,1) 0%, rgba(37,184,239,1) 100%);
     
     box-shadow:  inset 1.5px 1.5px 2px 1.5px rgba(5, 5, 10, 0.35), inset -1.5px -1.5px 2px 1.5px rgba(5, 5, 10, 0.35);
+    @media only screen and (max-width: 650px) {
+      height: 9px;
+    }
  }
 
 `;

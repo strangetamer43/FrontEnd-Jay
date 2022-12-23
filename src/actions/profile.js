@@ -7,11 +7,11 @@ export const getProfiles = () => async (dispatch) => {
         dispatch({ type: START_LOADING });
         const { data } = await api.fetchProfiles();
         dispatch({ type: FETCH_ALL, payload: data });
-        dispatch({ type: END_LOADING });
+        dispatch({ type: END_LOADING});
     } catch (error) {
         console.log(error);
     }
-
+    
 }
 
 
@@ -20,26 +20,25 @@ export const getProfile = (id) => async (dispatch) => {
         dispatch({ type: START_LOADING });
         const { data } = await api.fetchProfile(id);
         dispatch({ type: FETCH_PROFILE, payload: data });
-        dispatch({ type: END_LOADING });
+        dispatch({ type: END_LOADING});
     } catch (error) {
         console.log(error);
     }
-
+    
 }
-export const createProfile = (profile, navigate) => async (dispatch) => {
+export const createProfile = (profile) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
         const { data } = await api.createProfile(profile);
-        dispatch({ type: CREATE, payload: data });
-        dispatch({ type: END_LOADING });
+        dispatch({type: CREATE, payload: data});
+        dispatch({ type: END_LOADING});
     } catch (error) {
         console.log(error);
     }
 }
 export const updateProfile = (id, profile) => async (dispatch) => {
-
     try {
-        const { data } = await api.updateProfile(id, profile);
+        const data  = await api.updateProfile(id, profile);
         dispatch({ type: UPDATE, payload: data });
     } catch (error) {
         console.log(error);
@@ -48,29 +47,29 @@ export const updateProfile = (id, profile) => async (dispatch) => {
 export const getUserProfile = (userProfile) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
-        const { data: { data } } = await api.fetchUserProfile(userProfile);
-
+        const { data } = await api.fetchUserProfile(userProfile);
+        console.log(data);
         dispatch({ type: FETCH_USER_PROFILE, payload: data });
-        dispatch({ type: END_LOADING });
-
+        dispatch({ type: END_LOADING});
+        
     } catch (error) {
         console.log(error);
     }
-
+    
 }
 export const getSpecificUserProfile = (userId) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
         const reqdata = {
-            userId: userId
+            creator: userId
         }
         const { data } = await api.fetchSpecificUserProfile(reqdata);
-
+        
         dispatch({ type: FETCH_SPECIFIC_USER_PROFILE, payload: data });
-        dispatch({ type: END_LOADING });
-
+        dispatch({ type: END_LOADING});
+        
     } catch (error) {
         console.log(error);
     }
-
+    
 }

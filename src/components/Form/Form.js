@@ -76,6 +76,7 @@ const Form = ({ currentId, setCurrentId }) => {
             </Paper>
         );
     }
+    
     return (
         <Container maxWidth='lg'>
         <Paper className={classes.paper}>
@@ -84,8 +85,8 @@ const Form = ({ currentId, setCurrentId }) => {
                
                 <TextField className={classes.Field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef'}}} style={{marginBottom: '1vh'}} label="Title" fullWidth  onChange={(e) => setTitle(e.target.value )} />    
                 <TextField className={classes.Field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef'}}} style={{marginBottom: '1vh'}}  label="Post Body" fullWidth rows={5} multiline onChange={(e) => setMessage(  e.target.value )} />     
-                <TextField className={classes.Field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef'}}} style={{marginBottom: '1vh'}}  label="Skills (Use commas without spaces)" fullWidth  onChange={(e) => setTags(e.target.value.split(','))} />
-                <typography style={{ fontSize: '1.8vh', color: '#c935ff',marginTop: '1vh'}}>Upload an Image or a Video (max size: image(5MB) video(100MB))</typography>
+                <TextField className={classes.Field} InputLabelProps={{ style: {color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh'}}} InputProps={{ disableUnderline: true, style: {marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef'}, classes: {font: classes.label}}} style={{marginBottom: '1vh'}}  label="Skills" fullWidth  onChange={(e) => setTags(e.target.value.split(','))} />
+                <typography className={classes.choice}>Upload an Image or a Video (max size: image(5MB) video(100MB))</typography>
                 <div className={classes.fileInput}>
                     
                     <label htmlFor="image">
@@ -93,9 +94,9 @@ const Form = ({ currentId, setCurrentId }) => {
                     <input type='file' onChange={handleFilechange} name="file" accept="image/*"  id="image" multiple hidden />
                     <typography style={{ fontSize: '10px', color: '#c935ff'}}>{image?.name}</typography>
                     </label>
-                    <typography style={{ color: '#c935ff', marginLeft: '2vw' }}>Or</typography>
+                    <typography className={classes.Or}>Or</typography>
                     <label htmlFor="video">
-                    <BsIcons.BsFillCameraVideoFill style={{color: '#25b8ef', cursor: 'pointer', marginLeft: '75px',}} size={30}/>
+                    <BsIcons.BsFillCameraVideoFill style={{color: '#25b8ef', cursor: 'pointer', marginLeft: '75px'}} size={30}/>
                     <input type='file' onChange={handleFilechange1} name="file" accept="video/*"  id="video" hidden />
                     <typography style={{ fontSize: '10px', marginLeft: '75px', color: '#c935ff'}}>{video?.name}</typography>
                     </label>
@@ -105,7 +106,7 @@ const Form = ({ currentId, setCurrentId }) => {
                 
                 
                 </form>
-                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginLeft: '-15vw', marginTop: '3vh' }}>
+                <div className={classes.buttonsBelow}>
                     <button className={classes.ButtonS} onClick={handleSubmit} >Submit</button>
                     <button className={classes.ButtonC}  onClick={clear} >Clear</button>
                 </div>

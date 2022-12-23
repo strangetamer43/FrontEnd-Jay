@@ -11,9 +11,9 @@ import { Grid } from "@material-ui/core"
 import { FormControl, InputLabel, Select, MenuItem, FormHelperText } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/CloseOutlined"
 const FormPRemExp = ({ currentId, setCurrentId, handleClose, profile }) => {
-    const [profileData, setProfileData] = useState(profile);
+    const [profileData, setProfileData] = useState(profile?.data);
     const user = JSON.parse(localStorage.getItem('profile'));
-    const [experience, setExperience] = useState(profile?.experiences)
+    const [experience, setExperience] = useState(profile?.data?.experiences)
 
     const profileName = user?.result?.name;
     const email = user?.result?.email;
@@ -34,7 +34,7 @@ const FormPRemExp = ({ currentId, setCurrentId, handleClose, profile }) => {
         setProfileData(temp)
 
         if (profile) {
-            dispatch(updateProfile(profile._id, { ...profileData, name: user?.result?.name, avatarUrl: user.result?.imageUrl }));
+            dispatch(updateProfile(profile?.data?._id, { ...profileData, name: user?.result?.name, avatarUrl: user.result?.imageUrl }));
 
         } else {
             dispatch(createProfile({ ...profileData, name: user?.result?.name, avatarUrl: user?.result?.imageUrl }, navigate));

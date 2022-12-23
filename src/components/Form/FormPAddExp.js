@@ -11,7 +11,7 @@ import { Grid } from "@material-ui/core"
 import { FormControl, InputLabel, Select, MenuItem, FormHelperText } from "@material-ui/core";
 
 const FormPAddExp = ({ currentId, setCurrentId, handleClose, profile }) => {
-    const [profileData, setProfileData] = useState(profile);
+    const [profileData, setProfileData] = useState(profile?.data);
     const user = JSON.parse(localStorage.getItem('profile'));
     const [startDate, setStartDate] = React.useState(
         new Date("2014-08-18T21:11:54")
@@ -24,7 +24,7 @@ const FormPAddExp = ({ currentId, setCurrentId, handleClose, profile }) => {
     const profileName = user?.result?.name;
     const email = user?.result?.email;
 
-    console.log(currentId)
+    
     const classes = useStyles();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -47,18 +47,18 @@ const FormPAddExp = ({ currentId, setCurrentId, handleClose, profile }) => {
     //     }
     //     handleSubmit(e)
     // }
-
+    console.log(experience);
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        console.log("heo")
+        
         handleClose()
-        const tempData = profileData.experiences.push(experience)
-
+        const tempData = profileData?.experiences?.push(experience)
+        
         setProfileData({ ...profileData, experiences: tempData })
-
+        console.log(tempData);
         if (profile) {
-            dispatch(updateProfile(profile._id, { ...profileData, name: user?.result?.name, avatarUrl: user.result?.imageUrl }));
+            dispatch(updateProfile(profile?.data?._id, { ...profileData, name: user?.result?.name, avatarUrl: user.result?.imageUrl }));
 
         } else {
             dispatch(createProfile({ ...profileData, name: user?.result?.name, avatarUrl: user?.result?.imageUrl }, navigate));
@@ -101,11 +101,11 @@ const FormPAddExp = ({ currentId, setCurrentId, handleClose, profile }) => {
         <Container >
             <Paper className={classes.paper}>
                 <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                    <typography className={classes.formTitle} >Experiences</typography>
+                    <typography className={classes.formTitle} >Previous Experience</typography>
 
-                    <TextField value={experience?.title} name="title" label="Title" InputLabelProps={{ style: { color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh' } }} InputProps={{ disableUnderline: true, style: { marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef' } }} style={{ borderRadius: '15px', border: '1px solid #25b8ef' }} fullWidth onChange={(e) => setExperience({ ...experience, title: e.target.value })} />
+                    <TextField value={experience?.data?.title} name="title" label="Title" InputLabelProps={{ style: { color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh' } }} InputProps={{ disableUnderline: true, style: { marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef' } }} style={{ borderRadius: '15px', border: '1px solid #25b8ef' }} fullWidth onChange={(e) => setExperience({ ...experience, title: e.target.value })} />
                     &nbsp;
-                    <TextField value={experience?.company} name="company" label="Company" InputLabelProps={{ style: { color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh' } }} InputProps={{ disableUnderline: true, style: { marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef' } }} style={{ borderRadius: '15px', border: '1px solid #25b8ef' }} fullWidth onChange={(e) => setExperience({ ...experience, company: e.target.value })} />
+                    <TextField value={experience?.data?.company} name="company" label="Company" InputLabelProps={{ style: { color: '#25b8ef', fontFamily: 'Montserrat, sans-serif', marginTop: '-0.05vh', marginLeft: '1vh' } }} InputProps={{ disableUnderline: true, style: { marginLeft: '1vh', marginRight: '1vh', color: '#25b8ef' } }} style={{ borderRadius: '15px', border: '1px solid #25b8ef' }} fullWidth onChange={(e) => setExperience({ ...experience, company: e.target.value })} />
                     &nbsp;
                     <FormControl sx={{ m: 1, minWidth: 120 }} style={{ "margin": "10px" }}>
 
@@ -113,7 +113,7 @@ const FormPAddExp = ({ currentId, setCurrentId, handleClose, profile }) => {
                         <Select
                             labelId="demo-simple-select-helper-label"
                             id="demo-simple-select-helper"
-                            value={experience.emptype}
+                            value={experience?.data?.emptype}
                             label="Type"
                             onChange={handleTypeChange}
                             style={{ color: '#25b8ef', marginLeft: '1vh' }}
@@ -121,7 +121,7 @@ const FormPAddExp = ({ currentId, setCurrentId, handleClose, profile }) => {
 
                         >
 
-                            <MenuItem value="Full Time" style={{ color: '#25b8ef', marginLeft: '1vh' }}>Full Time</MenuItem>
+                            <MenuItem value="Full Time" style={{ color: '#000000', marginLeft: '1vh' }}>Full Time</MenuItem>
                             <MenuItem value="Part Time" style={{ color: '#25b8ef', marginLeft: '1vh' }}>Part Time</MenuItem>
                             <MenuItem value="FreeLancer" style={{ color: '#25b8ef', marginLeft: '1vh' }}>FreeLancer</MenuItem>
                         </Select>
@@ -160,7 +160,7 @@ const FormPAddExp = ({ currentId, setCurrentId, handleClose, profile }) => {
                                     value={endDate}
                                     onChange={handleEndDateChange}
                                     style={{ "margin": "10px" }}
-                                    disabled={experience.current}
+                                    disabled={experience?.data?.current}
 
                                 />
                             </Grid>

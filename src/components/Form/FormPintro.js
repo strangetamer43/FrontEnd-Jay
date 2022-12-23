@@ -8,27 +8,27 @@ import { useNavigate } from 'react-router-dom';
 import { createProfile, updateProfile } from "../../actions/profile";
 
 const FormPintro = ({ currentId, setCurrentId, handleClose, profile }) => {
-    const [profileData, setProfileData] = useState(profile);
+    const [profileData, setProfileData] = useState(profile?.data);
     const user = JSON.parse(localStorage.getItem('profile'));
 
     const profileName = user?.result?.name;
     const email = user?.result?.email;
 
-    console.log(currentId)
+    
     const classes = useStyles();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("heo")
+        
         handleClose()
         setProfileData({ ...profileData, name: e.target.profileName })
 
 
 
-        if (profile) {
-            dispatch(updateProfile(profile._id, { ...profileData, name: user?.result?.name, avatarUrl: user.result?.imageUrl }));
+        if (profile?.data) {
+            dispatch(updateProfile(profile?.data?._id, { ...profileData, name: user?.result?.name, avatarUrl: user.result?.imageUrl }));
 
         } else {
             dispatch(createProfile({ ...profileData, name: user?.result?.name, avatarUrl: user?.result?.imageUrl }, navigate));
@@ -39,7 +39,7 @@ const FormPintro = ({ currentId, setCurrentId, handleClose, profile }) => {
 
 
     }
-
+    console.log(profile?.data);
     if (!user?.result?.name) {
         return (
             <Paper className={classes.paper}>

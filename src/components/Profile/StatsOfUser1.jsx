@@ -27,7 +27,7 @@ function StatsOfUser1() {
         const formData = new FormData();
         formData.append("Name", user?.result?.name)
         
-        axios({method: 'post', url: 'http://127.0.0.1:5000/rankingspercentileprofiles', data: formData}).then(res => {
+        axios({method: 'post', url: 'https://2f2t3o.deta.dev/rankingspercentileprofiles', data: formData}).then(res => {
         
         setDataP(res);
         
@@ -42,7 +42,7 @@ function StatsOfUser1() {
           
           const formData1 = new FormData();
           formData1.append("Name", user?.result?.name)
-          axios({method: 'post', url: 'http://127.0.0.1:5000/rankinsgpercentileusers', data: formData1}).then(res => {
+          axios({method: 'post', url: 'https://2f2t3o.deta.dev/rankinsgpercentileusers', data: formData1}).then(res => {
           setDataT(res);
           
         })
@@ -56,7 +56,7 @@ function StatsOfUser1() {
       setOpenH(true);
       const formData2 = new FormData();
       formData2.append("Name", user?.result?.name)
-      axios({method: 'post', url: 'http://127.0.0.1:5000/rateofposts', data: formData2}).then (res => {
+      axios({method: 'post', url: 'https://2f2t3o.deta.dev/rateofposts', data: formData2}).then (res => {
         setPostdataFreq(res);
     })
     .catch(function (err) {
@@ -202,10 +202,10 @@ function StatsOfUser1() {
         </Paper>
         </Modal>
         <Modal open={openP} >
-          <Paper className={classes.Modal}>
+          <Paper className={classes.Modal1}>
             
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <typography>Skill Percentile</typography>
+            <typography className={classes.h6}>Skill Percentile</typography>
           <Button onClick={handleCloseP}><ImIcons.ImCross  style={{color: '#03dac6', cursor: 'pointer'}} size={20}/></Button>
           </div>
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
@@ -265,11 +265,12 @@ function StatsOfUser1() {
         
         <Modal open={openH} onClose={handleCloseH} >
           <Paper className={classes.Modal}>
-            <div style={{ display: 'flex', flexDirection: 'column' , justifyContent: 'space-between'}}>
+          <typography className={classes.h6}>Post Frequency</typography>
+            <div style={{ display: 'flex', flexDirection: 'column' , justifyContent: 'space-between', marginTop: '2vh'}}>
             <typography className={classes.frequencyDet}>Daily Frequency: {postfreqdata?.Rate_Daily}</typography>
-            <typography>Weekly Frequency: {postfreqdata?.Rate_Weekly}</typography>
-            <typography>Monthly Frequency: {postfreqdata?.Rate_Monthly}</typography>
-            <typography>Total Posts: {postfreqdata?.Total_Posts}</typography>
+            <typography className={classes.frequencyDet}>Weekly Frequency: {postfreqdata?.Rate_Weekly}</typography>
+            <typography className={classes.frequencyDet}>Monthly Frequency: {postfreqdata?.Rate_Monthly}</typography>
+            <typography className={classes.frequencyDet}>Total Posts: {postfreqdata?.Total_Posts}</typography>
             </div>
           </Paper>
         </Modal>

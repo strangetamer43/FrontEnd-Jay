@@ -1,5 +1,5 @@
 import axios from "axios";
-const API = axios.create({ baseURL: "http://localhost:5000" })
+const API = axios.create({ baseURL: "https://usurp.live" })
 
 // contains all the API requests for the reponse 
 
@@ -47,4 +47,3 @@ export const getResponseByUserName = async (value) => {
 export const createResponse = async () => {
     return API.get("/createResponse");
 }
-

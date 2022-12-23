@@ -27,6 +27,8 @@ function IntroductionAndGoals({ currentId, setCurrentId }) {
   useEffect(() => {
     dispatch(getUserProfile());
   }, [currentId, dispatch]);
+  
+  
   return (
     <Paper className={classes.IntroPaper} elevation={7}>
 
@@ -35,9 +37,9 @@ function IntroductionAndGoals({ currentId, setCurrentId }) {
 
       <typography className={classes.IntroHead} > Introduction and Goals of {user?.result?.name}</typography>
       <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-        <typography className={classes.smallDetails}>Introduction: {profiles?.introduction}</typography>
+        <typography className={classes.smallDetails}>Introduction: {profiles?.data?.introduction}</typography>
 
-        <typography className={classes.smallDetails}>Goals: {profiles?.goals}</typography>
+        <typography className={classes.smallDetails}>Goals: {profiles?.data?.goals}</typography>
       </div>
 
       <Modal open={open} onClose={handleClose}>

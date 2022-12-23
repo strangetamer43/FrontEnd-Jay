@@ -4,7 +4,7 @@ export default makeStyles({
     leftSide: {
         marginTop: '15vh',
         marginLeft: '5vw',
-        width: '50vw',
+        width: '85vw',
         "@media (min-width:1400)": {
 
         },
@@ -22,13 +22,13 @@ export default makeStyles({
         // Mobile Media Query    
         "@media (max-width: 768px)": {
             marginLeft: '0',
-            width: '35vw'
+            width: '85vw'
         }
     },
     rightSide: {
         marginTop: '10vh',
 
-        width: '50vw',
+        width: '85vw',
         "@media (min-width:1400)": {
 
         },
@@ -46,7 +46,7 @@ export default makeStyles({
         // Mobile Media Query    
         "@media (max-width: 768px)": {
             marginLeft: '0',
-            width: '35vw'
+            width: '85vw'
         }
     },
     challenges: {
@@ -228,7 +228,98 @@ export default makeStyles({
     text: {
         color: '#ffffff',
         fontfamily: 'Montserrat, sans-serif',
-        fontWeight: '600'
-    }
-
+        fontWeight: '600',
+        fontSize: '4vh',
+        "@media (max-width: 650px)": {
+            fontSize: '2.5vh',
+        },
+        "@media (max-width: 450px)": {
+            fontSize: '2vh',
+        }
+    },
+    text1: {
+        
+        fontfamily: 'Montserrat, sans-serif',
+        fontWeight: '600',
+        fontSize: '4vh',
+        "@media (max-width: 650px)": {
+            fontSize: '2.5vh',
+        },
+        "@media (max-width: 450px)": {
+            fontSize: '2vh',
+        }
+    },
+    textSub: {
+        color: '#ffffff',
+        fontfamily: 'Montserrat, sans-serif',
+        fontWeight: '600',
+        fontSize: '2vh',
+        "@media (max-width: 650px)": {
+            fontSize: '1.5vh',
+        },
+        "@media (max-width: 450px)": {
+            fontSize: '1.3vh',
+        }
+    },
+    textSub1: {
+        
+        fontfamily: 'Montserrat, sans-serif',
+        fontWeight: '600',
+        fontSize: '2vh',
+        "@media (max-width: 650px)": {
+            fontSize: '1.5vh',
+        },
+        "@media (max-width: 450px)": {
+            fontSize: '1.3vh',
+        }
+    },
+    buttonText: {
+        color: 'white', 
+        fontSize: '2vh',
+        "@media (max-width: 650px)": {
+            fontSize: '1.5vh',
+        },
+        "@media (max-width: 450px)": {
+            fontSize: '1.2vh',
+        }
+    },
+    Model: {
+        
+        width: '500px',
+        height: '500px',
+        "@media (max-width: 650px)": {
+            width: '250px',
+            height: '250px',
+        },
+        "@media (max-width: 450px)": {
+            width: '200px',
+            height: '200px',
+        }
+    },
+    Model1: {
+        width: '300px',
+        height: '300px',
+        marginLeft: '50px',
+        "@media (max-width: 650px)": {
+            width: '150px',
+            height: '150px',
+        },
+        "@media (max-width: 450px)": {
+            width: '100px',
+            height: '100px',
+        }
+    },
+    ModelCommunity: {
+        
+        width: '500px',
+        height: '500px',
+        "@media (max-width: 650px)": {
+            width: '200px',
+            height: '200px',
+        },
+        "@media (max-width: 450px)": {
+            width: '150px',
+            height: '150px',
+        }
+    },
 });

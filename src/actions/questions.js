@@ -6,29 +6,29 @@ export const getQuestions = () => async (dispatch) => {
         dispatch({ type: START_LOADING });
         const { data } = await api.fetchQuestions();
         dispatch({ type: FETCH_ALL, payload: data });
-        dispatch({ type: END_LOADING });
+        dispatch({ type: END_LOADING});
     } catch (error) {
         console.log(error);
     }
-
+    
 }
 export const getQuestion = (id) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
         const { data } = await api.fetchQuestion(id);
         dispatch({ type: FETCH_QUESTION, payload: data });
-        dispatch({ type: END_LOADING });
+        dispatch({ type: END_LOADING});
     } catch (error) {
         console.log(error);
     }
-
+    
 }
 export const getQuestionsBySearch = (searchQuery) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
         const { data: { data } } = await api.fetchQuestionsBySearch(searchQuery);
         dispatch({ type: FETCH_BY_SEARCH, payload: data });
-        dispatch({ type: END_LOADING });
+        dispatch({ type: END_LOADING});
     } catch (error) {
         console.log(error);
     }
@@ -38,8 +38,8 @@ export const createQuestion = (formData, navigate) => async (dispatch) => {
         dispatch({ type: START_LOADING });
         const { data } = await api.createQuestion(formData);
         navigate(`/questions/${data._id}`);
-        dispatch({ type: CREATE, payload: data });
-        dispatch({ type: END_LOADING });
+        dispatch({type: CREATE, payload: data});
+        dispatch({ type: END_LOADING});
     } catch (error) {
         console.log(error);
     }
@@ -56,7 +56,7 @@ export const updateQuestion = (id, question) => async (dispatch) => {
 export const deleteQuestion = (id) => async (dispatch) => {
     try {
         await api.deleteQuestion(id);
-        dispatch({ type: DELETE, payload: id });
+        dispatch({ type: DELETE, payload: id});
     } catch (error) {
         console.log(error);
     }
@@ -79,7 +79,7 @@ export const disLikeQuestion = (id) => async (dispatch) => {
 }
 export const commentQuestion = (value, id) => async (dispatch) => {
     try {
-        const { data } = await api.commentQ(value, id);
+        const { data } = await api.commentQ(value, id);   
         dispatch({ type: COMMENT, payload: data });
         return data.comments;
     } catch (error) {
@@ -94,26 +94,26 @@ export const getUserQuestions = (userId) => async (dispatch) => {
         }
 
 
-        const { data: { data } } = await api.fetchSpecificUserQuestions(send);
-
+        const { data: { data } } = await api.fetchUserQuestions(send);
+        console.log(data);
         dispatch({ type: FETCH_USER_QUESTIONS, payload: data });
-        dispatch({ type: END_LOADING });
-
+        dispatch({ type: END_LOADING});
+        
     } catch (error) {
         console.log(error);
     }
-
+    
 }
 export const getSpecificUserQuestions = (specificUserQuestions) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
-        const { data } = await api.fetchSpecificUserQuestions(specificUserQuestions);
-
+        const { data }  = await api.fetchSpecificUserQuestions(specificUserQuestions);
+        
         dispatch({ type: FETCH_SPECIFIC_USER_QUESTIONS, payload: data });
-        dispatch({ type: END_LOADING });
-
+        dispatch({ type: END_LOADING});
+        
     } catch (error) {
         console.log(error);
     }
-
+    
 }

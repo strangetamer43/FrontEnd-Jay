@@ -30,4 +30,4 @@ function IntroductionAndGoalsView({ currentId, setCurrentId, profile }) {
     )
 }
 
-export default IntroductionAndGoalsView
+export default IntroductionAndGoalsView;

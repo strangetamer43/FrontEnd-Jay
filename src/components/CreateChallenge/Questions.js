@@ -464,7 +464,7 @@ const Questions = (props) => {
                         <AccordionSummary
                             aria-controls="panel1a-content"
                             id="panel1a-header"
-                            elevation={1} style={{ width: '120%' }}
+                            elevation={1} style={{ width: '100%' }}
                             className="summary"
                         >
 

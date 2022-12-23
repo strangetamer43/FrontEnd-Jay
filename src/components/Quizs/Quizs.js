@@ -7,7 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Quiz from './Quiz/Quiz';
 import NavBar from '../NavBar/NavBar';
 import Form from 'react-bootstrap/Form';
-import { createUser } from '../../APIServices/User';
+import { createUser } from '../../APIServices/UserAPI';
 
 
 const Quizs = ({ user }) => {
@@ -68,7 +68,7 @@ const Quizs = ({ user }) => {
                     {isLoading ? (<CircularProgress />) : ""}
 
                     <Container className={classes.cardGrid} maxWidth="lg">
-                        <Form className="d-flex" >
+                        <Form className="d-flex">
                             <Form.Control
                                 type="search"
                                 placeholder="Search"

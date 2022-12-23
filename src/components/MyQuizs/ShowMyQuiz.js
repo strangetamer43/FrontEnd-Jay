@@ -159,7 +159,7 @@ const ShowMyQuiz = () => {
                     </div>
                 </div>
             ) : (
-                <p>you're not the owner of the form</p>
+                <p style={{color: 'white'}}>You're not the owner of this test!!</p>
             )}
         </div>
     );

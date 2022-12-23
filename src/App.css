@@ -3,14 +3,12 @@
 * {
   box-sizing: border-box;
   margin: 0px;
-
+  
   font-family: 'Montserrat', sans-serif;
 }
-
 body {
-  cursor: url(./components/Auth/usurp-logo-white.png), auto;
+  cursor: url(./components/Auth/usurp-logo-white.png) , auto;
 }
-
 .content_feed, .contest_dashboard, .question_feed, .profile_page {
   display: flex;
   height: 90vh;
@@ -18,3 +16,4 @@ body {
   justify-content: center;
   font-size: 3rem;
 }
+

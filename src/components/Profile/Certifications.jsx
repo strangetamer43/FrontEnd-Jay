@@ -40,11 +40,11 @@ function Certifications({ currentId, setCurrentId }) {
             Certifications or courses
           </typography>
 
-
-          <typography className={classes.smallDetails} >
-            {profiles?.certifications?.map((certification) => certification)}
-          </typography>
-
+          <div className={classes.smallDetails1}>
+          
+            {profiles?.data?.certifications?.map((certification) => <typography className={classes.smallDetails} >{certification}</typography>)}
+          
+          </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -52,7 +52,7 @@ function Certifications({ currentId, setCurrentId }) {
             Certification URL's
           </typography>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            {profiles?.certificationURL?.map((certificationURL) => <Link to={{ pathname: certificationURL }} target="_blank"> {certificationURL}</Link>)}
+            {profiles?.data?.certificationURL?.map((certificationURL) => <Link to={{ pathname: certificationURL }} target="_blank"> {certificationURL}</Link>)}
           </div>
         </div>
       </div>
@@ -64,4 +64,4 @@ function Certifications({ currentId, setCurrentId }) {
   )
 }
 
-export default Certifications
+export default Certifications;
