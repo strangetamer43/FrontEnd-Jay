@@ -17,6 +17,7 @@ export const submitResponse = async (data) => {
 }
 
 
+
 export const getResponseByQuizId = async (quizId) => {
     console.log(quizId)
     return API.get(`/getResponseByQuizId/${quizId}`);

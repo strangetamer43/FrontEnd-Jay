@@ -230,7 +230,7 @@ const MyQuizs = () => {
                                     value={insvalue}
                                     onChange={(e) => { setInsValue(e.target.value) }}
                                 />
-                                <Button onClick={handleAddInstruction} color="primary" size="small" startIcon=<AddCircle />>
+                                <Button onClick={handleAddInstruction} color="primary" size="small" startIcon={<AddCircle />}>
                                     ADD
                                 </Button>
                             </div>

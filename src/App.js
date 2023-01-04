@@ -6,8 +6,8 @@ import Auth from "./components/Auth/Auth";
 import Cookies from "universal-cookie";
 import './components/Auth/Style.scss' 
 import ProfilePage from "./components/Profile/ProfilePage";
-
-
+import TermsOfService from "./components/TermsOfService/TermsOfService";
+import ContactUs from "./components/TermsOfService/ContactUs";
 import Header from "./Header";
 import { BrowserRouter, Route, Routes, useLocation, Navigate } from "react-router-dom";
 import ContentFeed from "./components/Feed/ContentFeed";
@@ -31,13 +31,14 @@ import ViewTasks from './components/Tasks/ViewTasks';
 import MyQuizs from './components/MyQuizs/MyQuizs';
 import ShowMyQuiz from "./components/MyQuizs/ShowMyQuiz"
 import CollectResponse from './components/Response/CollectResponse';
+import EntryPageForRecruiters from './components/EntryPage/EntryPageForRecruiters';
 import ResponseSuccess from './components/Response/ResponseSuccess';
 import Check from './components/Response/Check';
 import MyResponses from './components/MyQuizs/MyResponses';
 import QuestionsPageExternal from "./components/Profile/QuestionPageExternal";
 import CreateTask from './components/Tasks/CreateTask';
 import UsingTheApp from './components/Helper/UsingTheApp';
-import Profiles from './components/ProfilesForClients/Profiles';
+import PrivacyPolicy from "./components/TermsOfService/PrivacyPolicy";
 const user = JSON.parse(localStorage.getItem('profile'));
 const App = () => { 
   
@@ -57,8 +58,10 @@ const App = () => {
           
         <Route element={<WithoutHeader />}>
           <Route path="/auth" element={<Auth />} />
+          
           <Route element={<WithFooter />}>
             <Route path='/' exact element={<EntryPage1/>} />
+            <Route path='/recruiters' exact element={<EntryPageForRecruiters/>}/>
           </Route>
           <Route exact path="/challenge/home" element={<HomePage />} />
           <Route exact path="/myChallenges" element={<MyQuizs />} />
@@ -82,14 +85,24 @@ const App = () => {
             <Route path='/questionspage' exact element={<QuestionsPage/>} />
             <Route path='/questionspage/:id' exact element={<QuestionsPageExternal />} />
             <Route path='/profile/:id' exact element={<UserProfile/>} />
+            <Route element={<WithFooter />}>
             <Route path='/about' exact element={<AboutUsurp/>} />
+            <Route path='/termsofservice'exact element={<TermsOfService/>} />
+            <Route path='/privacypolicy' exact element={<PrivacyPolicy/>} />
+            <Route path='/contactus' exact element={<ContactUs/>} />
+            </Route>
             <Route path='/chat' exact element={<ChatFunction/>} />
             <Route path='/userprofile' exact element={<CheckProfile/>} />
+            <Route element={<WithFooter />}>
             <Route path='/gettingstarted' exact element={<GettingStarted/>} />
+            </Route>
+            <Route element={<WithFooter />}>
             <Route path='/usingapp' exact element={<UsingTheApp/>} />
+            
+            </Route>
             <Route path='/tasks' exact element={<ViewTasks/>} />
             <Route path='/createtask' exact element={<CreateTask/>} />
-            <Route path='/assetmonk' exact element={<Profiles/>} />
+            
         </Route>
       </Routes>
           

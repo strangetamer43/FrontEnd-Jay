@@ -55,9 +55,11 @@ const CollectResponse = (props) => {
     const [audioLoading, setAudioLoading] = React.useState(false)
     const [disable, setDisable] = React.useState(false)
     const [responseId, setResponseId] = React.useState(localStorage.getItem("responseid" + props.quizId + user._id) || "")
+    const [terms, setTerms] = React.useState(JSON.parse(localStorage.getItem("terms" + props.quizId + user._id)) === false ? false : true)
 
 
 
+    console.log(quizDetails)
 
 
 
@@ -190,6 +192,7 @@ const CollectResponse = (props) => {
                         localStorage.removeItem("attribute" + props.quizId + user._id);
                         localStorage.removeItem("aopen" + props.quizId + user._id);
                         localStorage.removeItem("responseid" + props.quizId + user._id)
+                        localStorage.removeItem("value" + props.quizId + user._id)
 
 
 
@@ -215,6 +218,8 @@ const CollectResponse = (props) => {
             localStorage.setItem("counter" + props.quizId + user._id, counter);
             localStorage.setItem("response" + props.quizId + user._id, JSON.stringify(responseData));
             localStorage.setItem("value" + props.quizId + user._id, value);
+            localStorage.setItem("terms" + props.quizId + user._id, terms);
+
         }
 
 
@@ -228,7 +233,7 @@ const CollectResponse = (props) => {
 
 
     React.useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result);
+        setUser(JSON.parse(localStorage.getItem("profile")).obj ? JSON.parse(localStorage.getItem("profile")).obj : JSON.parse(localStorage.getItem("profile")).result)
         var quizId = props.quizId
 
 
@@ -316,6 +321,7 @@ const CollectResponse = (props) => {
                     localStorage.removeItem("attribute" + props.quizId + user._id);
                     localStorage.removeItem("aopen" + props.quizId + user._id);
                     localStorage.removeItem("responseid" + props.quizId + user._id)
+                    localStorage.removeItem("value" + props.quizId + user._id)
 
                     localStorage.setItem("response", JSON.stringify(data2))
                     localStorage.setItem("result", quizDetails.result.show)
@@ -454,7 +460,7 @@ const CollectResponse = (props) => {
 
                                                             {questions[currentQuestion].qImage !== "" ? (
                                                                 <div>
-                                                                    <img src={questions[currentQuestion].qImage} width="50%" height="auto" alt="questionimage" /><br></br><br></br>
+                                                                    <img src={questions[currentQuestion].qImage} width="150%" height="auto" alt="questionimage" /><br></br><br></br>
 
                                                                 </div>
                                                             ) : ""}
@@ -480,7 +486,7 @@ const CollectResponse = (props) => {
 
                                                                                     <div style={{ display: 'flex', marginLeft: '10px' }}>
                                                                                         {op.image !== "" ? (
-                                                                                            <img src={op.image} width="40%" height="auto" alt="optionImage" />
+                                                                                            <img src={op.image} width="150%" height="auto" alt="optionImage" />
                                                                                         ) : ""}
                                                                                         <Divider />
                                                                                     </div>
@@ -585,6 +591,8 @@ const CollectResponse = (props) => {
                             </DialogActions>
                         </Dialog>
 
+
+
                         <Dialog open={noattempts} onClose={() => { }} aria-labelledby="form-dialog-title">
                             <DialogTitle id="form-dialog-title">Quiz Submission</DialogTitle>
                             <DialogContent>
@@ -639,6 +647,24 @@ const CollectResponse = (props) => {
 
                                 }} color="primary">
                                     OK
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                        {/* Dialog for terms and conditions */}
+                        <Dialog open={quizDetails.terms && terms} onClose={() => { }} aria-labelledby="form-dialog-title" maxWidth="xs">
+                            <DialogTitle id="form-dialog-title">Terms & Conditions</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText>
+                                    <div class="growth">
+                                        {quizDetails?.termsText}
+                                    </div>
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button variant="contained" onClick={() => {
+                                    setTerms(false)
+                                }} color="primary">
+                                    ACCEPT
                                 </Button>
                             </DialogActions>
                         </Dialog>

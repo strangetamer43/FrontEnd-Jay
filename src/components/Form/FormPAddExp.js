@@ -4,7 +4,8 @@ import { TextField, Button, Typography, Paper, Container, Checkbox } from "@mate
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { createProfile, updateProfile } from "../../actions/profile";
+
+import { addExperience, createProfile, updateProfile } from "../../actions/profile";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import { Grid } from "@material-ui/core"
@@ -53,12 +54,12 @@ const FormPAddExp = ({ currentId, setCurrentId, handleClose, profile }) => {
         e.preventDefault();
         
         handleClose()
-        const tempData = profileData?.experiences?.push(experience)
         
-        setProfileData({ ...profileData, experiences: tempData })
-        console.log(tempData);
+        
+        
+        
         if (profile) {
-            dispatch(updateProfile(profile?.data?._id, { ...profileData, name: user?.result?.name, avatarUrl: user.result?.imageUrl }));
+            dispatch(addExperience(profile?.data?._id, { experience }));
 
         } else {
             dispatch(createProfile({ ...profileData, name: user?.result?.name, avatarUrl: user?.result?.imageUrl }, navigate));

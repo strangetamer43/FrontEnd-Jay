@@ -2,7 +2,7 @@ import axios from "axios"
 const API = "https://usurp.live/image";
 
 export const uploadImage = async (data) => {
-    console.log("dkfd")
+    
     return await axios
         .post(API + "/uploadImage", data)
         .then(res => {

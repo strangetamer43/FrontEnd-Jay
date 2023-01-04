@@ -26,7 +26,8 @@ import Legend from '../../Assets/legend.png';
 import UltraL from '../../Assets/ultra legend.png';
 import GodL from '../../Assets/godlike.png';
 import King from '../../Assets/ruler.png';
-import { getSpecificUser } from '../../APIServices/UserAPI';
+
+import axios from'axios';
 const UserProfile = ({ currentId, setCurrentId }) => {
   const params = useParams();
   const classes = useStyles();
@@ -35,7 +36,7 @@ const UserProfile = ({ currentId, setCurrentId }) => {
   const { question, questions } = useSelector((state) => state.questions);
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-  const [userProfile, setUserProfile] = useState({});
+  const [userProfile, setUserProfile] = useState();
   const location = useLocation();
   const id = params.id;
   
@@ -61,13 +62,21 @@ const UserProfile = ({ currentId, setCurrentId }) => {
     dispatch(getSpecificUserQuestions(formDataQ));
   }, [currentId, dispatch]);
 
-  useEffect(() => {
+  useEffect(() =>{
     
-    dispatch(getSpecificUser(id));
+    const formDataU = new FormData();
+    
+    formDataU.append("data", id);
+    axios({method: 'patch', url: 'https://usurp.live/user', data: formDataU}).then(res => {
+    
     setUserProfile(res);
-  }, [dispatch]);
- 
-    
+  })
+  .catch(function (err) {
+      console.error(err);
+  })
+  }, []);
+  
+  
   const sum = posts?.data?.map((post) => post?.likes?.length).reduce((prev, curr) => prev + curr, 0)
   const diff = posts?.data?.map((post) => post?.disLikes.length).reduce((prev, curr) => prev + curr, 0)
   const sum1 = posts?.data?.map((post) => post?.comments?.length).reduce((prev, curr) => prev + curr, 0)
@@ -78,7 +87,7 @@ const UserProfile = ({ currentId, setCurrentId }) => {
   const total = (((sum) * 3 + (sum1) * 5 - diff) / 10) + (((sum2) * 3 + (sum3) * 5 - diff1) / 20);
   const totalR = total.toFixed(2);
   
-  console.log(totalR);
+  
   
   const Level = () => {
     if (0 <= total && total <= 10) {
@@ -195,12 +204,12 @@ const UserProfile = ({ currentId, setCurrentId }) => {
               <div className={classes.details}>
                 <img className={classes.image}
                   class_name="header_logo"
-                  src={profile?.data?.avatarUrl}
+                  src={profile?.data?.avatarUrl || userProfile?.data?.data?.imageUrl}
                   alt="profile-picture"
                 />
 
                 <Typography className={classes.h5} variant="h4"  >
-                {profile?.data?.name}
+                {userProfile?.data?.data?.name}
                 </Typography>
 
                 <div className={classes.details2}>

@@ -18,7 +18,7 @@ export const createUser = async (data) => {
 export const getSpecificUser = async (data) =>{
 
     return await axios
-        .post(API + "/", data)
+        .patch(API + "/", data)
         .then(res => {
             console.log(res);
             return res;

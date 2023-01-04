@@ -222,8 +222,9 @@ function EntryPage() {
         <div className={classes.topButtons}>
         <Button component={Link} to='/auth' className={classes.buttonText}>Log In/Sign Up</Button>
         <Button component={Link} to='/about' className={classes.buttonText}>About Us</Button>
+        <Button component={Link} to='/recruiters' className={classes.buttonText}>For Recruiters/Companies</Button>
         </div>
-        <img style={{ marginLeft: '10vw', width: '15.5vh', height: '18vh'}} src={Logo}></img>    
+        <img style={{ marginLeft: '10vw', width: '15.5vh', height: '20vh'}} src={Logo}></img>    
       
     <div ref={ref4}>
       <motion.div className={classes.leftSide}
@@ -231,8 +232,8 @@ function EntryPage() {
       animate={animation4}>
       <div style={{ display: 'flex', flexDirection: 'row'}}>
       <div>
-      <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text} >Create A Stunning Portfolio</Typography>
-      <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.textSub} >Showcase your skills to the world. Post your projects and articles that make you stand out. Create a lively professional history! 
+      <Typography className={classes.text} >Create A Stunning Portfolio</Typography>
+      <Typography className={classes.textSub} >Showcase your skills to the world. Post your projects and articles that make you stand out. Create a lively professional history! 
       Join the community of like minded individuals to give you feedback and answer any questions!</Typography>
       
       <Link to="/feed"><Button2>Start Now!</Button2></Link>
@@ -243,25 +244,37 @@ function EntryPage() {
       </div>
       </motion.div>
       </div>
-
       <div ref={ref3}>
       <motion.div className={classes.rightSide}
       
       animate={animation3}
+      
       >
       <div style={{ display: 'flex', flexDirection: 'row'}}>
-      <div className={classes.Model}>
-      <Spline scene="https://prod.spline.design/bk3Jl93ffU8drHlZ/scene.splinecode" />
+      <div className={classes.Model}>      
+      <Spline scene="https://prod.spline.design/Wf5ZxDiATCrJRLrv/scene.splinecode" />
       </div>
       <div>
-      <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text} variant='h3'>Participate in exciting and fun Tournaments</Typography>
-      <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.textSub} variant='h5'>Meet like minded people, collaborate, innovate, compete, have fun and learn. Gain practical exposure to industries. Earn jobs, cash prizes and rewards!</Typography>
-      <Link to="/contests"><Button1>Participate Now!</Button1></Link>
-      </div>
+      <Typography  className={classes.text} variant='h3'>Know Yourself Better!</Typography>
+      <Typography  className={classes.textSub} variant='h5'>Take world class reputed psychometric tests. Choose your career path accordingly!</Typography>
+      <div className={classes.challenges}>
+      <Paper style={{ padding: '2vh'}}>
+                <Typography  className={classes.text1} variant='h4'>Career Aptitude tests</Typography>
+                <Typography  className={classes.textSub1} variant='h6'>Login and take the test!</Typography>
+            </Paper>
+            <Paper style={{ padding: '2vh'}}>
+                <Typography  className={classes.text1} variant='h4'>Understanding Self</Typography>
+                <Typography  className={classes.textSub1} variant='h6'>Login and take the test!</Typography>
+            </Paper>
+           
+            
+            </div>
+            </div>
       
       </div>
       </motion.div>
       </div>
+      
       <div ref={ref}>
       <motion.div className={classes.leftSide}
       
@@ -270,20 +283,20 @@ function EntryPage() {
       >
         <div style={{ display: 'flex', flexDirection: 'row'}}>
         <div>
-        <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text} variant='h3'>Conquer Kingdoms To Get Noticed!</Typography>
-        <Typography  style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.textSub} variant='h5'>Game like challenges to make your journey scintilating! Earn KP's, badges and rewards to get noticed easily and secure a job!</Typography>
+        <Typography  className={classes.text} variant='h3'>Conquer Kingdoms To Get Noticed!</Typography>
+        <Typography  className={classes.textSub} variant='h5'>Game like challenges to make your journey scintilating! Earn KP's, badges and rewards to get noticed easily and secure a job!</Typography>
         <div className={classes.challenges}>
             <Paper>
-                <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text1} variant='h4'>Challenge 1</Typography>
-                <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.textSub1} variant='h5'>Skills</Typography>
+                <Typography  className={classes.text1} variant='h4'>Challenge 1</Typography>
+                <Typography  className={classes.textSub1} variant='h5'>Skills</Typography>
             </Paper>
             <Paper>
-                <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text1} variant='h4'>Challenge 2</Typography>
-                <Typography  style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.textSub1} variant='h5'>Skills</Typography>
+                <Typography className={classes.text1} variant='h4'>Challenge 2</Typography>
+                <Typography   className={classes.textSub1} variant='h5'>Skills</Typography>
             </Paper>
             <Paper>
-                <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text1} variant='h4'>Challenge 3</Typography>
-                <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.textSub1} variant='h5'>Skills</Typography>
+                <Typography  className={classes.text1} variant='h4'>Challenge 3</Typography>
+                <Typography  className={classes.textSub1} variant='h5'>Skills</Typography>
             </Paper>
             
         </div>
@@ -303,68 +316,8 @@ function EntryPage() {
         </div>
       </motion.div>
       </div>
-      <div ref={ref2}>
-      <motion.div className={classes.rightSide}
       
-      animate={animation2}
       
-      >
-        <div style={{ display: 'flex', flexDirection: 'row'}}>
-      <div className={classes.Model}>  
-      <Spline scene="https://prod.spline.design/ECJTMh9lhmvTVmq2/scene.splinecode" />
-      </div>
-      <div>
-      <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text} variant='h3'>Upskill with our groundbreaking bootcamps</Typography>
-      <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.textSub}  variant='h5'>Automated, immersive and personalised learning experience. You learn however you wish!</Typography>
-      <div className={classes.challenges}>
-      <Paper>
-                <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text1} variant='h4'>Bootcamp 1</Typography>
-                <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.textSub1} variant='h5'>Skills</Typography>
-            </Paper>
-            <Paper>
-                <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text1} variant='h4'>Bootcamp 2</Typography>
-                <Typography  style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.textSub1} variant='h5'>Skills</Typography>
-            </Paper>
-            <Paper>
-                <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text1} variant='h4'>Bootcamp 3</Typography>
-                <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.textSub1} variant='h5'>Skills</Typography>
-            </Paper>
-            
-            </div>
-            <Button1>And Much More!</Button1> 
-            </div>  
-            </div>    
-      </motion.div>
-      </div>
-      <div ref={ref1}>
-      <motion.div className={classes.leftSide}
-      
-      animate={animation1}
-      
-      >
-      <div style={{ display: 'flex', flexDirection: 'row'}}>
-      <div>
-      <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text} variant='h3'>Know Yourself Better</Typography>
-      <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.textSub} variant='h5'>Take world class reputed psychometric tests. Choose your career path accordingly!</Typography>
-      <div className={classes.challenges}>
-      <Paper>
-                <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text1} variant='h4'>Career Aptitude test</Typography>
-                
-            </Paper>
-            <Paper>
-                <Typography style={{ fontFamily: 'Montserrat, sans-serif'}} className={classes.text1} variant='h4'>Understanding Self</Typography>
-                
-            </Paper>
-           
-            
-            </div>
-            </div>
-      <div className={classes.Model}>      
-      <Spline scene="https://prod.spline.design/Wf5ZxDiATCrJRLrv/scene.splinecode" />
-      </div>
-      </div>
-      </motion.div>
-      </div>
       
 
       </Container>

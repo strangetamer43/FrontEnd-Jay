@@ -52,7 +52,7 @@ function Certifications({ currentId, setCurrentId }) {
             Certification URL's
           </typography>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            {profiles?.data?.certificationURL?.map((certificationURL) => <Link to={{ pathname: certificationURL }} target="_blank"> {certificationURL}</Link>)}
+            {profiles?.data?.certificationURL?.map((certificationURL) => <a href="certificationURL" target="_blank"> {certificationURL}</a>)}
           </div>
         </div>
       </div>

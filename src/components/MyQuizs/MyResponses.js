@@ -106,7 +106,7 @@ const MyResponses = () => {
                                         <TableRow>
                                             <TableCell>Challenge Name</TableCell>
 
-                                            <TableCell key="correct" align="right">No.of Correct Answers</TableCell>
+                                            <TableCell key="correct" align="right">Score Received</TableCell>
 
                                         </TableRow>
 

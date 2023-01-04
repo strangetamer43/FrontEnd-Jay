@@ -55,6 +55,11 @@ const PostDetails = () => {
     
     
   };
+  const handleProfileClick = () => {
+    window.open(`/profile/${post?.creator}`, "_self")
+
+  };
+
   const SwitchMedia = () => {
     if(post.imageUrl) {
       return <img className={classes.media}  src={post.imageUrl}/>
@@ -82,7 +87,7 @@ const PostDetails = () => {
           </div>
           <div className={classes.section}>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <Button component={Link} to={`/profile/${post?.creator}`} state={{ creator: post.creator }} className={classes.button}>
+          <Button onClick={handleProfileClick} state={{ creator: post.creator }} className={classes.button}>
             <div style={{display: 'flex', direction: 'row', justifyContent: 'flex-start'}}>
            <Avatar className={classes.purple} alt={post.name} src={post.avatarUrl}></Avatar>
            <typography className={classes.name}>{post.name}</typography>

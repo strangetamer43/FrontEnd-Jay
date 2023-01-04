@@ -61,7 +61,7 @@ export const getSpecificUserProfile = (userId) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
         const reqdata = {
-            creator: userId
+            userId: userId
         }
         const { data } = await api.fetchSpecificUserProfile(reqdata);
         
@@ -72,4 +72,18 @@ export const getSpecificUserProfile = (userId) => async (dispatch) => {
         console.log(error);
     }
     
+}
+export const addExperience = (id, profile) => async (dispatch) => {
+    try {
+        console.log(profile)
+        const profileData = {
+            profile: profile
+        }
+        const { data } = await api.addExperience(id, profileData);
+        console.log("data", data)
+
+        dispatch({ type: UPDATE, payload: data });
+    } catch (error) {
+        console.log(error);
+    }
 }

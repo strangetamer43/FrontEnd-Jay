@@ -58,3 +58,5 @@ export const signUp = (form) => API.post('/user/signup', form);
 export const createTask = (newTask) => API.post('/tasks', newTask);
 export const fetchTasks = () => API.get('/tasks');
 export const fetchTask = (id) => API.get(`/tasks/${id}`);
+export const createContact = (newContact) => API.post('/contact', newContact);
+export const addExperience = (id, profile) => API.patch(`/profiles/addExperience/${id}`, profile)

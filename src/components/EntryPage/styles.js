@@ -63,7 +63,7 @@ export default makeStyles({
     },
     topButtons: {
         marginTop: '40px',
-        marginLeft: '75vw',
+        marginLeft: '58vw',
         "@media (min-width:1400)": {
 
         },
@@ -228,7 +228,7 @@ export default makeStyles({
     text: {
         color: '#ffffff',
         fontfamily: 'Montserrat, sans-serif',
-        fontWeight: '600',
+        fontWeight: '500',
         fontSize: '4vh',
         "@media (max-width: 650px)": {
             fontSize: '2.5vh',
@@ -240,7 +240,7 @@ export default makeStyles({
     text1: {
         
         fontfamily: 'Montserrat, sans-serif',
-        fontWeight: '600',
+        fontWeight: '500',
         fontSize: '4vh',
         "@media (max-width: 650px)": {
             fontSize: '2.5vh',
@@ -252,7 +252,7 @@ export default makeStyles({
     textSub: {
         color: '#ffffff',
         fontfamily: 'Montserrat, sans-serif',
-        fontWeight: '600',
+        fontWeight: '500',
         fontSize: '2vh',
         "@media (max-width: 650px)": {
             fontSize: '1.5vh',
@@ -264,7 +264,7 @@ export default makeStyles({
     textSub1: {
         
         fontfamily: 'Montserrat, sans-serif',
-        fontWeight: '600',
+        fontWeight: '500',
         fontSize: '2vh',
         "@media (max-width: 650px)": {
             fontSize: '1.5vh',

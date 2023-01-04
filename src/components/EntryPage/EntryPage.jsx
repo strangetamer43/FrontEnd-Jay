@@ -100,6 +100,57 @@ function EntryPage() {
       <Typography  variant='h3'><TextAnimate>Know Yourself Better</TextAnimate></Typography>
       <Typography   variant='h5'><TextAnimate>Take world class reputed psychometric tests. Choose your career path accordingly!</TextAnimate></Typography>
       </div>
+      <div ref={ref3}>
+      <motion.div className={classes.rightSide}
+      
+      animate={animation3}
+      >
+      <div style={{ display: 'flex', flexDirection: 'row'}}>
+      <div className={classes.Model}>
+      <Spline scene="https://prod.spline.design/bk3Jl93ffU8drHlZ/scene.splinecode" />
+      </div>
+      <div>
+      <Typography className={classes.text} variant='h3'>Participate in exciting and fun Tournaments</Typography>
+      <Typography className={classes.textSub} variant='h5'>Meet like minded people, collaborate, innovate, compete, have fun and learn. Gain practical exposure to industries. Earn jobs, cash prizes and rewards!</Typography>
+      <Link to="/contests"><Button1>Participate Now!</Button1></Link>
+      </div>
+      
+      </div>
+      </motion.div>
+      </div>
+      <div ref={ref2}>
+      <motion.div className={classes.rightSide}
+      
+      animate={animation2}
+      
+      >
+        <div style={{ display: 'flex', flexDirection: 'row'}}>
+      <div className={classes.Model}>  
+      <Spline scene="https://prod.spline.design/ECJTMh9lhmvTVmq2/scene.splinecode" />
+      </div>
+      <div>
+      <Typography  className={classes.text} variant='h3'>Upskill with our groundbreaking bootcamps</Typography>
+      <Typography  className={classes.textSub}  variant='h5'>Automated, immersive and personalised learning experience. You learn however you wish!</Typography>
+      <div className={classes.challenges}>
+      <Paper>
+                <Typography  className={classes.text1} variant='h4'>Bootcamp 1</Typography>
+                <Typography  className={classes.textSub1} variant='h5'>Skills</Typography>
+            </Paper>
+            <Paper>
+                <Typography className={classes.text1} variant='h4'>Bootcamp 2</Typography>
+                <Typography   className={classes.textSub1} variant='h5'>Skills</Typography>
+            </Paper>
+            <Paper>
+                <Typography  className={classes.text1} variant='h4'>Bootcamp 3</Typography>
+                <Typography  className={classes.textSub1} variant='h5'>Skills</Typography>
+            </Paper>
+            
+            </div>
+            <Button1>And Much More!</Button1> 
+            </div>  
+            </div>    
+      </motion.div>
+      </div>
       </Container>
   )
 }

@@ -68,12 +68,6 @@ body {
     margin: auto;
 }
 
-.option-image {
-    width: '55vw';
-    height: auto;
-}
-
-.question-image {
-    width: '65vw';
-    height: auto;
+.growth {
+    scroll-behavior: smooth;
 }

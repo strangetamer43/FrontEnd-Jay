@@ -52,7 +52,7 @@ const QuestionDetails = () => {
       <div >
           <div className={classes.section}>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-           <Button component={Link} to={`/profile/${post?.creator}`} state={{ creator: post.creator }} className={classes.button}>
+           <Button component={Link} to={`/profile/${question?.creator}`} state={{ creator: question.creator }} className={classes.button}>
             <div style={{display: 'flex', direction: 'row', justifyContent: 'flex-start'}}>
            <Avatar className={classes.purple} alt={question.name} src={question?.avatarUrl}></Avatar>
            <typography className={classes.name}>{question.name}</typography>

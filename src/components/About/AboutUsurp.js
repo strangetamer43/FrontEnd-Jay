@@ -21,13 +21,14 @@ const AboutUsurp = () => {
         <typography className={classes.Header}>About Us</typography>
         
         </div>
-        <typography className={classes.Question}>How can Usurp help?</typography>
+        <Typography className={classes.Question}>How can Usurp help?</Typography>
+        <Typography className={classes.Statement}>Users:</Typography>
         <Typography className={classes.Statement} >Usurp can help you prove yourself to the world. Your skills, capabilites and abilities can be showcased to the world. We have built a seamless system that can 
         aid you in building a comprehensive portfolio, attain jobs and internships from top tier companies and upskill with ease.</Typography>
         <Typography className={classes.Statement}>We understand that job hunting is a painful, strenuous and disheartening process. So is getting noticed/recognised for your skills and talent. Which is why we are building this platform. Stop worrying about getting recruited into your dream role. Start using Usurp to prove how well you can perform
-        and leave the rest to us. We will arrange the best opportunities for each and every user.</Typography>
-        <Typography className={classes.Statement}>We are in the process of partnering with different instituions and ed tech platforms to bring you courses that can help you upskill very easily. And the best part...? Every course adds value to your Profile
-        while you receive a verifiable, trustworthy certificate that exists on the blockchain.</Typography>
+        and leave the rest to us. We will arrange the best opportunities for you.</Typography>
+        <Typography className={classes.Statement}>Recruiters:</Typography>
+        <Typography className={classes.Statement}>We also notice that companies and recruiters struggle to find the right talent. As education is getting more dynamic, the real talent is overlooked. And we have devised a system where you save multiple hours and resources while finding the most talented candidates for each job.</Typography>
         <Typography className={classes.Question} >How to use Usurp?</Typography>
         </div>
         <div className={classes.content}>
